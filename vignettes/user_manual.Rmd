@@ -41,7 +41,11 @@ You will enter the metadata in a supplied spreadsheet (Googlesheets or Excel), b
 ```{r}
 ## install the devtools package if not installed yet
 ## install.packages("devtools")
-## install the last version of emeScheme from github including the vignettes, run:
+## install the version of emeScheme corresponding to this user manual from github including the vignettes, run:
+
+# devtools::install_github("Exp-Micro-Ecol-Hub/emeScheme", ref = "v0.8", build_opts = c("--no-resave-data"))
+
+## to install the newest version emeScheme from github including the vignettes, run:
 
 # devtools::install_github("Exp-Micro-Ecol-Hub/emeScheme", build_opts = c("--no-resave-data"))
 
@@ -49,7 +53,7 @@ You will enter the metadata in a supplied spreadsheet (Googlesheets or Excel), b
 library(emeScheme)
 ```
 
-You can get either a googlesheet or Excel copy of the spreadsheet (they are identical) in which you enter the metadata. Here is [the googlesheet version](https://docs.google.com/spreadsheets/d/1sCImO4VadNwNKuqgtC3CPksS95Tl6SJVtY78aFo9gLg). Make a copy (File -- Make a copy) and delete the example data in the **green cells**. If you prefer Excel, you can run this R command to get an Excel version of the same but already empty sheet: 
+You can get either a googlesheet or Excel copy of the spreadsheet (they are identical) in which you enter the metadata. Here is [the googlesheet version](https://docs.google.com/spreadsheets/d/1plu2RO9Ft5zruUX4on6oSukBlQAzKd8vskAL8b1s734). Make a copy (File -- Make a copy) and delete the example data in the **green cells**. If you prefer Excel, you can run this R command to get an Excel version of the same but already empty sheet: 
 
 ```{r eval=FALSE}
 enter_new_metadata()
@@ -119,7 +123,7 @@ The worked **basic** example shows appropriate preparation of data for archiving
 The `basic` folder contains:
 
 * An R-project file `expt1.Rproj`
-* A spreadsheet file `expt1_emeScheme.xlsx` (identical to this [googlesheet](https://docs.google.com/spreadsheets/d/1sCImO4VadNwNKuqgtC3CPksS95Tl6SJVtY78aFo9gLg))
+* A spreadsheet file `expt1_emeScheme.xlsx` (identical to this [googlesheet](https://docs.google.com/spreadsheets/d/1plu2RO9Ft5zruUX4on6oSukBlQAzKd8vskAL8b1s734))
 * A folder named `data` with two subfolders:
   * A `raw_data` folder containing files and folders of files that contain the data as it was entered by the researcher, or produced by the measurement machine.
   * A `archiving_data` folder containing data files that have been prepared for archiving.
@@ -139,7 +143,7 @@ Super. Now we have nicely prepared data. We are ready to fill in the metadata.
 
 There's no more putting it off... lets try filling in the metadata. First, find and open your copy of the metadata spreadsheet you made.
 
-If you're working through the worked example (`basic`), open the `expt1_emeScheme.xlsx` file, or open the [googlesheet](https://docs.google.com/spreadsheets/d/1sCImO4VadNwNKuqgtC3CPksS95Tl6SJVtY78aFo9gLg).
+If you're working through the worked example (`basic`), open the `expt1_emeScheme.xlsx` file, or open the [googlesheet](https://docs.google.com/spreadsheets/d/1plu2RO9Ft5zruUX4on6oSukBlQAzKd8vskAL8b1s734).
 
 * Green cells are where you enter information.
 * Pink cells are places where you should not try to type anything (they should be locked anyway).

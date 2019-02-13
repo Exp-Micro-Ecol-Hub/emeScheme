@@ -23,7 +23,7 @@ updateFromGoogleSheet <- function(
   on.exit(googlesheets::gs_deauth())
   ##
   googlesheets::gs_auth(token = token)
-  emes <- googlesheets::gs_title("emeScheme")
+  emes <- googlesheets::gs_title("emeScheme_v0.8")
   update <- emes$updated %>% format("%Y-%m-%d %H:%M:%S")
   lastUpdate <- read.dcf(here::here("DESCRIPTION"))[1, "GSUpdate"]
   if (force) {
