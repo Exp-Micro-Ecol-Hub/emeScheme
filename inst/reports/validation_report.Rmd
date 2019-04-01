@@ -8,9 +8,20 @@ title: "`r params$title`"
 author: "`r params$author`"
 date: "`r Sys.Date()`"
 output:
-  html_document: default
-  pdf_document: default
-  word_document: default
+  html_document: 
+    number_sections: true
+    toc_depth: 3
+    toc: true
+    toc_float: true
+    keep_md: true
+  pdf_document: 
+    number_sections: true
+    toc_depth: 3
+    toc: true
+  word_document: 
+    number_sections: true
+    toc_depth: 3
+    toc: true
 ---
 
 
@@ -27,120 +38,132 @@ if (is.null(x)) {
     devtools::load_all()
   }
   x <- emeScheme::emeScheme_raw
-  result <- validate(x = emeScheme_raw, validateData = TRUE, report = "none")
+  result <- validate(x = emeScheme_raw, validateData = TRUE, report = "none", path = system.file("example_data", "basic", "data", "archiving_data", package = "emeScheme"))
 }
 ## ##
+## Define colours for results of evaluation
+
 ```
 
 * **Author**: `r params$author`
 * **emeScheme metadata name**: `r attr(x, "fileName")`
-* **data package path**: `add this`
+* **data package path**: `add this` 
 
-# Overall validation outcome
+# Introduction
+This validation report validates the most likely an excelsheet containing the data.
+The headers do represent sections of validations, while the bullets reperesent individual validations. Sections of the validation and are hierarchical, i.e. a higher level validation result depends on the lower level validation results. The headers and validations follow the structure of
 
-Here there will be a report on the overall validation outcome, e.g., your metadata-data combination passed x/y critical tests, and passed z/n desirable tests. Please see below for details of each test result.
+**Error_Level** : **Name of the validation**
+
+The error level can be:
+- **OK**: the validation passed
+- **note**: the validation contains an inconsistency which migh be an error or on purpose. Please check these!
+- **warning**: the validation contains an inconsistency which could be an error or on purpose. Please check these!
+- **error**: the validation failed and contains an error - needs to be fixewd before the data can be exported!
+
+An ideal validation will not contain any errors or warnings.
+
+Validation results are accumulated by forwarding the highest error to the validation of the next 
+level. If validation 1.3. contains an error, 1. will be classified as an error as well, 
+irrespective of 1.1, 1.2, ....
+
+The details do contain the individual tests and are explained in detail in the sections
+
+Details **Error_Level** : **Name of the validation**
 
 
-Put this in an appendix.
+<!-- ################################### -->
+<!-- ################################### -->
+<!-- Overall MetaData -->
+<!-- ################################### -->
+<!-- ################################### -->
+
+# Overall
+```{r}
+valErr_extract(result) %>% 
+  table %>% 
+  set_names(valErr_info(names(.))$text)
+```
+
+# Overview
+```{r, results = "asis"}
+print(result, level = 2, listLevel = 20, type = "summary")
+```
+
+## **<span style="color:red">TODO</span>** 
+### result$DataFiles$header
+result$DataFiles$description
+
+- [ ] ranges of numeric columns
+- [ ] values of text columns
+- [ ] ???
+
+### <== Treatment
+- [ ] the **values** in the column describing the treatment (i.e. treatment levels) have to be in the column `Treatment$treatmentLevel` of the corresponding `Treatment$parameter`
+
+### <== Measurement
+- [ ] type checks of `columnName` compared to `type`
+
+## Other Validity Checks
+- [ ] ???
+
+
+<!-- ################################### -->
+<!-- ################################### -->
+<!-- Details -->
+<!-- ################################### -->
+<!-- ################################### -->
+
+
+# Details
+
+```{r , results = "asis"}
+print(result, level = 2, listLevel = 20, type = "details", format = "markdown")
+```
+
+
+
+# Structure info
 ```{r info}
 attributes(x)
 ```
 
-Use conditional text to explicitly say pass or fail, so that users don't have to read the R output (or at least get lovely green text for pass, and red for fail!)
+# Confirmation code
 
-# Validate General Structure
-```{r val_struct, options}
-result$structOK
+The following code needs to be entered in the `emeSchemeToXml()` function to confirm that the validation has been done and read. **No export is possible without this code!**:
+ **<span style="color:red">TODO implement in emeSchemeToXML()</span>**
+```{r echo=FALSE, comment = ""}
+if (isTRUE(result$error < 2)) {
+  suppressWarnings( 
+    new_emeSchemeSet(
+      x = x, 
+      keepData = TRUE, 
+      convertTypes = TRUE,  
+      verbose = FALSE, 
+      warnToError = FALSE
+    ) 
+  ) %>%
+    digest::digest(algo = "sha1")
+} else {
+  cat_ln("Please fix all errors before continuing!")
+  cat_ln()
+  cat_ln("The following code will not be printed in the final version!!!!!")
+  cat_ln()
+  suppressWarnings( 
+    new_emeSchemeSet(
+      x = x, 
+      keepData = TRUE, 
+      convertTypes = TRUE,  
+      verbose = FALSE, 
+      warnToError = FALSE
+    ) 
+  ) %>%
+    digest::digest(algo = "sha1") %>%
+    cat_ln()
+}
 ```
 
 
-# Validate Experiment
-## Types
-```{r}
-result$Experiment$types %>%
-  kable()
-```
-
-## Suggested Values
-```{r}
-result$Experiment$suggestedValues %>%
-  kable()
-```
-
-# Validate Species
-## Types
-```{r}
-result$Species$types %>%
-  kable()
-```
-
-## Suggested Values
-```{r}
-result$Species$suggestedValues %>%
-  kable()
-```
-
-## Species Names
-```{r}
-result$Species$speciesNames %>%
-  kable()
-```
-
-# Validate Treatment
-## Types
-```{r}
-result$Treatment$types %>%
-  kable()
-```
-
-## Suggested Values
-```{r}
-result$Treatment$suggestedValues %>%
-  kable()
-```
-
-# Validate Measurement
-## Types
-```{r}
-result$Measurement$types %>%
-  kable()
-```
-
-## Suggested Values
-```{r}
-result$Measurement$suggestedValues %>%
-  kable()
-```
-
-# Validate DataExtraction
-## Types
-```{r}
-result$DataExtraction$types %>%
-  kable()
-```
-
-## Suggested Values
-```{r}
-result$DataExtraction$suggestedValues %>%
-  kable()
-```
-
-# Validate DataFileMetaData
-## Types
-```{r}
-result$DataFileMetaData$types %>%
-  kable()
-```
-
-## Suggested Values
-```{r}
-result$DataFileMetaData$suggestedValues %>%
-  kable()
-```
-
-## Validate mappingColumn
-
-## Validation out of attempt to parse date variables
-
-# To do
-
+# <span style="color:red">TODO</span>  
+- Use conditional text to explicitly say pass or fail, so that users don't have to read the R output (or at least get lovely green text for pass, and red for fail!)
+- Validation out of attempt to parse date variables

@@ -1,3 +1,7 @@
+^Notes\.md$
+^updateFromGoogleSheet\.R$
+^basic$
+^Release_Checklist\.Rmd$
 ^appveyor\.yml$
 ^appveyor\.yml\.org$
 ^Meta$
@@ -12,7 +16,8 @@
 ^docs$
 ^source$
 ^Makefile$
-^.*\.Rproj$
+^emeScheme.Rproj$
 ^\.Rproj\.user$
 ^\.httr-oauth$
 ^ONLYLOCAL
+^emeScheme\.Rproj$

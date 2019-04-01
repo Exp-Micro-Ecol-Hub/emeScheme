@@ -1,3 +1,11 @@
+# release 0.9
+This should finalise the spreadsheet
+
+* spreadsheet only in package, not on google sheets anymore
+* diverse changes in spreadsheet
+* reworked validation
+* reworked xml export
+
 # release 0.8
 This is the first **beta** release for public testing and contains numerous changes from the earlier versions.
 The scheme itself as well as the functions should be stable now.
@@ -8,6 +16,5 @@ The scheme itself as well as the functions should be stable now.
 
 * Continuous work on scheme
 * Added a `NEWS.md` file to track changes to the package.
-
 
 
