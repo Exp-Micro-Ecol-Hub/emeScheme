@@ -12,13 +12,17 @@
 
 <meta name="author" content="Rainer M Krug Rainer@uzh.ch" />
 
-<meta name="date" content="2019-02-13" />
+<meta name="date" content="2019-04-05" />
 
 <title>Description of emeScheme</title>
 
 <script>$(document).ready(function(){
-    $('[data-toggle="tooltip"]').tooltip();
-    $('[data-toggle="popover"]').popover();
+    if (typeof $('[data-toggle="tooltip"]').tooltip === 'function') {
+        $('[data-toggle="tooltip"]').tooltip();
+    }
+    if ($('[data-toggle="popover"]').popover === 'function') {
+        $('[data-toggle="popover"]').popover();
+    }
 });
 </script>
 
@@ -42,7 +46,7 @@ a.sourceLine { text-indent: -1em; padding-left: 1em; }
 pre.numberSource a.sourceLine
   { position: relative; left: -4em; }
 pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+  { content: attr(title);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
     border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
@@ -296,6 +300,9 @@ code > span.al { color: #ff0000; font-weight: bold; }
 code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61717; background-color: #e3d2d2; } 
 </style>
 
+
+
+
 </head>
 
 <body>
@@ -304,13 +311,9 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 
 
 <h1 class="title toc-ignore">Description of emeScheme</h1>
-<<<<<<< HEAD
-<h3 class="subtitle"><em>emeScheme Version v0.8</em></h3>
-=======
-<h3 class="subtitle"><em>emeScheme Version v0.8.1.0</em></h3>
->>>>>>> dev
-<h4 class="author"><em>Rainer M Krug <a href="mailto:Rainer@uzh.ch" class="email">Rainer@uzh.ch</a></em></h4>
-<h4 class="date"><em>2019-02-13</em></h4>
+<h3 class="subtitle">emeScheme Version v0.9</h3>
+<h4 class="author">Rainer M Krug <a href="mailto:Rainer@uzh.ch" class="email">Rainer@uzh.ch</a></h4>
+<h4 class="date">2019-04-05</h4>
 
 
 
@@ -388,19 +391,19 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <p>Here we describe the structure of the <strong>emeScheme</strong></p>
 <div id="emescheme-structure" class="section level2">
 <h2>emeScheme Structure</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">print</span>(emeScheme, <span class="dt">printData =</span> F, <span class="dt">printAttr =</span> <span class="ot">FALSE</span>, <span class="dt">printExtAttr =</span> <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="co">#&gt;  emeScheme - emeSchemeSet</span></a>
-<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="co">#&gt;      Experiment - emeSchemeData</span></a>
-<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="co">#&gt;      Species - emeSchemeData</span></a>
-<a class="sourceLine" id="cb1-5" data-line-number="5"><span class="co">#&gt;      Treatment - emeSchemeData</span></a>
-<a class="sourceLine" id="cb1-6" data-line-number="6"><span class="co">#&gt;      Measurement - emeSchemeData</span></a>
-<a class="sourceLine" id="cb1-7" data-line-number="7"><span class="co">#&gt;      DataExtraction - emeSchemeData</span></a>
-<a class="sourceLine" id="cb1-8" data-line-number="8"><span class="co">#&gt;      DataFileMetaData - emeSchemeData</span></a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">print</span>(emeScheme, <span class="dt">printData =</span> F, <span class="dt">printAttr =</span> <span class="ot">FALSE</span>, <span class="dt">printExtAttr =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb1-2" title="2"><span class="co">#&gt;  emeScheme - emeSchemeSet</span></a>
+<a class="sourceLine" id="cb1-3" title="3"><span class="co">#&gt;      Experiment - emeSchemeData</span></a>
+<a class="sourceLine" id="cb1-4" title="4"><span class="co">#&gt;      Species - emeSchemeData</span></a>
+<a class="sourceLine" id="cb1-5" title="5"><span class="co">#&gt;      Treatment - emeSchemeData</span></a>
+<a class="sourceLine" id="cb1-6" title="6"><span class="co">#&gt;      Measurement - emeSchemeData</span></a>
+<a class="sourceLine" id="cb1-7" title="7"><span class="co">#&gt;      DataExtraction - emeSchemeData</span></a>
+<a class="sourceLine" id="cb1-8" title="8"><span class="co">#&gt;      DataFileMetaData - emeSchemeData</span></a></code></pre></div>
 <div id="experiment" class="section level3">
 <h3>Experiment</h3>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">emeScheme_raw<span class="op">$</span>Experiment <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="st">  </span><span class="kw">kable</span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="st">  </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="st">&quot;striped&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">emeScheme_raw<span class="op">$</span>Experiment <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb2-2" title="2"><span class="st">  </span><span class="kw">kable</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb2-3" title="3"><span class="st">  </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="st">&quot;striped&quot;</span>)</a></code></pre></div>
 <table class="table table-striped" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -465,7 +468,7 @@ NA
 character
 </td>
 <td style="text-align:left;">
-treatment, …
+treatment, in degrees celsius, measurement, …
 </td>
 <td style="text-align:left;">
 Temperature used for all treatments. If different between treatments, use “treatment” and specify in the Treatment sheet.
@@ -488,7 +491,7 @@ NA
 character
 </td>
 <td style="text-align:left;">
-treatment, …
+treatment,light, dark, cycle , e.g. 16:8 LD, …
 </td>
 <td style="text-align:left;">
 Light used for all treatments. If different between treatments, use “treatment” and specify in the Treatment sheet.
@@ -511,7 +514,7 @@ NA
 character
 </td>
 <td style="text-align:left;">
-treatment, …
+treatment, relative humidity in %, …
 </td>
 <td style="text-align:left;">
 Humidity used for all treatments. If different between treatments, use “treatment” and specify in the Treatment sheet.
@@ -675,7 +678,7 @@ character
 treatment, single trophic level, multiple trophic level, …
 </td>
 <td style="text-align:left;">
-Characterisation of the cmicrobe community.
+Characterisation of the microbe community.
 </td>
 <td style="text-align:left;">
 initially unknown
@@ -709,6 +712,29 @@ Wheat seeds added on specific dates, see file wheat_seed_additions.csv
 NA
 </td>
 <td style="text-align:left;">
+duration
+</td>
+<td style="text-align:left;">
+days
+</td>
+<td style="text-align:left;">
+integer
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Length of the experiment in days. This should only include the time in which the measurements were taken!
+</td>
+<td style="text-align:left;">
+100
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
 comment
 </td>
 <td style="text-align:left;">
@@ -732,9 +758,9 @@ NA
 </div>
 <div id="species" class="section level3">
 <h3>Species</h3>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">emeScheme_raw<span class="op">$</span>Species <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="st">  </span><span class="kw">kable</span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="st">  </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="st">&quot;striped&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">emeScheme_raw<span class="op">$</span>Species <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb3-2" title="2"><span class="st">  </span><span class="kw">kable</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb3-3" title="3"><span class="st">  </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="st">&quot;striped&quot;</span>)</a></code></pre></div>
 <table class="table table-striped" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -745,19 +771,22 @@ propertySet
 Species
 </th>
 <th style="text-align:left;">
-..3
+…3
 </th>
 <th style="text-align:left;">
-..4
+…4
 </th>
 <th style="text-align:left;">
-..5
+…5
 </th>
 <th style="text-align:left;">
-..6
+…6
 </th>
 <th style="text-align:left;">
-..7
+…7
+</th>
+<th style="text-align:left;">
+…8
 </th>
 </tr>
 </thead>
@@ -765,6 +794,9 @@ Species
 <tr>
 <td style="text-align:left;">
 valueProperty
+</td>
+<td style="text-align:left;">
+speciesID
 </td>
 <td style="text-align:left;">
 name
@@ -799,6 +831,9 @@ NA
 NA
 </td>
 <td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
 cells / ml
 </td>
 <td style="text-align:left;">
@@ -822,7 +857,10 @@ character
 character
 </td>
 <td style="text-align:left;">
-numeric
+character
+</td>
+<td style="text-align:left;">
+character
 </td>
 <td style="text-align:left;">
 character
@@ -834,6 +872,9 @@ character
 <tr>
 <td style="text-align:left;">
 suggestedValues
+</td>
+<td style="text-align:left;">
+NA
 </td>
 <td style="text-align:left;">
 NA
@@ -859,7 +900,10 @@ NA
 Description
 </td>
 <td style="text-align:left;">
-Scientific name of the species. Should only occur once. Or unknown.
+Id of the species and strain. Each speciesId has to be unique.
+</td>
+<td style="text-align:left;">
+Scientific name of the species or unknown.
 </td>
 <td style="text-align:left;">
 NA
@@ -880,6 +924,9 @@ NA
 <tr>
 <td style="text-align:left;">
 DATA
+</td>
+<td style="text-align:left;">
+tt_1
 </td>
 <td style="text-align:left;">
 Tetrahymena thermophila
@@ -914,6 +961,9 @@ unknown
 unknown
 </td>
 <td style="text-align:left;">
+unknown
+</td>
+<td style="text-align:left;">
 NA
 </td>
 <td style="text-align:left;">
@@ -928,9 +978,9 @@ NA
 </div>
 <div id="treatment" class="section level3">
 <h3>Treatment</h3>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">emeScheme_raw<span class="op">$</span>Treatment <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="st">  </span><span class="kw">kable</span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="st">  </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="st">&quot;striped&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">emeScheme_raw<span class="op">$</span>Treatment <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb4-2" title="2"><span class="st">  </span><span class="kw">kable</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb4-3" title="3"><span class="st">  </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="st">&quot;striped&quot;</span>)</a></code></pre></div>
 <table class="table table-striped" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -941,13 +991,13 @@ propertySet
 Treatment
 </th>
 <th style="text-align:left;">
-..3
+…3
 </th>
 <th style="text-align:left;">
-..4
+…4
 </th>
 <th style="text-align:left;">
-..5
+…5
 </th>
 </tr>
 </thead>
@@ -957,7 +1007,7 @@ Treatment
 valueProperty
 </td>
 <td style="text-align:left;">
-parameter
+treatmentID
 </td>
 <td style="text-align:left;">
 unit
@@ -1008,10 +1058,10 @@ character
 suggestedValues
 </td>
 <td style="text-align:left;">
-temperatur, light, initial density, comunity composition, densities, dispersal, viscosity, disturbance, communityType, …
+species, temperatur, light, initial density, comunity composition, densities, dispersal, viscosity, disturbance, communityType, …
 </td>
 <td style="text-align:left;">
-C, lux, name, none, …
+speciesId, C, lux, name, none, …
 </td>
 <td style="text-align:left;">
 value, variable: freetext, …
@@ -1025,13 +1075,13 @@ NA
 Description
 </td>
 <td style="text-align:left;">
-The parameter decribed in this a column in a data sheet.
+ID of the the treatment decribed in this a row. Each treatmentId can occur multiple times as it can contain multiple treatment levels.
 </td>
 <td style="text-align:left;">
-The unit of the parameter.
+The unit of the treatment.
 </td>
 <td style="text-align:left;">
-The value of the parameter if the parameter is constant over time, or a description of the variability.
+The value of the parameter if the parameter is constant over time, or a description of the variability. If unit is speciesId, comma separated list of all species in the treatment.
 </td>
 <td style="text-align:left;">
 NA
@@ -1071,14 +1121,65 @@ Tight
 NA
 </td>
 </tr>
+<tr>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+species_1
+</td>
+<td style="text-align:left;">
+speciesID
+</td>
+<td style="text-align:left;">
+tt_1, unknown
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+species_2
+</td>
+<td style="text-align:left;">
+speciesID
+</td>
+<td style="text-align:left;">
+unknown
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+species_3
+</td>
+<td style="text-align:left;">
+speciesID
+</td>
+<td style="text-align:left;">
+tt_1
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
 </tbody>
 </table>
 </div>
 <div id="measurement" class="section level3">
 <h3>Measurement</h3>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">emeScheme_raw<span class="op">$</span>Measurement <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="st">  </span><span class="kw">kable</span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="st">  </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="st">&quot;striped&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">emeScheme_raw<span class="op">$</span>Measurement <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb5-2" title="2"><span class="st">  </span><span class="kw">kable</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb5-3" title="3"><span class="st">  </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="st">&quot;striped&quot;</span>)</a></code></pre></div>
 <table class="table table-striped" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -1089,34 +1190,31 @@ propertySet
 Measurement
 </th>
 <th style="text-align:left;">
-..3
+…3
 </th>
 <th style="text-align:left;">
-..4
+…4
 </th>
 <th style="text-align:left;">
-..5
+…5
 </th>
 <th style="text-align:left;">
-..6
+…6
 </th>
 <th style="text-align:left;">
-..7
+…7
 </th>
 <th style="text-align:left;">
-..8
+…8
 </th>
 <th style="text-align:left;">
-..9
+…9
 </th>
 <th style="text-align:left;">
-..10
+…10
 </th>
 <th style="text-align:left;">
-..11
-</th>
-<th style="text-align:left;">
-..12
+…11
 </th>
 </tr>
 </thead>
@@ -1126,7 +1224,7 @@ Measurement
 valueProperty
 </td>
 <td style="text-align:left;">
-name
+measurementID
 </td>
 <td style="text-align:left;">
 variable
@@ -1141,16 +1239,13 @@ unit
 object
 </td>
 <td style="text-align:left;">
-lengthOfTimeSeries
-</td>
-<td style="text-align:left;">
 noOfSamplesInTimeSeries
 </td>
 <td style="text-align:left;">
 samplingVolume
 </td>
 <td style="text-align:left;">
-dataExtractionName
+dataExtractionID
 </td>
 <td style="text-align:left;">
 measuredFrom
@@ -1177,9 +1272,6 @@ NA
 </td>
 <td style="text-align:left;">
 NA
-</td>
-<td style="text-align:left;">
-days
 </td>
 <td style="text-align:left;">
 NA
@@ -1215,9 +1307,6 @@ character
 </td>
 <td style="text-align:left;">
 character
-</td>
-<td style="text-align:left;">
-integer
 </td>
 <td style="text-align:left;">
 integer
@@ -1261,13 +1350,10 @@ NA
 NA
 </td>
 <td style="text-align:left;">
-NA
+Mol_Analy_pipeline1, none
 </td>
 <td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
+oxygen concentration, abundance, smell, sequenceData, raw
 </td>
 <td style="text-align:left;">
 NA
@@ -1278,7 +1364,7 @@ NA
 Description
 </td>
 <td style="text-align:left;">
-Name of the Measurement process. This includes methodology, variables, … . Each name specifies one Measurement process and can occur multiple times.
+Id of the Measurement process. This includes methodology, variables, … . Each measurementId specifies one Measurement process and must be unique in this column. Should be in the mapping column in the DataFileMetaData tab.
 </td>
 <td style="text-align:left;">
 The variable measured.
@@ -1293,19 +1379,17 @@ Unit of the measured variable
 The object measured. E.g. species in the case of manual count, gene for genetic analysis, particle for particle counters.
 </td>
 <td style="text-align:left;">
-Total length of the time series in days.
-</td>
-<td style="text-align:left;">
 Total number of all samples in the time series.
 </td>
 <td style="text-align:left;">
-The sampling volumne. If e.g. atmosphere in container is sampled (oxygen measurements), than enter 0.
+<p>The sampling volumne. If e.g. atmosphere in container is sampled (oxygen measurements), than enter 0.</p>
+Please use NA if sampling volumne is variable.
 </td>
 <td style="text-align:left;">
-as used in the sheet DataExtraction, column name
+as used in the sheet DataExtraction, column dataExtractionID
 </td>
 <td style="text-align:left;">
-if measured from the experiment, raw, else the name (first column) of the measurement it is based on.
+if measured from the experiment, raw, else the measurementId (first column) of the Measurement it is based on.
 </td>
 <td style="text-align:left;">
 NA
@@ -1334,19 +1418,16 @@ community
 50
 </td>
 <td style="text-align:left;">
-50
-</td>
-<td style="text-align:left;">
 0
 </td>
 <td style="text-align:left;">
-NA
+none
 </td>
 <td style="text-align:left;">
 raw
 </td>
 <td style="text-align:left;">
-data stil being collected
+NA
 </td>
 </tr>
 <tr>
@@ -1369,9 +1450,6 @@ count
 species
 </td>
 <td style="text-align:left;">
-100
-</td>
-<td style="text-align:left;">
 6
 </td>
 <td style="text-align:left;">
@@ -1384,7 +1462,7 @@ Mol_Analy_pipeline1
 sequenceData
 </td>
 <td style="text-align:left;">
-May collect more
+NA
 </td>
 </tr>
 <tr>
@@ -1407,22 +1485,19 @@ rotten eggs or not
 community
 </td>
 <td style="text-align:left;">
-100
-</td>
-<td style="text-align:left;">
 6
 </td>
 <td style="text-align:left;">
 0
 </td>
 <td style="text-align:left;">
-NA
+none
 </td>
 <td style="text-align:left;">
 raw
 </td>
 <td style="text-align:left;">
-May collect more
+NA
 </td>
 </tr>
 <tr>
@@ -1445,22 +1520,19 @@ Nucleotide
 DNA fragment
 </td>
 <td style="text-align:left;">
-100
-</td>
-<td style="text-align:left;">
 6
 </td>
 <td style="text-align:left;">
 0
 </td>
 <td style="text-align:left;">
-NA
+none
 </td>
 <td style="text-align:left;">
 raw
 </td>
 <td style="text-align:left;">
-May collect more
+NA
 </td>
 </tr>
 </tbody>
@@ -1468,9 +1540,9 @@ May collect more
 </div>
 <div id="dataextraction" class="section level3">
 <h3>DataExtraction</h3>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">emeScheme_raw<span class="op">$</span>DataExtraction <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="st">  </span><span class="kw">kable</span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb6-3" data-line-number="3"><span class="st">  </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="st">&quot;striped&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">emeScheme_raw<span class="op">$</span>DataExtraction <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb6-2" title="2"><span class="st">  </span><span class="kw">kable</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb6-3" title="3"><span class="st">  </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="st">&quot;striped&quot;</span>)</a></code></pre></div>
 <table class="table table-striped" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -1481,16 +1553,16 @@ propertySet
 DataExtraction
 </th>
 <th style="text-align:left;">
-..3
+…3
 </th>
 <th style="text-align:left;">
-..4
+…4
 </th>
 <th style="text-align:left;">
-..5
+…5
 </th>
 <th style="text-align:left;">
-..6
+…6
 </th>
 </tr>
 </thead>
@@ -1500,7 +1572,7 @@ DataExtraction
 valueProperty
 </td>
 <td style="text-align:left;">
-name
+dataExtractionID
 </td>
 <td style="text-align:left;">
 method
@@ -1640,9 +1712,9 @@ NA
 </div>
 <div id="datafile" class="section level3">
 <h3>DataFile</h3>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">emeScheme_raw<span class="op">$</span>DataFile <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="st">  </span><span class="kw">kable</span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb7-3" data-line-number="3"><span class="st">  </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="st">&quot;striped&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">emeScheme_raw<span class="op">$</span>DataFile <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb7-2" title="2"><span class="st">  </span><span class="kw">kable</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb7-3" title="3"><span class="st">  </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="st">&quot;striped&quot;</span>)</a></code></pre></div>
 <table class="table table-striped" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -1653,22 +1725,22 @@ propertySet
 DataFileMetaData
 </th>
 <th style="text-align:left;">
-..3
+…3
 </th>
 <th style="text-align:left;">
-..4
+…4
 </th>
 <th style="text-align:left;">
-..5
+…5
 </th>
 <th style="text-align:left;">
-..6
+…6
 </th>
 <th style="text-align:left;">
-..7
+…7
 </th>
 <th style="text-align:left;">
-..8
+…8
 </th>
 </tr>
 </thead>
@@ -1762,10 +1834,10 @@ NA
 NA
 </td>
 <td style="text-align:left;">
-ID, Treatment, Measurement, other
+ID, Treatment, Measurement, Species, other
 </td>
 <td style="text-align:left;">
-Lid_treatment, Lid_treatment, ——-, oxygen concentration, abundance, smell, sequenceData
+NA
 </td>
 <td style="text-align:left;">
 integer, numeric, character, logical, datetime, date, time
@@ -1785,13 +1857,23 @@ Description
 the name of the data set.
 </td>
 <td style="text-align:left;">
-Name of column in the data file. Each column in the data file needs to be documented!
+<p>Name of column in the data file. Each column in the data file needs to be documented!</p>
+<p>or NA</p>
+if it is for the whole data file and not specified in the dataFileName
 </td>
 <td style="text-align:left;">
-The type of the data in the column. ID: ID field (unique ID of unit of replication); Treatment: specifies treatment; Measurement: contains measurements; other: other type of data
+<p>The type of the data in the column.</p>
+<p>ID: ID field (unique ID of unit of replication);</p>
+<p>Treatment: specifies treatment;</p>
+<p>Measurement: contains measurements;</p>
+<p>Species: contains species;</p>
+other: other type of data
 </td>
 <td style="text-align:left;">
-Treatment: parameter as in the Treatment tab; Measurement: name as in the Measurement tab
+<p>columnData = Treatment: treatmentID as in the Treatment tab;</p>
+<p>columnData = Species: treatmentID refering to species composition as in the Treatment tab</p>
+<p>columnData = Measurement: measurementID as in the Measurement tab;</p>
+otherwise: NA
 </td>
 <td style="text-align:left;">
 Type of the column.
@@ -2045,6 +2127,32 @@ NA
 smell.csv
 </td>
 <td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Species
+</td>
+<td style="text-align:left;">
+species_1
+</td>
+<td style="text-align:left;">
+character
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+smell.csv
+</td>
+<td style="text-align:left;">
 smell
 </td>
 <td style="text-align:left;">
@@ -2103,7 +2211,7 @@ Lid_treatment
 Treatment
 </td>
 <td style="text-align:left;">
-NA
+Lid_treatment
 </td>
 <td style="text-align:left;">
 character
@@ -2129,7 +2237,33 @@ Jar_type
 other
 </td>
 <td style="text-align:left;">
-Lid_treatment
+NA
+</td>
+<td style="text-align:left;">
+character
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+abundances.csv
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Species
+</td>
+<td style="text-align:left;">
+species_3
 </td>
 <td style="text-align:left;">
 character
@@ -2274,11 +2408,7 @@ NA
 </tbody>
 </table>
 <p>A <strong>property set</strong> which contains <strong>data properties</strong> must be seen as tables and must therefore have the same number of entries for each data property.</p>
-<<<<<<< HEAD
-<p>The structure as at <strong>2019-02-13 08:26:34 GMT</strong> is as followed:</p>
-=======
-<p>The structure as at <strong>2019-02-13 08:10:06 GMT</strong> is as followed:</p>
->>>>>>> dev
+<p>The structure as at <strong>2019-03-18 13:39:12 GMT</strong> is as followed:</p>
 </div>
 </div>
 </div>
