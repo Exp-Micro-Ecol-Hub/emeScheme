@@ -346,7 +346,11 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <a class="sourceLine" id="cb1-10" title="10"></a>
 <a class="sourceLine" id="cb1-11" title="11"><span class="co">## than load the package</span></a>
 <a class="sourceLine" id="cb1-12" title="12"><span class="kw">library</span>(emeScheme)</a></code></pre></div>
+<<<<<<< HEAD
 <p>You can get either a googlesheet or Excel copy of the spreadsheet (they are identical) in which you enter the metadata. Here is <a href="https://docs.google.com/spreadsheets/d/1plu2RO9Ft5zruUX4on6oSukBlQAzKd8vskAL8b1s734">the googlesheet version</a>. Make a copy (File – Make a copy) and delete the example data in the <strong>green cells</strong>. If you prefer Excel, you can run this R command to get an Excel version of the same but already empty sheet:</p>
+=======
+<p>To enter the metadata run this R command to get an Excel version of the emeScheme without metadata in it:</p>
+>>>>>>> dev
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw">enter_new_metadata</span>()</a></code></pre></div>
 <p>The following command opens the sheet with the example data in:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">enter_new_metadata</span>(<span class="dt">keepData =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
@@ -374,10 +378,9 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <div id="about-dates-and-times" class="section level2">
 <h2>About dates and times</h2>
 <p>It will be very useful if during data preparation you standardise (parse) any dates and times in the data. A good method for this is to use functions in the <strong>lubridate</strong> R package, such as <code>dmy</code>, <code>hms</code>, and <code>dmy_hms</code> to create the standardise dates, and then write these to the ready for research/archiving data version.</p>
-</div>
-<div id="a-note-on-allowed-entries-in-the-google-version-of-the-spreadsheet" class="section level2">
-<h2>A note on allowed entries in the <strong>google</strong> version of the spreadsheet</h2>
-<p>For some cells there are suggested entries listed in the row <strong>suggestedValues</strong> or available in a dropdown list. <strong>Please use these suggestions if you can</strong>. If the list contains an item that is three dots (…) you can enter an item not in the provided list: just type what you like in the cell. If you do this, you will get the message “Invalid: Input must be an item on specified list”. You can ignore this message.</p>
+<!-- TODO Should be adapted to the Excel sheet! -->
+<!-- ## A note on allowed entries in the **google** version of the spreadsheet -->
+<!-- For some cells there are suggested entries listed in the row **suggestedValues** or available in a dropdown list. **Please use these suggestions if you can**. You can enter an item not in the provided list: just type what you like in the cell. If you do this, you will get the message "Invalid: Input must be an item on specified list". You can ignore this message.  -->
 </div>
 <div id="a-worked-example-of-preparation-of-data-for-archiving" class="section level2">
 <h2>A worked example of preparation of data for archiving</h2>
@@ -395,7 +398,11 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <p>The <code>basic</code> folder contains:</p>
 <ul>
 <li>An R-project file <code>expt1.Rproj</code></li>
+<<<<<<< HEAD
 <li>A spreadsheet file <code>expt1_emeScheme.xlsx</code> (identical to this <a href="https://docs.google.com/spreadsheets/d/1plu2RO9Ft5zruUX4on6oSukBlQAzKd8vskAL8b1s734">googlesheet</a>)</li>
+=======
+<li>A spreadsheet file <code>expt1_emeScheme.xlsx</code></li>
+>>>>>>> dev
 <li>A folder named <code>data</code> with two subfolders:
 <ul>
 <li>A <code>raw_data</code> folder containing files and folders of files that contain the data as it was entered by the researcher, or produced by the measurement machine.</li>
@@ -416,7 +423,11 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <div id="FillInMetadata" class="section level1">
 <h1>Fill in the Metadata</h1>
 <p>There’s no more putting it off… lets try filling in the metadata. First, find and open your copy of the metadata spreadsheet you made.</p>
+<<<<<<< HEAD
 <p>If you’re working through the worked example (<code>basic</code>), open the <code>expt1_emeScheme.xlsx</code> file, or open the <a href="https://docs.google.com/spreadsheets/d/1plu2RO9Ft5zruUX4on6oSukBlQAzKd8vskAL8b1s734">googlesheet</a>.</p>
+=======
+<p>If you’re working through the worked example (<code>basic</code>), open the <code>expt1_emeScheme.xlsx</code> file.</p>
+>>>>>>> dev
 <ul>
 <li>Green cells are where you enter information.</li>
 <li>Pink cells are places where you should not try to type anything (they should be locked anyway).</li>
@@ -490,8 +501,13 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 </div>
 <div id="making-the-final-xml-version" class="section level1">
 <h1>Making the final xml version</h1>
+<<<<<<< HEAD
 <p>The Excel/googlesheet version of the metadata is most useful for us to enter the metadata easily. It is not so useful for standardised/automated metadata enquiry/search/submission… i.e. excel/googlesheet versions of metadata are not really FAIR compliable. The metadata gurus decided that it should be stored as xml files, as it is plain text, it is in principle readable by humans (though is not meant to be read by humans really), it is machine readable (and then easily converted into any other format, e.g. ones easy for humans to read).</p>
 <p>Therefore, you should submit the final xml version of your metadata. Only do this after you have a satisfactory validation. As the metadata as it is entered in the spreadsheet contains metadata for <em>many</em> different data files (as enterd in the column <code>DataFileMetaData / dataFileName</code>), the metadata needs to be split first into files containing only the metadata related to a specific data file. this is done by using the function:</p>
+=======
+<p>The Excel version of the metadata is most useful for us to enter the metadata easily. It is not so useful for standardised/automated metadata enquiry/search/submission… i.e. Excel versions of metadata are not really FAIR compliable. The metadata gurus decided that it should be stored as xml files, as it is plain text, it is in principle readable by humans (though is not meant to be read by humans really), it is machine readable (and then easily converted into any other format, e.g. ones easy for humans to read).</p>
+<p>Therefore, you should submit the final xml version of your metadata. Only do this after you have a satisfactory validation. As the metadata as it is entered in the spreadsheet contains metadata for <em>many</em> different data files (as enterd in the column <code>DataFileMetaData / dataFileName</code>), the metadata will be split and exported to multiple xml files.</p>
+>>>>>>> dev
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">my_medata_spreadsheet &lt;-<span class="st"> </span><span class="kw">read_from_excel</span>(<span class="st">&quot;thenameofyourmetadataspreadsheet.xlsx&quot;</span>)</a>
 <a class="sourceLine" id="cb8-2" title="2"><span class="kw">emeScheme_split</span>( <span class="dt">x =</span> my_medata_spreadsheet, <span class="dt">saveAsType =</span> <span class="st">&quot;xml&quot;</span>, <span class="dt">path =</span> <span class="st">&quot;.&quot;</span>)</a></code></pre></div>
 <p>This will split your metadata into metadata sets for each data file and save it in the current working directory.</p>

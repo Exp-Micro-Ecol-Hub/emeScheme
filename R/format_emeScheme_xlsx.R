@@ -1,6 +1,7 @@
-#' Format the \code{googlesheet/emeScheme.xlsx}
+#' Format the file \code{system.file("emeScheme.xlsx", package = "emeScheme")}
 #'
-#' Takes no arguments. Loads  \code{system.file("googlesheet", "emeScheme.xlsx", package = "emeScheme")}, formats it and saves it under the same name.
+#' Takes no arguments. Loads  \code{system.file("emeScheme.xlsx", package =
+#' "emeScheme")}, formats it and saves it under the same name.
 #' @param fn_org file name of the original excel file to be formated
 #' @param fn_new file name where the final xlsx should be saved to. If missing, it will not be saved.
 #' @param keepData if \code{TRUE}, data from data cells will be empty
@@ -160,7 +161,7 @@ format_emeScheme_xlsx <- function(
     rowNames <- unlist(data[,nameCol])
 
     dataRows <- 2:nrow(data)
-    dataCols <- which(colNames == "DATA"):ncol(data)
+    dataCols <- grep("DATA", colNames):ncol(data)
 
     # format data range -------------------------------------------------------
 
@@ -255,7 +256,7 @@ format_emeScheme_xlsx <- function(
     colNames <- unlist(data[nameRow,])
 
     dataCols <- 2:ncol(data)
-    dataRows <- which(rowNames == "DATA"):nrow(data)
+    dataRows <- grep("DATA", rowNames):nrow(data)
 
     # format data range -------------------------------------------------------
 

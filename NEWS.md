@@ -1,3 +1,9 @@
+# release 0.9.1
+**emeScheme version 0.9.5**
+* added descriptions of validation results and details to validate() function
+* added version info to package and to xml exports
+* added warning to enter_new_metadata() if format = TRUE as it sometimes leads to corrupt files. using format = FALSE fixes this, but the file still contains the example data.
+
 # release 0.9
 This should finalise the spreadsheet
 

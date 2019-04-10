@@ -29,7 +29,7 @@
 #' @export
 #'
 #' @examples
-#' read_from_excel(file = system.file("googlesheet", "emeScheme.xlsx", package = "emeScheme"))
+#' read_from_excel(file = system.file("emeScheme.xlsx", package = "emeScheme"))
 #'
 read_from_excel <- function(
   file,
@@ -89,6 +89,15 @@ read_from_excel <- function(
   attr(result, "fileName") <- file %>%
     tools::file_path_sans_ext() %>%
     basename()
+
+# Set version -------------------------------------------------------------
+
+  v <- names(result$Experiment)[ncol(result$Experiment)]
+  v <- gsub("DATA_v", "", v)
+  if (v == "DATA") {
+    v <- "0.9.5"
+  }
+  attr(result, "emeSchemeVersion") <- v
 
 # Set class to emeScheme_Raw ----------------------------------------------
 
