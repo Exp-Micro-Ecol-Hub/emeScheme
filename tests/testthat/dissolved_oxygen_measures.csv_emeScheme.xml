@@ -1,6 +1,5 @@
 <?xml version="1.0"?>
-<emeSchemeVersion ="0.9.5">
- <dissolved_oxygen_measures.csv_emeScheme/>
+<emeScheme emeSchemeVersion="0.9.5" propertyName="dissolved_oxygen_measures.csv_emeScheme">
  <ExperimentList>
   <Experiment>
    <name>ASR-expt1</name>
@@ -20,7 +19,7 @@
   </Experiment>
  </ExperimentList>
  <SpeciesList>
-  <Species name="NA">
+  <Species speciesID="NA">
    <name></name>
    <strain></strain>
    <source></source>
@@ -38,19 +37,19 @@
   </Species>
  </SpeciesList>
  <TreatmentList>
-  <Treatment>
+  <Treatment treatmentID="Lid_treatment">
    <unit>None</unit>
    <treatmentLevel>Loose</treatmentLevel>
    <comment></comment>
   </Treatment>
-  <Treatment>
+  <Treatment treatmentID="Lid_treatment">
    <unit></unit>
    <treatmentLevel>Tight</treatmentLevel>
    <comment></comment>
   </Treatment>
  </TreatmentList>
  <MeasurementList>
-  <Measurement>
+  <Measurement measurementID="oxygen concentration">
    <variable>DO</variable>
    <method>presens Optode</method>
    <unit>%</unit>
@@ -63,15 +62,13 @@
   </Measurement>
  </MeasurementList>
  <DataExtractionList>
-  <DataExtraction>
-   <dataExtractionID></dataExtractionID>
+  <DataExtraction dataExtractionID="NA">
    <method></method>
    <parameter></parameter>
    <value></value>
    <comment></comment>
   </DataExtraction>
   <DataExtraction>
-   <dataExtractionID></dataExtractionID>
    <method></method>
    <parameter></parameter>
    <value></value>
@@ -161,4 +158,4 @@
    <comment></comment>
   </DataFileMetaData>
  </DataFileMetaDataList>
-</emeSchemeVersion>
+</emeScheme>

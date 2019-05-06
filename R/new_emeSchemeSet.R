@@ -9,7 +9,6 @@
 #'
 #' @return \code{list} of \code{list} of ... \code{tibbles}
 #' @export
-#' @importFrom tibble is.tibble as_tibble
 #' @importFrom dplyr select starts_with
 #' @importFrom methods is as
 #' @importFrom magrittr set_names %<>%
@@ -31,6 +30,12 @@ new_emeSchemeSet <- function(
 
   if (!inherits(x, "emeSchemeSet_raw")) {
     stop("x has to be of class 'emeSchemeSet_raw'")
+  }
+
+# Check version -----------------------------------------------------------
+
+  if (emeSchemeVersions()$emeScheme != attr(emeScheme_raw, "emeSchemeVersion")) {
+    stop("Version conflict - can not proceed:\n", " x : version ", attr(emeScheme_raw, "emeSchemeVersion"), "\n", "installed emeScheme version : ", emeSchemeVersions()$emeScheme)
   }
 
 # Iterate through emeScheme_raw and create emeSchemeData objects -----------

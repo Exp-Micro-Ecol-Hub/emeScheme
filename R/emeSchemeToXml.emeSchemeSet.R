@@ -26,18 +26,17 @@ emeSchemeToXml.emeSchemeSet <- function(
     tag <- gsub(" ", "_", tag)
   }
 
-  ## x is of type emeSchemeSet and contains therefore child nodes -------------------------
-
-  xml <- XML::xmlNode("emeSchemeVersion", attrs = attr(x, "emeSchemeVersion"))
-
 # Add emeSchemeVersion ----------------------------------------------------
 
-  xml <- XML::append.xmlNode(
-    xml,
-    XML::xmlNode(tag)
+  xml <- XML::xmlNode(
+    "emeScheme",
+    attrs = c(
+      emeSchemeVersion = attr(x, "emeSchemeVersion"),
+      propertyName     = attr(x, "propertyName")
+      )
   )
 
-  # Add attributes if output == complete ------------------------------------
+# Add attributes if output == complete ------------------------------------
 
   if (output == "complete") {
     XML::xmlAttrs(
