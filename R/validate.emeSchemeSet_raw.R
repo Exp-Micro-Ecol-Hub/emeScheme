@@ -1,26 +1,4 @@
-#' Validate Excel workbook or object of class \code{emeSchemeSet_raw} against \code{emeScheme}.
-#'
-#' This function validates either an excel workbook or an object of class
-#' \code{emeScheme_raw} against the definition of the \code{emeScheme}. It
-#' validates the structure, the types, suggested values, ... and returns an object of class \code{emeScheme_validation}.
-#' TODO: DESCRIBE THE CLASS!
-#' Based on this result, a report is created if asked fore (see below for details).
-#' @param x object of class \code{emeSchemeSet_raw} as returned from \code{read_from_excel( keepData = FALSE, raw = TRUE)} or file name of an xlsx file containing the metadata.
-#' @param path path to the data files
-#' @param validateData if \code{TRUE} data is validated as well; the structure is always validated
-#' @param report determines if and in which format a report of the validation should be generated. Allowed values are:
-#' \itemize{
-#'   \item{\bold{missing}  : } {no report is generated (the \code{default})}
-#'   \item{\bold{'html'}   : } {a html (.html) report is generated and opened}
-#'   \item{\bold{'pdf'}    : } {a pdf (.pdf) report is generated and opened}
-#'   \item{\bold{'word'}   : } {a word (.docx)report is generated and opened}
-#'   \item{\bold{'all'}    : } {all of the defined reports}
-#' }
-#' @param report_author name of the author for the report
-#' @param report_title title of the report for the report
-#' @param errorIfStructFalse if \code{TRUE} an error will be raised if the schemes are not identical, i.e. there are structural differences.
-#'
-#' @return return the \code{emeScheme_validation} object
+#' @export
 #'
 #' @importFrom taxize gnr_resolve
 #' @importFrom magrittr %>% %<>%
@@ -31,20 +9,8 @@
 #' @importFrom utils read.csv
 #' @importFrom magrittr extract2
 #' @importFrom digest digest
-#' @export
 #'
-#' @examples
-#' validate( emeScheme_raw )
-#' \dontrun{
-#' validate(
-#'    x = emeScheme_raw,
-#'    report = "html",
-#'    report_author = "The Author I am",
-#'    report_title = "A Nice Report"
-#' )
-#' }
-#'
-validate <- function(
+validate.emeSchemeSet_raw <- function(
   x,
   path = ".",
   validateData = TRUE,
@@ -54,23 +20,6 @@ validate <- function(
   errorIfStructFalse = TRUE
 ) {
 
-  # Check arguments ---------------------------------------------------------
-
-  allowedFormats <- c("none", "html", "pdf", "word", "all")
-  if (!(report %in% allowedFormats)) {
-    stop("'report' has to be one of the following values: ", allowedFormats)
-  }
-
-  # Load from excel sheet if x == character ---------------------------------
-
-  if (is.character(x)) {
-    x <- read_from_excel(
-      file = x,
-      keepData = TRUE,
-      validate = FALSE,
-      raw = TRUE
-    )
-  }
 
   # Define result structure of class emeScheme_validation ----------------------
 
@@ -96,8 +45,8 @@ validate <- function(
   # Validata data -----------------------------------------------------------
 
   if ((result$structure$error == 0) & validateData){
-    xconv <- suppressWarnings( new_emeSchemeSet(x, keepData = TRUE, convertTypes = TRUE,  verbose = FALSE, warnToError = FALSE) )
-    xraw  <-                   new_emeSchemeSet(x, keepData = TRUE, convertTypes = FALSE, verbose = FALSE, warnToError = FALSE)
+    xconv <- suppressWarnings( new_dmdSchemeSet(x, keepData = TRUE, convertTypes = TRUE,  verbose = FALSE, warnToError = FALSE) )
+    xraw  <-                   new_dmdSchemeSet(x, keepData = TRUE, convertTypes = FALSE, verbose = FALSE, warnToError = FALSE)
 
     result$Experiment <- validateExperiment(x, xraw, xconv)
     result$Species <- validateSpecies(x, xraw, xconv)
@@ -117,8 +66,7 @@ validate <- function(
   result$header <- valErr_TextErrCol("Overall MetaData", result$error)
 
   # Generate report ---------------------------------------------------------
-
-  if (report %in% allowedFormats[-1]) {
+  if (report != "none") {
     reportDir <- tempfile( pattern = "validation_report" )
     dir.create(reportDir)
     rmarkdown::render(
@@ -141,7 +89,6 @@ validate <- function(
         encodeIfNeeded = TRUE
       )
   }
-
   # Return result -----------------------------------------------------------
 
   return(invisible(result))
@@ -919,7 +866,7 @@ validateStructure <- function( x ){
   )
   result$descriptionDetails <- ""
   ##
-  struct <- new_emeSchemeSet( x, keepData = FALSE, verbose = FALSE)
+  struct <- new_dmdSchemeSet( x, keepData = FALSE, verbose = FALSE)
   attr(struct, "propertyName") <- "emeScheme"
   result$details <- all.equal(struct, emeScheme)
   if (isTRUE(result$details)){
