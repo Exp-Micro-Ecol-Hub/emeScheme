@@ -37,8 +37,8 @@ emeScheme_extract <- function(
   if (length(dataFile) > 1) {
     stop("dataFile has to be of length 1")
   }
-  if (!is(x, "emeScheme")) {
-    stop("x has to be an object of type emeScheme")
+  if (!is(x, "emeSchemeSet")) {
+    stop("x has to be an object of type emeSchemeSet")
   }
 
 # Get property name of x --------------------------------------------------

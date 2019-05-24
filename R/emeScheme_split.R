@@ -22,7 +22,6 @@
 #'   \code{emeScheme} object for a data file as specified in
 #'   \code{DataFileNameMetaData$dataFileName}.
 #'
-#' @importFrom magrittr %>% %<>%
 #' @export
 #'
 #' @examples
@@ -46,8 +45,8 @@ emeScheme_split <- function(
 
 # Check arguments ---------------------------------------------------------
 
-  if (!is(x, "emeScheme")) {
-    stop("x has to be an object of type emeScheme")
+  if (!is(x, "emeSchemeSet")) {
+    stop("x has to be an object of type emeSchemeSet")
   }
 
   saveAsTypeAllowed <- c("rds", "xml", "none")
@@ -95,10 +94,11 @@ if (!missing(saveAsType)) {
 
 # Return ------------------------------------------------------------------
 
-  if (all(saveAsType %in% saveAsTypeAllowed)) {
+  if (!missing(saveAsType)) {
     result <- fns
+  } else {
+    return(result)
   }
-  return(result)
 }
 
 

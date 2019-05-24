@@ -1,13 +1,11 @@
 #' @export
 #'
 #' @importFrom taxize gnr_resolve
-#' @importFrom magrittr %>% %<>%
+#' @importFrom magrittr %>% %<>% extract2
 #' @importFrom dplyr filter select
-#' @importFrom utils browseURL glob2rx
+#' @importFrom utils browseURL glob2rx read.csv
 #' @importFrom rmarkdown render
-#' @importFrom tibble tibble
-#' @importFrom utils read.csv
-#' @importFrom magrittr extract2
+#' @importFrom tibble tibble as_tibble
 #' @importFrom digest digest
 #'
 validate.emeSchemeSet_raw <- function(
@@ -91,7 +89,7 @@ validate.emeSchemeSet_raw <- function(
   }
   # Return result -----------------------------------------------------------
 
-  return(invisible(result))
+  return(result)
 }
 
 # new emeScheme_validation object -----------------------------------------
@@ -105,7 +103,7 @@ new_emeScheme_validation <- function() {
     descriptionDetails = "To Be Added",
     comment = ""
   )
-  class(result) <- append( "emeScheme_validation", class(result) )
+  class(result) <- append( c("emeScheme_validation", "dmdScheme_validation"), class(result) )
   return(result)
 }
 
@@ -138,7 +136,7 @@ validateTypes <- function(sraw, sconv) {
   result$details[t] <- TRUE
   result$details[!t] <- paste( result$details[!t], "!=", as.data.frame(sconv)[!t])
   result$details[na] <- NA
-  result$details <- as_tibble(result$details, .name_repair = "unique")
+  result$details <- tibble::as_tibble(result$details, .name_repair = "unique")
   ##
   result$error = ifelse(
     all(result$details == TRUE, na.rm = TRUE),
@@ -170,7 +168,7 @@ validateSuggestedValues <- function(sraw) {
     "One or more FALSE values will result in a WARNING."
   )
   ##
-  result$details <- as_tibble(sraw, .name_repair = "unique")
+  result$details <- tibble::as_tibble(sraw, .name_repair = "unique")
   sugVal <- strsplit(attr(sraw, "suggestedValues"), ",")
   result$details <- result$details[,!is.na(sugVal)]
   sugVal <- sugVal[!is.na(sugVal)]
@@ -218,7 +216,7 @@ validateAllowedValues <- function(sraw) {
     "One or more FALSE values will result in an ERROR."
   )
   ##
-  result$details <- as_tibble(sraw, .name_repair = "unique")
+  result$details <- tibble::as_tibble(sraw, .name_repair = "unique")
   allVal <- strsplit(attr(sraw, "allowedValues"), ",")
   result$details <- result$details[,!is.na(allVal)]
   allVal <- allVal[!is.na(allVal)]

@@ -1,23 +1,23 @@
-context("dmdScheme_split()")
+context("emeScheme_split()")
 
 
 # Test Arguments -------------------------------------------------------------
 
 test_that(
-  "dmdScheme_split( ) fails when x of wrong class",
+  "emeScheme_split( ) fails when x of wrong class",
   {
     expect_error(
-      object = dmdScheme_split( "NOT_VALID"),
-      regexp = "x has to be an object of type dmdScheme"
+      object = emeScheme_split( "NOT_VALID"),
+      regexp = "x has to be an object of type emeScheme"
     )
   }
 )
 
 test_that(
-  "dmdScheme_split( ) fails when saveAsType not valid",
+  "emeScheme_split( ) fails when saveAsType not valid",
   {
     expect_error(
-      object = dmdScheme_split( dmdScheme, "NOT_VALID"),
+      object = emeScheme_split( emeScheme, "NOT_VALID"),
       regexp = "'saveAsType' has to be one of the following values: rds, xml, none"
     )
   }
@@ -26,13 +26,13 @@ test_that(
 # Estracts and saves without errors ---------------------------------------
 
 ## generate updated reference files by running
-# dmdScheme_split( dmdScheme_example, c("rds", "xml"), path = here::here("tests", "testthat"))
+# emeScheme_split( emeScheme_example, c("rds", "xml"), path = here::here("tests", "testthat"))
 ##
 
 test_that(
-  "dmdScheme_split( ) saves rds correctly",
+  "emeScheme_split( ) saves rds correctly",
   {
-    x <- dmdScheme_split( dmdScheme_example, "rds", path = tempdir() )
+    x <- emeScheme_split( emeScheme_example, "rds", path = tempdir() )
     ref <- gsub(tempdir(), ".", x)
     expect_equal(
       object = lapply(x, readRDS), ## the generated ones
@@ -42,9 +42,9 @@ test_that(
 )
 
 test_that(
-  "dmdScheme_split( ) saves xml correctly",
+  "emeScheme_split( ) saves xml correctly",
   {
-    x <- dmdScheme_split( dmdScheme_example, "xml", path = tempdir() )
+    x <- emeScheme_split( emeScheme_example, "xml", path = tempdir() )
     ref <- gsub(tempdir(), ".", x)
     expect_equal(
       object = lapply(x, readLines), ## the generated ones
