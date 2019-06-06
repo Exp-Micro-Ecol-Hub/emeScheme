@@ -6,8 +6,8 @@ cache: packages
 
 # Use R language
 language: r
-r_github_packages: r-lib/remotes#340
-r_github_packages: rkrug/dmdScheme#dev
+r_github_packages: r-lib/remotes@340
+r_github_packages: rkrug/dmdScheme@dev
 
 env:
   - _R_CHECK_SYSTEM_CLOCK_=0
