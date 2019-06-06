@@ -35,7 +35,7 @@ validate.emeSchemeSet_raw <- function(
 
   result$structure <- validateStructure( x )
   if (result$structure$error != 0 & errorIfStructFalse) {
-    cat_ln(result$structure$details)
+    message(result$structure$details)
     stop("Structure of the object to be evaluated is wrong. See the info above for details.")
   }
 

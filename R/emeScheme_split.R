@@ -85,7 +85,7 @@ if (!missing(saveAsType)) {
       result,
       function(x) {
         fn <- file.path( path, paste(attr(x, "propertyName"), "xml", sep = ".") )
-        dmdSchemeToXml(x, tag = paste(attr(x, "propertyName")), file = fn)
+        dmdScheme::dmdScheme_to_xml(x, tag = paste(attr(x, "propertyName")), file = fn)
         fns <<- c(fns, fn)
       }
     )

@@ -1,1 +1,0 @@
-emeScheme <- readRDS("./emeScheme.rds")
