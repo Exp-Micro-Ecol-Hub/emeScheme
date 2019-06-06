@@ -7,7 +7,7 @@ cache: packages
 # Use R language
 language: r
 r_github_packages: r-lib/remotes@340
-r_github_packages: rkrug/dmdScheme@dev
+# r_github_packages: rkrug/dmdScheme@dev
 
 env:
   - _R_CHECK_SYSTEM_CLOCK_=0
@@ -16,17 +16,25 @@ env:
 matrix:
   include:
   - r: devel
-#   - r: devel
-#     os: osx
-#     osx_image: xcode10.1
+    dmdSchemeBranch = dev
+    r_github_packages: rkrug/dmdScheme@dev
+  - r: devel
+    dmdSchemeBranch = master
+    r_github_packages: rkrug/dmdScheme@master
   - r: release
     os: osx
     osx_image: xcode10.1
+    dmdSchemeBranch = master
+    r_github_packages: rkrug/dmdScheme@master
     before_install:
     - sudo tlmgr install inconsolata
     - sw_vers
   - r: oldrel
+    dmdSchemeBranch = master
+    r_github_packages: rkrug/dmdScheme@master
   - r: 3.5
+    dmdSchemeBranch = master
+    r_github_packages: rkrug/dmdScheme@master
 #  - r: 3.3 # Because of changed serialization format in 3.6 which is only backeward compatible with 3.5
 #  - r: 3.2 # Because of openxlsx requires R >= 3.3
 #  - r: 3.1 # Because of openxlsx requires R >= 3.3
