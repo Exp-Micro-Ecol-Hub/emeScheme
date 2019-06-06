@@ -13,7 +13,7 @@ URL: https://exp-micro-ecol-hub.github.io/emeScheme/, https://github.com/Exp-Mic
 BugReports: https://github.com/Exp-Micro-Ecol-Hub/emeScheme/issues
 DOI: https://zenodo.org/record/2620097
 Depends: R (>= 3.5.0), dmdScheme (>= 0.9.8)
-Imports: magrittr, dplyr, digest, utils, tibble, rmarkdown, taxize, knitr
+Imports: magrittr, dplyr, digest, utils, tibble, rmarkdown, taxize, knitr, rlang, methods
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true

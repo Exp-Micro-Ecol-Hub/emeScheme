@@ -12,9 +12,6 @@ validate.emeSchemeSet_raw <- function(
   x,
   path = ".",
   validateData = TRUE,
-  report = "none",
-  report_author = "Tester",
-  report_title = "Validation of data against emeScheme",
   errorIfStructFalse = TRUE
 ) {
 
@@ -63,30 +60,6 @@ validate.emeSchemeSet_raw <- function(
   }
   result$header <- valErr_TextErrCol("Overall MetaData", result$error)
 
-  # Generate report ---------------------------------------------------------
-  if (report != "none") {
-    reportDir <- tempfile( pattern = "validation_report" )
-    dir.create(reportDir)
-    rmarkdown::render(
-      input = system.file("reports", "validation_report.Rmd", package = "emeScheme"),
-      output_format = ifelse(
-        report == "all",
-        "all",
-        paste0(report, "_document")
-      ),
-      output_dir = reportDir,
-      params = list(
-        author = report_author,
-        title = report_title,
-        x = x,
-        result = result
-      )
-    ) %>%
-      lapply(
-        utils::browseURL,
-        encodeIfNeeded = TRUE
-      )
-  }
   # Return result -----------------------------------------------------------
 
   return(result)

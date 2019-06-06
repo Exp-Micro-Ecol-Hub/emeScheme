@@ -22,6 +22,8 @@
 #'   \code{emeScheme} object for a data file as specified in
 #'   \code{DataFileNameMetaData$dataFileName}.
 #'
+#' @importFrom methods is
+#'
 #' @export
 #'
 #' @examples
@@ -45,7 +47,7 @@ emeScheme_split <- function(
 
 # Check arguments ---------------------------------------------------------
 
-  if (!is(x, "emeSchemeSet")) {
+  if (!methods::is(x, "emeSchemeSet")) {
     stop("x has to be an object of type emeSchemeSet")
   }
 
