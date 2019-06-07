@@ -1,18 +1,15 @@
-# R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
-# see https://www.r-bloggers.com/travis-ci-for-r%E2%80%8A-%E2%80%8Aadvanced-guide/ for more info
-
 sudo: false
 cache: packages
-
-# Use R language
 language: r
+
 r_github_packages: r-lib/remotes@340
-# r_github_packages: rkrug/dmdScheme@dev
 
 env:
+  matrix:
   - _R_CHECK_SYSTEM_CLOCK_=0
+  global:
+    secure: Czq9IoCwnpwEV16TZuhltKQ6dO27yRuLZYnN1G3PL9YRPa3BLfIEPSUsLaDM7jfTn6JBc8gJ9o0aehOWdL0wQKWJyLswHHx5XAYmGNC7YH4Cwb7sI96JQhj2TsFOoHqb5bnYBEgPcQhGxj8NCLuc8OgIHAJbraLfkgjm5CMF7Z5K3nusl7CHlrIswDdu4iyHqbI0MVLypIzrfWINooYNCl+yqXrS5NcNi4c3puCIBQpLY43d5pRgBzVl8GVum/VjZmwDLbgBJTvMoiircEnmP5uCNEVrBmWRdIHBRNv6xqVv4YHMdpIyI8uJEOdBO6YRyyxNy+Zxo9BocGs1b+Csdd7i78e6IvGUALG4wEhJYkx/xtWgtXucpq2kAVo3w7fvMH0vNndUzKEwVuLMMtsAmaxLvnvv8NUS3755a7/e7+3buzgriLMXd8G6Id/39GCRIzYSpt9ZYRAgMy1kYIAaxLJe9MTjyxrkYGs9tjeY50vZKbHVNlYfFAIPr931eOMS7Xc7pX3bVmkdci+51mOMGm5/qlJixlAiNl24P514BDXGpxi+0Pp5c7azHilITOmMsAgCq94zACnaS88FdnBlP1a3t0kkPkjfeONED2hNGfmxWJLDUQ6o42SyGN58KYrNGUt3hnqXhqHwTp+Nu9o8jHp0+zxSRwZH1zT5OG30L5c=
 
-#Define multiple R-versions, one from bioconductor
 matrix:
   include:
   - r: devel
@@ -30,9 +27,6 @@ matrix:
     r_github_packages: rkrug/dmdScheme@master
   - r: 3.5
     r_github_packages: rkrug/dmdScheme@master
-#  - r: 3.3 # Because of changed serialization format in 3.6 which is only backeward compatible with 3.5
-#  - r: 3.2 # Because of openxlsx requires R >= 3.3
-#  - r: 3.1 # Because of openxlsx requires R >= 3.3
 
 before_install:
   - echo "TRAVIS_OS_NAME = $TRAVIS_OS_NAME"
@@ -46,3 +40,8 @@ addons:
     packages:
     - ghostscript
     - graphviz
+
+# after_success:
+#   - test $TRAVIS_PULL_REQUEST == "false" &&
+#     test $TRAVIS_BRANCH == "master" &&
+#     bash deploy.sh
