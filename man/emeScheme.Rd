@@ -4,7 +4,7 @@
 \name{emeScheme}
 \alias{emeScheme}
 \title{Authorative definition of the emeScheme.}
-\format{An object of class \code{emeSchemeSet} (inherits from \code{emeScheme}, \code{list}) of length 6.}
+\format{An object of class \code{emeSchemeSet} (inherits from \code{dmdSchemeSet}, \code{list}) of length 6.}
 \usage{
 emeScheme
 }

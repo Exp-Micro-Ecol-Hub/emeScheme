@@ -4,7 +4,7 @@
 \name{emeScheme_raw}
 \alias{emeScheme_raw}
 \title{emeScheme_raw as imported from the Google sheet.}
-\format{An object of class \code{emeSchemeSet_raw} (inherits from \code{list}) of length 6.}
+\format{An object of class \code{emeSchemeSet_raw} (inherits from \code{dmdSchemeSet_raw}, \code{list}) of length 6.}
 \usage{
 emeScheme_raw
 }

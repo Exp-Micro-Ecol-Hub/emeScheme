@@ -4,7 +4,7 @@
 \name{emeScheme_example}
 \alias{emeScheme_example}
 \title{emeScheme_example as imported from the Google sheet.}
-\format{An object of class \code{emeSchemeSet} (inherits from \code{emeScheme}, \code{list}) of length 6.}
+\format{An object of class \code{emeSchemeSet} (inherits from \code{dmdSchemeSet}, \code{list}) of length 6.}
 \usage{
 emeScheme_example
 }

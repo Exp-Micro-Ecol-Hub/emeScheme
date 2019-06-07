@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<emeScheme emeSchemeVersion="0.9.5" propertyName="abundances.csv_emeScheme">
+<dmdScheme dmdSchemeVersion="0.9.5" propertyName="abundances.csv_emeScheme">
  <ExperimentList>
   <Experiment>
    <name>ASR-expt1</name>
@@ -20,6 +20,7 @@
  </ExperimentList>
  <SpeciesList>
   <Species speciesID="tt_1">
+   <speciesID>tt_1</speciesID>
    <name>Tetrahymena thermophila</name>
    <strain>WH-6 (WHI) [ATCC 16539]</strain>
    <source>ATCC</source>
@@ -30,16 +31,19 @@
  </SpeciesList>
  <TreatmentList>
   <Treatment treatmentID="Lid_treatment">
+   <treatmentID>Lid_treatment</treatmentID>
    <unit>None</unit>
    <treatmentLevel>Loose</treatmentLevel>
    <comment></comment>
   </Treatment>
   <Treatment treatmentID="Lid_treatment">
+   <treatmentID>Lid_treatment</treatmentID>
    <unit></unit>
    <treatmentLevel>Tight</treatmentLevel>
    <comment></comment>
   </Treatment>
   <Treatment treatmentID="species_3">
+   <treatmentID>species_3</treatmentID>
    <unit>speciesID</unit>
    <treatmentLevel>tt_1</treatmentLevel>
    <comment></comment>
@@ -47,6 +51,7 @@
  </TreatmentList>
  <MeasurementList>
   <Measurement measurementID="abundance">
+   <measurementID>abundance</measurementID>
    <variable>abundance</variable>
    <method>molecular</method>
    <unit>count</unit>
@@ -60,6 +65,7 @@
  </MeasurementList>
  <DataExtractionList>
   <DataExtraction dataExtractionID="Mol_Analy_pipeline1">
+   <dataExtractionID>Mol_Analy_pipeline1</dataExtractionID>
    <method></method>
    <parameter></parameter>
    <value></value>
@@ -122,4 +128,4 @@
    <comment></comment>
   </DataFileMetaData>
  </DataFileMetaDataList>
-</emeScheme>
+</dmdScheme>

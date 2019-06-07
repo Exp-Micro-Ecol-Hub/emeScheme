@@ -22,7 +22,8 @@
 #'   \code{emeScheme} object for a data file as specified in
 #'   \code{DataFileNameMetaData$dataFileName}.
 #'
-#' @importFrom magrittr %>% %<>%
+#' @importFrom methods is
+#'
 #' @export
 #'
 #' @examples
@@ -46,8 +47,8 @@ emeScheme_split <- function(
 
 # Check arguments ---------------------------------------------------------
 
-  if (!is(x, "emeScheme")) {
-    stop("x has to be an object of type emeScheme")
+  if (!methods::is(x, "emeSchemeSet")) {
+    stop("x has to be an object of type emeSchemeSet")
   }
 
   saveAsTypeAllowed <- c("rds", "xml", "none")
@@ -86,7 +87,7 @@ if (!missing(saveAsType)) {
       result,
       function(x) {
         fn <- file.path( path, paste(attr(x, "propertyName"), "xml", sep = ".") )
-        emeSchemeToXml(x, tag = paste(attr(x, "propertyName")), file = fn, confirmationCode = "secret code for testing")
+        dmdScheme::dmdScheme_to_xml(x, tag = paste(attr(x, "propertyName")), file = fn)
         fns <<- c(fns, fn)
       }
     )
@@ -95,10 +96,11 @@ if (!missing(saveAsType)) {
 
 # Return ------------------------------------------------------------------
 
-  if (all(saveAsType %in% saveAsTypeAllowed)) {
+  if (!missing(saveAsType)) {
     result <- fns
+  } else {
+    return(result)
   }
-  return(result)
 }
 
 

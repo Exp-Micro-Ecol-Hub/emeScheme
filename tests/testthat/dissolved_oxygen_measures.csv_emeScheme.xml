@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<emeScheme emeSchemeVersion="0.9.5" propertyName="dissolved_oxygen_measures.csv_emeScheme">
+<dmdScheme dmdSchemeVersion="0.9.5" propertyName="dissolved_oxygen_measures.csv_emeScheme">
  <ExperimentList>
   <Experiment>
    <name>ASR-expt1</name>
@@ -18,31 +18,16 @@
    <comment></comment>
   </Experiment>
  </ExperimentList>
- <SpeciesList>
-  <Species speciesID="NA">
-   <name></name>
-   <strain></strain>
-   <source></source>
-   <density></density>
-   <functionalGroup></functionalGroup>
-   <comment></comment>
-  </Species>
-  <Species>
-   <name></name>
-   <strain></strain>
-   <source></source>
-   <density></density>
-   <functionalGroup></functionalGroup>
-   <comment></comment>
-  </Species>
- </SpeciesList>
+ <SpeciesList/>
  <TreatmentList>
   <Treatment treatmentID="Lid_treatment">
+   <treatmentID>Lid_treatment</treatmentID>
    <unit>None</unit>
    <treatmentLevel>Loose</treatmentLevel>
    <comment></comment>
   </Treatment>
   <Treatment treatmentID="Lid_treatment">
+   <treatmentID>Lid_treatment</treatmentID>
    <unit></unit>
    <treatmentLevel>Tight</treatmentLevel>
    <comment></comment>
@@ -50,6 +35,7 @@
  </TreatmentList>
  <MeasurementList>
   <Measurement measurementID="oxygen concentration">
+   <measurementID>oxygen concentration</measurementID>
    <variable>DO</variable>
    <method>presens Optode</method>
    <unit>%</unit>
@@ -61,20 +47,7 @@
    <comment></comment>
   </Measurement>
  </MeasurementList>
- <DataExtractionList>
-  <DataExtraction dataExtractionID="NA">
-   <method></method>
-   <parameter></parameter>
-   <value></value>
-   <comment></comment>
-  </DataExtraction>
-  <DataExtraction>
-   <method></method>
-   <parameter></parameter>
-   <value></value>
-   <comment></comment>
-  </DataExtraction>
- </DataExtractionList>
+ <DataExtractionList/>
  <DataFileMetaDataList>
   <DataFileMetaData>
    <dataFileName>dissolved_oxygen_measures.csv</dataFileName>
@@ -158,4 +131,4 @@
    <comment></comment>
   </DataFileMetaData>
  </DataFileMetaDataList>
-</emeScheme>
+</dmdScheme>
