@@ -10,6 +10,7 @@
 ^\.covrignore$
 ^codecov\.yml$
 ^\.travis\.yml$
+^deploy.sh$
 ^README\..*$
 ^NEWS\..*$
 ^\.httr-oauth-SUSPENDED$
