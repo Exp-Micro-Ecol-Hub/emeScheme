@@ -12,3 +12,5 @@ Meta
 /basic
 library
 .Rprofile
+ONLY_LOCAL
+wildcard
