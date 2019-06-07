@@ -2,7 +2,7 @@ Package: emeScheme
 Title: Microcosm Experiment Metadata Scheme
 Description: The Authoratative definition of the emeScheme (Experimental Microcosm Ecology Metadata) and tools to enter, validate and export the
                  metadata.
-Version: 0.9.4
+Version: 0.9.4.1
 schemeName: emeScheme
 schemeVersion: 0.9.5
 Date: 2019-05-23
@@ -12,7 +12,7 @@ Authors@R: c( person( "Rainer M.", "Krug", role = c("aut", "cre"), email = "Rain
 URL: https://exp-micro-ecol-hub.github.io/emeScheme/, https://github.com/Exp-Micro-Ecol-Hub/emeScheme
 BugReports: https://github.com/Exp-Micro-Ecol-Hub/emeScheme/issues
 DOI: https://zenodo.org/record/2620097
-Depends: R (>= 3.5.0), dmdScheme (>= 0.9.8)
+Depends: R (>= 3.5.0), dmdScheme (>= 0.9.9)
 Imports: magrittr, dplyr, digest, utils, tibble, rmarkdown, taxize, knitr, rlang, methods
 License: MIT + file LICENSE
 Encoding: UTF-8
