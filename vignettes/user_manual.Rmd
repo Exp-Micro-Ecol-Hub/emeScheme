@@ -57,13 +57,13 @@ library(emeScheme)
 To enter the metadata run this R command to get an Excel version of the emeScheme without metadata in it: 
 
 ```{r eval=FALSE}
-enter_new_metadata()
+open_new_spreadsheet()
 ```
 
 The following command opens the sheet with the example data in:
 
 ```{r eval=FALSE}
-enter_new_metadata(keepData = TRUE)
+open_new_spreadsheet(keepData = TRUE)
 ```
 
 Either way, make a copy of the spreadsheet and save it somewhere safe, like in the folder for your study/experiment .

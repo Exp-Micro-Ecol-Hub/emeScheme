@@ -1,26 +1,26 @@
-context("new_dmdSchemeSet()")
+context("new_dmdScheme()")
 
 
 # fail because of erong type -------------------------------------------------------------
 
 test_that(
-  "new_dmdSchemeSet() fails when x of wrong class",
+  "new_dmdScheme() fails when x of wrong class",
   {
     expect_error(
-      object = new_dmdSchemeSet(x = "character"),
-      regexp = "x has to be inherit from class 'dmdSchemeSet_raw'"
+      object = new_dmdScheme(x = "character"),
+      regexp = "no applicable method for 'new_dmdScheme' applied to an object of class \"character\""
     )
   }
 )
 
-# new_dmdSchemeSet --- verbose -----------------------------------------------
+# new_dmdScheme --- verbose -----------------------------------------------
 
 test_that(
-  "new_dmdSchemeSet() verbose",
+  "new_dmdScheme() verbose",
   {
     expect_known_output(
-      object = new_dmdSchemeSet( x = emeScheme_raw, verbose = TRUE ),
-      file = "ref-03-new_dmdSchemeSet.output"
+      object = new_dmdScheme( x = emeScheme_raw, verbose = TRUE ),
+      file = "ref-03-new_dmdScheme.output"
     )
   }
 )
