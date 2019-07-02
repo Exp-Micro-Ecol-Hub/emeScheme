@@ -23,6 +23,8 @@ matrix:
     before_install:
     - sudo tlmgr install inconsolata
     - sw_vers
+  - r: release
+    r_github_packages: rkrug/dmdScheme@master
   - r: oldrel
     r_github_packages: rkrug/dmdScheme@master
   - r: 3.5
