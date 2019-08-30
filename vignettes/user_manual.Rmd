@@ -223,10 +223,10 @@ Note that the example contains a datafile in this worksheet that does not exist 
 
 After entering your data, you should do a validation test of your metadata and data. The validation will check many different aspects of your metadata and data, and returns a report (html, pdf, docx or all three). The validation and resulting report is a work in progress
 
-To produce a validation report, use the `validate` function and give it your spreadsheet, the path to your data folder, and the type of report you want:
+To produce a validation report, use the `report` function and give it your spreadsheet, the path to your data folder, and the type of report you want:
 
 ```{r eval = FALSE}
-validate("thenameofyourmetadataspreadsheet.xlsx", "the/path/to/your/datafiles", report = "html")
+report("thenameofyourmetadataspreadsheet.xlsx", "the/path/to/your/datafiles", report = "html")
 ```
 
 As mentioned already, the validation and resulting report is a work in progress. Don't feel the need to look at it so hard. Please let us know if you suggest particular validation checks.
