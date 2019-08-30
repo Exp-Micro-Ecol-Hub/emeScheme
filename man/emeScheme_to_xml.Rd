@@ -2,38 +2,32 @@
 % Please edit documentation in R/emeScheme_to_xml.R
 \name{emeScheme_to_xml}
 \alias{emeScheme_to_xml}
-\title{Split \code{emeScheme} object into multiple by using \code{DataFileNameMetaData$dataFileName}}
+\title{Convert file name or \code{emeScheme} object to one xml per data file}
 \usage{
-emeScheme_to_xml(x, file, path = ".")
+emeScheme_to_xml(x, file, output = "metadata")
 }
 \arguments{
-\item{x}{file name of spreadsheet containing the metadata of an emeScheme or
-\code{emeScheme} object to be split and exported to xml}
+\item{x}{\code{emeScheme} object to be converted.}
 
-\item{path}{path where the files should be saved to}
+\item{file}{empty, \code{NULL} or file name. See details below}
 
-\item{saveAsType}{if given, save the result to files named following the
-pattern \code{DATAFILENAME_attr(x, "propertyName").saveAsType}. If missing,
-do not save and return the result. Allowed values at the moment:
-\itemize{
- \item{none} {do not save the resulting list}
- \item{rds} {save results in files using \code{saveRDS()}}
- \item{xml} {save results in xml files using \code{emeSchemeToXml()}}
- \item{multiple values of the above} {will be saved in all specified formats}
-}}
+\item{output}{either \code{"metadata"} for export of metadata only or
+\code{"complete"} for export including classes et al.}
 }
 \value{
-if \code{saveAsType} valid and not equal to \code{none}, \code{character} vector
-  containing the file names where the splitted metadata has been saved to, if
-  \code{saveAsType} missing, \code{list} where each element is one
-  \code{emeScheme} object for a data file as specified in
-  \code{DataFileNameMetaData$dataFileName}.
+dependent on the value of \code{file}. See Details
 }
 \description{
-One \code{emeScheme} object can contain metadata for multiple datafiles. For
-archiving, these should be split into single \code{emeScheme} objects, one
-for each \code{DataFileNameMetaData$dataFileName}.
-\bold{ATTENTION: Files are overwritten without warning!!!!!}
+Converts an \code{emeScheme} object into xml and optionally saves it to a file.
+}
+\details{
+Depending on the value of \code{file}, the function returns different results:
+\itemize{
+  \item{\code{file} not given: }{an \code{XMLNode} object}
+  \item{\code{file = NULL}: }{a string characterisation of the \code{XMLNode} object}
+  \item{\code{file = fileName}: }{saves the string characterisation of the \code{XMLNode} object to an xml file}
+}
+The actual implementation is inspired by David LeBauer, Carl Davidson, Rob Kooper. See \url{https://stackoverflow.com/a/27865512/632423}
 }
 \examples{
 emeScheme_split(emeScheme_example)

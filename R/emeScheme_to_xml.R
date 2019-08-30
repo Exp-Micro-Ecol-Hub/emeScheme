@@ -1,27 +1,21 @@
-#' Split \code{emeScheme} object into multiple by using \code{DataFileNameMetaData$dataFileName}
+#' Convert file name or \code{emeScheme} object to one xml per data file
 #'
-#' One \code{emeScheme} object can contain metadata for multiple datafiles. For
-#' archiving, these should be split into single \code{emeScheme} objects, one
-#' for each \code{DataFileNameMetaData$dataFileName}.
-#' \bold{ATTENTION: Files are overwritten without warning!!!!!}
-#' @param x file name of spreadsheet containing the metadata of an emeScheme or
-#'   \code{emeScheme} object to be split and exported to xml
-#' @param saveAsType if given, save the result to files named following the
-#'   pattern \code{DATAFILENAME_attr(x, "propertyName").saveAsType}. If missing,
-#'   do not save and return the result. Allowed values at the moment:
-#'   \itemize{
-#'    \item{none} {do not save the resulting list}
-#'    \item{rds} {save results in files using \code{saveRDS()}}
-#'    \item{xml} {save results in xml files using \code{emeSchemeToXml()}}
-#'    \item{multiple values of the above} {will be saved in all specified formats}
-#'   }
-#' @param path path where the files should be saved to
+#' Converts an \code{emeScheme} object into xml and optionally saves it to a file.
 #'
-#' @return if \code{saveAsType} valid and not equal to \code{none}, \code{character} vector
-#'   containing the file names where the splitted metadata has been saved to, if
-#'   \code{saveAsType} missing, \code{list} where each element is one
-#'   \code{emeScheme} object for a data file as specified in
-#'   \code{DataFileNameMetaData$dataFileName}.
+#' Depending on the value of \code{file}, the function returns different results:
+#' \itemize{
+#'   \item{\code{file} not given: }{an \code{XMLNode} object}
+#'   \item{\code{file = NULL}: }{a string characterisation of the \code{XMLNode} object}
+#'   \item{\code{file = fileName}: }{saves the string characterisation of the \code{XMLNode} object to an xml file}
+#' }
+#' The actual implementation is inspired by David LeBauer, Carl Davidson, Rob Kooper. See \url{https://stackoverflow.com/a/27865512/632423}
+#' @param x \code{emeScheme} object to be converted.
+#'
+#' @param file empty, \code{NULL} or file name. See details below
+#' @param output either \code{"metadata"} for export of metadata only or
+#'   \code{"complete"} for export including classes et al.
+#'
+#' @return dependent on the value of \code{file}. See Details
 #'
 #' @importFrom methods is
 #'
@@ -43,7 +37,7 @@
 emeScheme_to_xml <- function(
   x,
   file,
-  path = "."
+  output = "metadata"
 ) {
 
 # Check arguments ---------------------------------------------------------
@@ -79,7 +73,7 @@ emeScheme_to_xml <- function(
       result,
       function(x) {
         fn <- file.path( path, paste(fn, attr(x, "propertyName"), "xml", sep = ".") )
-        dmdScheme::dmdScheme_to_xml(x, file = fn)
+        dmdScheme::dmdScheme_to_xml(x, file = fn, output = outtput)
         fns <<- c(fns, fn)
       }
     )
