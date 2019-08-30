@@ -4,7 +4,8 @@
 #' archiving, these should be split into single \code{emeScheme} objects, one
 #' for each \code{DataFileNameMetaData$dataFileName}.
 #' \bold{ATTENTION: Files are overwritten without warning!!!!!}
-#' @param x \code{emeScheme} object to be split
+#' @param x file name of spreadsheet containing the metadata of an emeScheme or
+#'   \code{emeScheme} object to be split and exported to xml
 #' @param saveAsType if given, save the result to files named following the
 #'   pattern \code{DATAFILENAME_attr(x, "propertyName").saveAsType}. If missing,
 #'   do not save and return the result. Allowed values at the moment:
@@ -39,21 +40,20 @@
 #' emeScheme_split(emeScheme_example, saveAsType = c("rds", "xml"), path = tempdir())
 #' ## saves the resulting object as rds and xml into the tmpdir()
 
-emeScheme_split <- function(
+emeScheme_to_xml <- function(
   x,
-  saveAsType = "none",
+  file,
   path = "."
 ) {
 
 # Check arguments ---------------------------------------------------------
 
   if (!methods::is(x, "emeSchemeSet")) {
-    stop("x has to be an object of type emeSchemeSet")
+    x <- read_from_excel(x)
   }
 
-  saveAsTypeAllowed <- c("rds", "xml", "none")
-  if (!all(saveAsType %in% saveAsTypeAllowed)) {
-    stop("'saveAsType' has to be one of the following values: ", paste(saveAsTypeAllowed, collapse = ", "))
+  if (!methods::is(x, "emeSchemeSet")) {
+    stop("x has to be an object of type emeSchemeSet")
   }
 
 # Extract DataFileMetaData$dataFileNames ----------------------------------
@@ -70,37 +70,25 @@ emeScheme_split <- function(
   )
 
 # Save if asked for -------------------------------------------------------
-fns <- NULL
-if (!missing(saveAsType)) {
-  if ("rds" %in% saveAsType) {
+
+  if (!missing(file)) {
+    fns <- NULL
+    path <- dirname(file)
+    fn <- basename(file)
     lapply(
       result,
       function(x) {
-        fn <- file.path( path, paste(attr(x, "propertyName"), "rds", sep = ".") )
-        saveRDS(x, fn)
-        fns <<- c(fns, fn)
-      }
-    )
-  }
-  if ("xml" %in% saveAsType) {
-    lapply(
-      result,
-      function(x) {
-        fn <- file.path( path, paste(attr(x, "propertyName"), "xml", sep = ".") )
+        fn <- file.path( path, paste(fn, attr(x, "propertyName"), "xml", sep = ".") )
         dmdScheme::dmdScheme_to_xml(x, file = fn)
         fns <<- c(fns, fn)
       }
     )
+    result <- fns
   }
-}
 
 # Return ------------------------------------------------------------------
 
-  if (!missing(saveAsType)) {
-    result <- fns
-  } else {
-    return(result)
-  }
+  return(result)
 }
 
 

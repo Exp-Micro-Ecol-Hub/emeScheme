@@ -2,7 +2,7 @@
 
 S3method(validate,emeSchemeSet_raw)
 export(emeScheme_extract)
-export(emeScheme_split)
+export(emeScheme_to_xml)
 import(dmdScheme)
 importFrom(digest,digest)
 importFrom(dplyr,filter)
