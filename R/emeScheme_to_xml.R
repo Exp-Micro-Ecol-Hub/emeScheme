@@ -73,7 +73,7 @@ emeScheme_to_xml <- function(
       result,
       function(x) {
         fn <- file.path( path, paste(fn, attr(x, "propertyName"), "xml", sep = ".") )
-        dmdScheme::dmdScheme_to_xml(x, file = fn, output = outtput)
+        dmdScheme::dmdScheme_to_xml(x, file = fn, output = output)
         fns <<- c(fns, fn)
       }
     )
