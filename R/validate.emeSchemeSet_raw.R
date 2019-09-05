@@ -621,6 +621,7 @@ validateDataFileMetaDataMapping <- function(x) {
   result$header <- "correct values in `mappingColumn`` in dependence on columnData"
   result$description <- paste(
     "Test if `mappingColumn` is found in the appropriate table.",
+    "If `columnData == Species`,  `mappingColumn` has to be `NA` to result in TRUE!",
     "The `error` can have the following values apart from `OK`:\n",
     "\n",
     "   error   : If not all `mappingColumn` are found in the appropriate columns\n",
@@ -642,6 +643,8 @@ validateDataFileMetaDataMapping <- function(x) {
   cd <- x$DataFileMetaData$columnData
   cd[is.na(cd)] <- "NA"
   #
+  i <- cd == "Species"
+  result$details[i] <- is.na(x$DataFileMetaData$mappingColumn[i])
   i <- cd == "Treatment"
   result$details[i] <- x$DataFileMetaData$mappingColumn[i] %in% x$Treatment$treatmentID
   i <- cd == "Measurement"
