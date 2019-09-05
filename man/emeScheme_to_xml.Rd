@@ -33,6 +33,6 @@ The actual implementation is inspired by David LeBauer, Carl Davidson, Rob Koope
 emeScheme_to_xml(emeScheme_example)
 ## x is a list containing all the emeSchemes for each data file
 
-emeScheme_to_xml(emeScheme_example, path = tempdir())
+emeScheme_to_xml(emeScheme_example, file = tempdir())
 ## saves the resulting object as xml into the tmpdir()
 }
