@@ -13,6 +13,17 @@ test_that(
   }
 )
 
+test_that(
+  "emeScheme_to_xml( ) fails when x is neither character nor emeScheme",
+  {
+    expect_error(
+      object = emeScheme_to_xml( 1:2 ),
+      regexp = "x has to be an object of type emeSchemeSet or file name of metadata spreadsheet."
+    )
+  }
+)
+
+
 
 test_that(
   "emeScheme_to_xml( ) fails when outpot not valid",
