@@ -50,6 +50,14 @@ emeScheme_to_xml <- function(
     stop("x has to be an object of type emeSchemeSet")
   }
 
+  if (!missing(file)) {
+    fns <- NULL
+    path <- dirname(file)
+    fn <- basename(file)
+  } else {
+    file <- NULL
+  }
+
 # Extract DataFileMetaData$dataFileNames ----------------------------------
 
   dataFileName <- unique(x$DataFileMetaData$dataFileName)
@@ -57,7 +65,7 @@ emeScheme_to_xml <- function(
 
 # Extract for each unique dataFileName ------------------------------------
 
-  result <- lapply(
+  splitted <- lapply(
     dataFileName,
     emeScheme_extract,
     x = x
@@ -65,18 +73,19 @@ emeScheme_to_xml <- function(
 
 # Save if asked for -------------------------------------------------------
 
-  if (!missing(file)) {
-    fns <- NULL
-    path <- dirname(file)
-    fn <- basename(file)
-    lapply(
-      result,
-      function(x) {
+  result <- lapply(
+    splitted,
+    function(x) {
+      if (is.null(file)) {
+        dmdScheme::dmdScheme_to_xml(x, output = output)
+      } else {
         fn <- file.path( path, paste(fn, attr(x, "propertyName"), "xml", sep = ".") )
         dmdScheme::dmdScheme_to_xml(x, file = fn, output = output)
         fns <<- c(fns, fn)
       }
-    )
+    }
+  )
+  if (!is.null(file)) {
     result <- fns
   }
 
