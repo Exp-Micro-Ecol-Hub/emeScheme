@@ -654,10 +654,11 @@ validateDataFileMetaDataMapping <- function(x) {
   i <- cd == "other"
   result$details[i] <- x$DataFileMetaData$mappingColumn[i] %in% c("NA", NA)
   i <- cd == "NA"
-  result$details[i] <- NA
+  result$details[i] <- FALSE
   #
 
   result$details <- data.frame(
+    columnData = x$DataFileMetaData$columnData,
     mappingColumn = x$DataFileMetaData$mappingColumn,
     IsOK = as.logical(result$details),
     stringsAsFactors = FALSE
