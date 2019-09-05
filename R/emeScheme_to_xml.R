@@ -22,17 +22,11 @@
 #' @export
 #'
 #' @examples
-#' emeScheme_split(emeScheme_example)
+#' emeScheme_to_xml(emeScheme_example)
 #' ## x is a list containing all the emeSchemes for each data file
 #'
-#' emeScheme_split(emeScheme_example, saveAsType = "rds", path = tempdir())
-#' ## saves the resulting object as rds using saveRDS() into the tmpdir()
-#'
-#' emeScheme_split(emeScheme_example, saveAsType = "xml", path = tempdir())
+#' emeScheme_to_xml(emeScheme_example, path = tempdir())
 #' ## saves the resulting object as xml into the tmpdir()
-#'
-#' emeScheme_split(emeScheme_example, saveAsType = c("rds", "xml"), path = tempdir())
-#' ## saves the resulting object as rds and xml into the tmpdir()
 
 emeScheme_to_xml <- function(
   x,
@@ -42,12 +36,12 @@ emeScheme_to_xml <- function(
 
 # Check arguments ---------------------------------------------------------
 
-  if (!methods::is(x, "emeSchemeSet")) {
+  if (methods::is(x, "character")) {
     x <- read_from_excel(x)
   }
 
   if (!methods::is(x, "emeSchemeSet")) {
-    stop("x has to be an object of type emeSchemeSet")
+    stop("x has to be an object of type emeSchemeSet or file name of metadata spreadsheet.")
   }
 
   if (!missing(file)) {
