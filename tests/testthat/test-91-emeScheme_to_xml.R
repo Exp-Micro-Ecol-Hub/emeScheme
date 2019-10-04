@@ -35,7 +35,7 @@ test_that(
   }
 )
 
-# Estracts and saves without errors ---------------------------------------
+# Extracts and saves without errors ---------------------------------------
 
 ## generate updated reference files by running
 # emeScheme_to_xml( emeScheme_example, file = here::here("tests", "testthat", "ref-91-emeScheme_to_xml"), output = "metadata")
