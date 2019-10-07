@@ -6,7 +6,7 @@
 #' \dontrun{
 #' ## Created by using
 #' path <- system.fil;e( "emeScheme.xlsx", package = "emeScheme")
-#' emeScheme_raw <- read_from_excel(
+#' emeScheme_raw <- read_excel(
 #'   file = path,
 #'   keepData = FALSE,
 #'   verbose = TRUE,

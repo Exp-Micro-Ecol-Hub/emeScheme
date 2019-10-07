@@ -1,4 +1,4 @@
-context("print.dmdScheme.validation()")
+context("09-print.dmdScheme.validation()")
 
 x <- validate( x = emeScheme_raw, errorIfStructFalse = TRUE)
 

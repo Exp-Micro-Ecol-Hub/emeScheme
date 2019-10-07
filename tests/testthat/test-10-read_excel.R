@@ -1,13 +1,13 @@
-context("read_from_excel(schemeName = \"emeScheme\")")
+context("10-read_excel(schemeName = \"emeScheme\")")
 
 
 # fail because of file -------------------------------------------------------------
 
 test_that(
-  "read_from_excel() fails when file does not exist",
+  "read_excel() fails when file does not exist",
   {
     expect_error(
-      object = read_from_excel("DOES_NOT_EXIST"),
+      object = read_excel("DOES_NOT_EXIST"),
       regexp = "No such file or directory"
     )
   }
@@ -15,10 +15,10 @@ test_that(
 
 
 test_that(
-  "read_from_excel() fails when file does not have right extension",
+  "read_excel() fails when file does not have right extension",
   {
     expect_error(
-      object = read_from_excel("DummyForTests"),
+      object = read_excel("DummyForTests"),
       regexp = "If x is a file name, it has to have the extension 'xls' or 'xlsx'"
     )
   }
@@ -28,10 +28,10 @@ test_that(
 # read from xlsx --- value ----------------------------------------------------------
 
 test_that(
-  "read_from_excel() keepData and raw",
+  "read_excel() keepData and raw",
   {
     expect_known_value(
-      object = read_from_excel(
+      object = read_excel(
         file = "emeScheme.xlsx",
         keepData = TRUE,
         raw = TRUE,
@@ -43,10 +43,10 @@ test_that(
 )
 
 test_that(
-  "read_from_excel() keepData and raw",
+  "read_excel() keepData and raw",
   {
     expect_known_value(
-      object = read_from_excel(
+      object = read_excel(
         file = "emeScheme.xlsx",
         keepData = FALSE,
         raw = FALSE,
@@ -61,10 +61,10 @@ test_that(
 # # read from xlsx --- output -----------------------------------------------
 #
 # test_that(
-#   "read_from_excel() keepData and raw",
+#   "read_excel() keepData and raw",
 #   {
 #     expect_known_output(
-#       object = read_from_excel(
+#       object = read_excel(
 #         file = system.file("emeScheme.xlsx", package = "emeScheme"),
 #         keepData = TRUE,
 #         raw = TRUE,

@@ -33,9 +33,6 @@ The actual implementation is inspired by David LeBauer, Carl Davidson, Rob Koope
 emeScheme_split(emeScheme_example)
 ## x is a list containing all the emeSchemes for each data file
 
-emeScheme_split(emeScheme_example, saveAsType = "rds", path = tempdir())
-## saves the resulting object as rds using saveRDS() into the tmpdir()
-
 emeScheme_split(emeScheme_example, saveAsType = "xml", path = tempdir())
 ## saves the resulting object as xml into the tmpdir()
 

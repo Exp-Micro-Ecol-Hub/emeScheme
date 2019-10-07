@@ -243,7 +243,7 @@ Therefore, you should submit the final xml version of your metadata. Only do thi
 As the metadata as it is entered in the spreadsheet contains metadata for *many* different data files (as enterd in the column `DataFileMetaData / dataFileName`), the metadata will be split and exported to multiple xml files.
 
 ```{r eval=FALSE}
-my_medata_spreadsheet <- read_from_excel("thenameofyourmetadataspreadsheet.xlsx")
+my_medata_spreadsheet <- read_excel("thenameofyourmetadataspreadsheet.xlsx")
 emeScheme_split( x = my_medata_spreadsheet, saveAsType = "xml", path = ".")
 ```
 

@@ -1,12 +1,12 @@
-context("make_example(.packageName = \"emeScheme\")")
+context("02-make_example()")
 
 
 test_that(
-  "make_example returns list of examples when called without argument",
+  "make_example returns list of examples when called without argument, i,.e. here empty",
   {
-    expect_known_output(
-      object = make_example(schemeName = "emeScheme"),
-      file = "ref-02-make_example_.txt",
+    expect_message(
+      object = make_example( schemeName = "emeScheme"),
+      file = "Included examples are:",
     )
   }
 )
@@ -15,8 +15,9 @@ test_that(
   "make_example() raises error when called with non-existing name",
   {
     expect_error(
-      object = make_example(name = "DOES_NOT+EXIST", schemeName = "emeScheme"),
+      object = make_example(name = "DOES_NOT+EXIST"),
       regexp = "Invalid example. 'name' has to be one of the following values:"
     )
   }
 )
+

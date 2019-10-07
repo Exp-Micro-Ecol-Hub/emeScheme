@@ -25,9 +25,6 @@
 #' emeScheme_split(emeScheme_example)
 #' ## x is a list containing all the emeSchemes for each data file
 #'
-#' emeScheme_split(emeScheme_example, saveAsType = "rds", path = tempdir())
-#' ## saves the resulting object as rds using saveRDS() into the tmpdir()
-#'
 #' emeScheme_split(emeScheme_example, saveAsType = "xml", path = tempdir())
 #' ## saves the resulting object as xml into the tmpdir()
 #'
@@ -43,7 +40,7 @@ emeScheme_to_xml <- function(
 # Check arguments ---------------------------------------------------------
 
   if (!methods::is(x, "emeSchemeSet")) {
-    x <- read_from_excel(x)
+    x <- read_excel(x)
   }
 
   if (!methods::is(x, "emeSchemeSet")) {
