@@ -102,13 +102,17 @@ validateTypes <- function(sraw, sconv) {
     "One or more FALSE values will result in an ERROR."
   )
   ##
-  t <- sraw == sconv
-  na <- is.na(t)
-  t[na] <- TRUE
   result$details <- as.data.frame(sraw, stringsAsFactors = FALSE)
-  result$details[t] <- TRUE
-  result$details[!t] <- paste( result$details[!t], "!=", as.data.frame(sconv)[!t])
-  result$details[na] <- NA
+  if ( nrow(sraw) != 0 ) {
+    t <- sraw == sconv
+    na <- is.na(t)
+    t[na] <- TRUE
+    result$details[t] <- TRUE
+    result$details[!t] <- paste( result$details[!t], "!=", as.data.frame(sconv)[!t])
+    result$details[na] <- NA
+  } else {
+    result$details[1,] <- rep(NA, ncol(result$details))
+  }
   result$details <- tibble::as_tibble(result$details, .name_repair = "unique")
   ##
   result$error = ifelse(
@@ -617,6 +621,7 @@ validateDataFileMetaDataMapping <- function(x) {
   result$header <- "correct values in `mappingColumn`` in dependence on columnData"
   result$description <- paste(
     "Test if `mappingColumn` is found in the appropriate table.",
+    "If `columnData == Species`,  `mappingColumn` has to be `NA` to result in TRUE!",
     "The `error` can have the following values apart from `OK`:\n",
     "\n",
     "   error   : If not all `mappingColumn` are found in the appropriate columns\n",
@@ -634,15 +639,26 @@ validateDataFileMetaDataMapping <- function(x) {
   ##
   result$details <- x$DataFileMetaData$mappingColumn
   result$details[] <- NA
-  i <- x$DataFileMetaData$columnData == "Treatment"
+  #
+  cd <- x$DataFileMetaData$columnData
+  cd[is.na(cd)] <- "NA"
+  #
+  i <- cd == "Species"
+  result$details[i] <- is.na(x$DataFileMetaData$mappingColumn[i])
+  i <- cd == "Treatment"
   result$details[i] <- x$DataFileMetaData$mappingColumn[i] %in% x$Treatment$treatmentID
-  i <- x$DataFileMetaData$columnData == "Measurement"
+  i <- cd == "Measurement"
   result$details[i] <- x$DataFileMetaData$mappingColumn[i] %in% x$Measurement$measurementID
-  i <- x$DataFileMetaData$columnData == "ID"
+  i <- cd == "ID"
   result$details[i] <- x$DataFileMetaData$mappingColumn[i] %in% c("NA", NA)
-  i <- x$DataFileMetaData$columnData == "other"
+  i <- cd == "other"
   result$details[i] <- x$DataFileMetaData$mappingColumn[i] %in% c("NA", NA)
+  i <- cd == "NA"
+  result$details[i] <- FALSE
+  #
+
   result$details <- data.frame(
+    columnData = x$DataFileMetaData$columnData,
     mappingColumn = x$DataFileMetaData$mappingColumn,
     IsOK = as.logical(result$details),
     stringsAsFactors = FALSE

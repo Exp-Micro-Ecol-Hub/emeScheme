@@ -22,14 +22,11 @@
 #' @export
 #'
 #' @examples
-#' emeScheme_split(emeScheme_example)
+#' emeScheme_to_xml(emeScheme_example)
 #' ## x is a list containing all the emeSchemes for each data file
 #'
-#' emeScheme_split(emeScheme_example, saveAsType = "xml", path = tempdir())
+#' emeScheme_to_xml(emeScheme_example, file = tempdir())
 #' ## saves the resulting object as xml into the tmpdir()
-#'
-#' emeScheme_split(emeScheme_example, saveAsType = c("rds", "xml"), path = tempdir())
-#' ## saves the resulting object as rds and xml into the tmpdir()
 
 emeScheme_to_xml <- function(
   x,
@@ -44,7 +41,15 @@ emeScheme_to_xml <- function(
   }
 
   if (!methods::is(x, "emeSchemeSet")) {
-    stop("x has to be an object of type emeSchemeSet")
+    stop("x has to be an object of type emeSchemeSet or file name of metadata spreadsheet.")
+  }
+
+  if (!missing(file)) {
+    fns <- NULL
+    path <- dirname(file)
+    fn <- basename(file)
+  } else {
+    file <- NULL
   }
 
 # Extract DataFileMetaData$dataFileNames ----------------------------------
@@ -54,7 +59,7 @@ emeScheme_to_xml <- function(
 
 # Extract for each unique dataFileName ------------------------------------
 
-  result <- lapply(
+  splitted <- lapply(
     dataFileName,
     emeScheme_extract,
     x = x
@@ -62,18 +67,19 @@ emeScheme_to_xml <- function(
 
 # Save if asked for -------------------------------------------------------
 
-  if (!missing(file)) {
-    fns <- NULL
-    path <- dirname(file)
-    fn <- basename(file)
-    lapply(
-      result,
-      function(x) {
+  result <- lapply(
+    splitted,
+    function(x) {
+      if (is.null(file)) {
+        dmdScheme::dmdScheme_to_xml(x, output = output)
+      } else {
         fn <- file.path( path, paste(fn, attr(x, "propertyName"), "xml", sep = ".") )
         dmdScheme::dmdScheme_to_xml(x, file = fn, output = output)
         fns <<- c(fns, fn)
       }
-    )
+    }
+  )
+  if (!is.null(file)) {
     result <- fns
   }
 

@@ -1,7 +1,7 @@
 Package: emeScheme
 Title: Microcosm Experiment Metadata Scheme
-Description: The Authoratative definition of the emeScheme (Experimental Microcosm Ecology Metadata) and tools to
-             enter, validate and export the metadata.
+Description: The Authoratative definition of the emeScheme (Experimental Microcosm Ecology Metadata) and tools to enter, validate
+              and export the metadata.
 Version: 0.9.4.1
 schemeName: emeScheme
 schemeVersion: 0.9.5

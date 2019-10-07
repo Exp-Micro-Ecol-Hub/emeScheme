@@ -551,28 +551,28 @@ The details are a table with one row per `mappingColumn` value format row The fo
  One or more FALSE or missing values will result in an ERROR.  
 
 
-|mappingColumn        |IsOK |
-|:--------------------|:----|
-|NA                   |TRUE |
-|oxygen concentration |TRUE |
-|NA                   |TRUE |
-|NA                   |TRUE |
-|NA                   |TRUE |
-|NA                   |TRUE |
-|Lid_treatment        |TRUE |
-|NA                   |TRUE |
-|NA                   |TRUE |
-|species_1            |NA   |
-|smell                |TRUE |
-|NA                   |TRUE |
-|Lid_treatment        |TRUE |
-|NA                   |TRUE |
-|species_3            |NA   |
-|NA                   |TRUE |
-|NA                   |TRUE |
-|Lid_treatment        |TRUE |
-|NA                   |TRUE |
-|abundance            |TRUE |
+|columnData  |mappingColumn        |IsOK  |
+|:-----------|:--------------------|:-----|
+|ID          |NA                   |TRUE  |
+|Measurement |oxygen concentration |TRUE  |
+|other       |NA                   |TRUE  |
+|other       |NA                   |TRUE  |
+|other       |NA                   |TRUE  |
+|other       |NA                   |TRUE  |
+|Treatment   |Lid_treatment        |TRUE  |
+|other       |NA                   |TRUE  |
+|ID          |NA                   |TRUE  |
+|Species     |species_1            |FALSE |
+|Measurement |smell                |TRUE  |
+|other       |NA                   |TRUE  |
+|Treatment   |Lid_treatment        |TRUE  |
+|other       |NA                   |TRUE  |
+|Species     |species_3            |FALSE |
+|ID          |NA                   |TRUE  |
+|other       |NA                   |TRUE  |
+|Treatment   |Lid_treatment        |TRUE  |
+|other       |NA                   |TRUE  |
+|Measurement |abundance            |TRUE  |
 
 -  **<span style="color:#FF0000">`columnName` in column names found in column names in `dataFileName` - error</span>**   
 The details are a table with one row per `columnName` value. The following values are possible for the column `isTRUE`:

@@ -30,12 +30,13 @@ Depending on the value of \code{file}, the function returns different results:
 The actual implementation is inspired by David LeBauer, Carl Davidson, Rob Kooper. See \url{https://stackoverflow.com/a/27865512/632423}
 }
 \examples{
-emeScheme_split(emeScheme_example)
+emeScheme_to_xml(emeScheme_example)
 ## x is a list containing all the emeSchemes for each data file
 
+<<<<<<< HEAD
 emeScheme_split(emeScheme_example, saveAsType = "xml", path = tempdir())
+=======
+emeScheme_to_xml(emeScheme_example, file = tempdir())
+>>>>>>> 96eb085c5de3488ded931b4fa6e2f751be35694a
 ## saves the resulting object as xml into the tmpdir()
-
-emeScheme_split(emeScheme_example, saveAsType = c("rds", "xml"), path = tempdir())
-## saves the resulting object as rds and xml into the tmpdir()
 }
