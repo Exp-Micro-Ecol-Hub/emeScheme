@@ -16,6 +16,7 @@
 #'
 #' @importFrom magrittr %>% %<>%
 #' @importFrom dplyr select filter
+#' @importFrom methods is
 #' @export
 #'
 #' @examples
