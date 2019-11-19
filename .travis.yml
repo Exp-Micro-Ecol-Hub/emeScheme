@@ -13,20 +13,20 @@ env:
 matrix:
   include:
   - r: devel
-    r_github_packages: rkrug/dmdScheme@dev
+    r_github_packages: rkrug/dmdScheme@separateDefinition
   - r: release
     os: osx
     osx_image: xcode10.1
-    r_github_packages: rkrug/dmdScheme@dev
+    r_github_packages: rkrug/dmdScheme@separateDefinition
     before_install:
     - sudo tlmgr install inconsolata
     - sw_vers
   - r: release
-    r_github_packages: rkrug/dmdScheme@dev
+    r_github_packages: rkrug/dmdScheme@separateDefinition
   - r: oldrel
-    r_github_packages: rkrug/dmdScheme@dev
+    r_github_packages: rkrug/dmdScheme@separateDefinition
   - r: 3.5
-    r_github_packages: rkrug/dmdScheme@dev
+    r_github_packages: rkrug/dmdScheme@separateDefinition
 
 before_install:
   - echo "TRAVIS_OS_NAME = $TRAVIS_OS_NAME"
