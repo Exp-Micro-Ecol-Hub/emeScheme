@@ -1,3 +1,5 @@
+#' Convert \code{emeSchemeSet} to an \code{xml_list} object
+#'
 #' @rdname as_xml_list
 #' @export
 #'

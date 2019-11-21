@@ -5,7 +5,7 @@ Description: The Authoratative definition of the emeScheme (Experimental Microco
 Version: 0.9.5.1
 schemeName: emeScheme
 schemeVersion: 0.9.5
-Date: 2019-05-23
+Date: 2019-1-21
 Authors@R: c( person( "Rainer M.", "Krug", role = c("aut", "cre"), email = "Rainer.Krug@uzh.ch" ), person( "Owen
              L.", "Petchey", role = c("ctb"), email = "Owen.Petchey@uzh.ch" ), person("Vanessa W.", "de Melo", role
              = c("ctb"), email = "Vanessa Weber de Melo <vanessa.weberdemelo@uzh.ch>" ), person("Frank",
@@ -14,7 +14,7 @@ URL: https://exp-micro-ecol-hub.github.io/emeScheme/, https://github.com/Exp-Mic
 BugReports: https://github.com/Exp-Micro-Ecol-Hub/emeScheme/issues
 DOI: https://zenodo.org/record/2620097
 Depends: R (>= 3.5.0), dmdScheme (>= 0.9.9)
-Imports: magrittr, dplyr, digest, utils, tibble, rmarkdown, taxize, knitr, rlang, methods
+Imports: digest, dplyr, magrittr, methods, rlang, rmarkdown, taxize, tibble, utils
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
