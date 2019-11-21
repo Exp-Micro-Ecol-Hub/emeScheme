@@ -3,7 +3,6 @@
 #' @export
 #'
 .onAttach <- function(libname, pkgname) {
-  browser()
   ver <- utils::packageDescription(
     "emeScheme",
     fields = c( "schemeName", "schemeVersion" )

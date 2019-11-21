@@ -219,10 +219,10 @@ $error
 
 $details
 # A tibble: 2 x 5
-  user_supplied_name  submitted_name     matched_name     data_source_tit… score
-* <chr>               <chr>              <chr>            <chr>            <dbl>
-1 Tetrahymena thermo… Tetrahymena therm… Tetrahymena the… NCBI             0.988
-2 unknown             Unknown            Unknown          EOL              0.75 
+  user_supplied_name submitted_name    matched_name   data_source_title    score
+* <chr>              <chr>             <chr>          <chr>                <dbl>
+1 Tetrahymena therm… Tetrahymena ther… Tetrahymena t… NCBI                 0.988
+2 unknown            Unknown           Unknown        Tropicos - Missouri… 0.75 
 
 $header
 [1] "**<span style=\"color:#00FF00\">Test if the scientific name is correct - OK</span>**"

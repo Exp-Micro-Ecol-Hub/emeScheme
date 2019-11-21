@@ -148,10 +148,10 @@ The details are a table as returned from the funcrtion `taxize::gnr_resolve()`. 
  **Not matched species are not listed here!**.  
 
 
-|user_supplied_name      |submitted_name          |matched_name            |data_source_title | score|
-|:-----------------------|:-----------------------|:-----------------------|:-----------------|-----:|
-|Tetrahymena thermophila |Tetrahymena thermophila |Tetrahymena thermophila |NCBI              | 0.988|
-|unknown                 |Unknown                 |Unknown                 |EOL               | 0.750|
+|user_supplied_name      |submitted_name          |matched_name            |data_source_title                    | score|
+|:-----------------------|:-----------------------|:-----------------------|:------------------------------------|-----:|
+|Tetrahymena thermophila |Tetrahymena thermophila |Tetrahymena thermophila |NCBI                                 | 0.988|
+|unknown                 |Unknown                 |Unknown                 |Tropicos - Missouri Botanical Garden | 0.750|
 
 
 ## **<span style="color:#AA5500">Treatment - warning</span>**
