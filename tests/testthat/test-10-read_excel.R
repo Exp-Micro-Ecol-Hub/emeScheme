@@ -1,4 +1,4 @@
-context("10-read_excel(schemeName = \"emeScheme\")")
+context("10-read_excel(schemeName = \"dmdScheme\")")
 
 
 # fail because of file -------------------------------------------------------------
@@ -30,29 +30,29 @@ test_that(
 test_that(
   "read_excel() keepData and raw",
   {
-    expect_known_value(
+    expect_equal(
       object = read_excel(
-        file = "emeScheme.xlsx",
+        file = scheme_path_xlsx(),
         keepData = TRUE,
         raw = TRUE,
         verbose = FALSE
       ),
-      file = "ref-10-emeScheme_data_raw.rda"
+      expected = dmdScheme_raw
     )
   }
 )
 
 test_that(
-  "read_excel() keepData and raw",
+  "read_excel() keepData no data and not raw",
   {
-    expect_known_value(
+    expect_equal(
       object = read_excel(
-        file = "emeScheme.xlsx",
+        file = scheme_path_xlsx(),
         keepData = FALSE,
         raw = FALSE,
         verbose = FALSE
       ),
-      file = "ref-10-emeScheme.rda"
+      expected = dmdScheme
     )
   }
 )

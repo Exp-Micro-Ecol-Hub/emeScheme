@@ -26,9 +26,9 @@ The filtering is done as followed:
 }
 }
 \examples{
-emeScheme_extract("smell.csv", emeScheme_example)
+emeScheme_extract("smell.csv", dmdScheme_example)
 ## returns the emeScheme data for the data file 'smell.csv'
 
-emeScheme_extract("DoesNotExist", emeScheme_example)
+emeScheme_extract("DoesNotExist", dmdScheme_example)
 ## returns an empty emeScheme
 }
