@@ -39,7 +39,7 @@ validate.emeSchemeSet_raw <- function(
 
   # Validata data -----------------------------------------------------------
 
-  if ((result$structure$error == 0) & validateData){
+  if ((result$structure$error == 0) & validateData) {
     xconv <- suppressWarnings( as_dmdScheme(x, keepData = TRUE, convertTypes = TRUE,  verbose = FALSE, warnToError = FALSE) )
     xraw  <-                   as_dmdScheme(x, keepData = TRUE, convertTypes = FALSE, verbose = FALSE, warnToError = FALSE)
 
@@ -218,7 +218,7 @@ validateAllowedValues <- function(sraw) {
   return( result )
 }
 
-valitdateSpeciesIDUnique <- function(x){
+valitdateSpeciesIDUnique <- function(x) {
   result <- new_emeScheme_validation()
   ##
   result$header <- "Test if `speciesID` is unique"
@@ -292,7 +292,7 @@ validateSpeciesNames <- function(x) {
   return(result)
 }
 
-validateTreatmentMapping <- function(x){
+validateTreatmentMapping <- function(x) {
   result <- new_emeScheme_validation()
   result$header <- "Test if treatmentID is in mappingColumn"
   result$description <- paste(
@@ -333,7 +333,7 @@ validateTreatmentMapping <- function(x){
   return(result)
 }
 
-validateMeasurementIDsUnique <- function(x){
+validateMeasurementIDsUnique <- function(x) {
   result <- new_emeScheme_validation()
   ##
   result$header <- "names unique"
@@ -411,7 +411,7 @@ validateMeasurementMeasuredFrom <- function(x) {
   return(result)
 }
 
-validateMeasurementMapping <- function(x){
+validateMeasurementMapping <- function(x) {
   result <- new_emeScheme_validation()
   ##
   result$header <- "Test if `measurementID` is in mappingColumn"
@@ -574,7 +574,7 @@ validateDataFileMetaDataDataFileExists <- function(x, path) {
   return(result)
 }
 
-validateDataFileMetaDataDateTimeSpecified <- function(x){
+validateDataFileMetaDataDateTimeSpecified <- function(x) {
   result <- new_emeScheme_validation()
   result$header <- "Test if date time format has been specified if required"
   result$description <- paste(
@@ -781,7 +781,7 @@ validateDataFileMetaDataDataFileColumnDefined <- function(x, path) {
   dfcol <- readColumnNamesFromDataFiles(x, path)
   result$details <- lapply(
     1:length(dfcol),
-    function(i){
+    function(i) {
       cn <- dplyr::filter(x$DataFileMetaData, .data$dataFileName == names(dfcol[i])) %>%
         dplyr::select(.data$columnName) %>%
         magrittr::extract2(1)
@@ -842,7 +842,7 @@ validateDataFileMetaDataDataFileColumnDefined <- function(x, path) {
 
 # Internal validation functions -------------------------------------------
 
-validateStructure <- function( x ){
+validateStructure <- function( x ) {
   result <- new_emeScheme_validation()
   ##
   result$header <- "Structural / Formal validity"
@@ -856,7 +856,7 @@ validateStructure <- function( x ){
   struct <- as_dmdScheme( x, keepData = FALSE, verbose = FALSE)
   attr(struct, "propertyName") <- "emeScheme"
   result$details <- all.equal(struct, dmdScheme)
-  if (isTRUE(result$details)){
+  if (isTRUE(result$details)) {
     result$error <- 0
   } else {
     result$error <- 3
@@ -868,7 +868,7 @@ validateStructure <- function( x ){
 }
 
 
-validateExperiment <- function( x, xraw, xconv ){
+validateExperiment <- function( x, xraw, xconv ) {
   result <- new_emeScheme_validation()
   ##
   result$header <- "Experiment"
@@ -903,7 +903,7 @@ validateExperiment <- function( x, xraw, xconv ){
 }
 
 
-validateSpecies <- function( x, xraw, xconv ){
+validateSpecies <- function( x, xraw, xconv ) {
   result <- new_emeScheme_validation()
   ##
   result$header <- "Species"
@@ -940,7 +940,7 @@ validateSpecies <- function( x, xraw, xconv ){
 }
 
 
-validateTreatment <- function( x, xraw, xconv ){
+validateTreatment <- function( x, xraw, xconv ) {
   result <- new_emeScheme_validation()
   ##
   result$header <- "Treatment"
@@ -976,7 +976,7 @@ validateTreatment <- function( x, xraw, xconv ){
 }
 
 
-validateMeasurement <- function( x, xraw, xconv ){
+validateMeasurement <- function( x, xraw, xconv ) {
   result <- new_emeScheme_validation()
   ##
   result$header <- "Measurement"
@@ -1015,7 +1015,7 @@ validateMeasurement <- function( x, xraw, xconv ){
 }
 
 
-validateDataExtraction <- function( x, xraw, xconv ){
+validateDataExtraction <- function( x, xraw, xconv ) {
   result <- new_emeScheme_validation()
   ##
   result$header <- "DataExtraction"
@@ -1051,7 +1051,7 @@ validateDataExtraction <- function( x, xraw, xconv ){
 }
 
 
-validateDataFileMetaData <- function( x, xraw, xconv, path ){
+validateDataFileMetaData <- function( x, xraw, xconv, path ) {
   result <- new_emeScheme_validation()
   ##
   result$header <- "DataFileMetaData"
@@ -1091,7 +1091,7 @@ validateDataFileMetaData <- function( x, xraw, xconv, path ){
 }
 
 
-validateDataFiles <- function( x, xraw, xconv, path ){
+validateDataFiles <- function( x, xraw, xconv, path ) {
   result <- new_emeScheme_validation()
   ##
   result$header <- "Data Files"
