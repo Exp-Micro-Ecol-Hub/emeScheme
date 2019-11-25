@@ -842,7 +842,7 @@ validateDataFileMetaDataDataFileColumnDefined <- function(x, path) {
 
 # Internal validation functions -------------------------------------------
 
-validateStructure <- function( x ) {
+validateStructure <- function(x) {
   result <- new_emeScheme_validation()
   ##
   result$header <- "Structural / Formal validity"
@@ -855,7 +855,7 @@ validateStructure <- function( x ) {
   ##
   struct <- as_dmdScheme( x, keepData = FALSE, verbose = FALSE)
   attr(struct, "propertyName") <- "emeScheme"
-  result$details <- all.equal(struct, dmdScheme)
+  result$details <- all.equal(struct, get("dmdScheme", pos = "package:dmdScheme"))
   if (isTRUE(result$details)) {
     result$error <- 0
   } else {
