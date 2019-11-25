@@ -1,17 +1,13 @@
-#' @importFrom utils packageDescription
-#' @importFrom dmdScheme scheme_install
-#' @export
-#'
 .onAttach <- function(libname, pkgname) {
   ver <- utils::packageDescription(
-    "emeScheme",
+    utils::packageName(),
     fields = c( "schemeName", "schemeVersion" )
   )
 
-  if ( !scheme_installed( ver$schemeName, ver$schemeVersion) ) {
+  if ( !dmdScheme::scheme_installed( ver$schemeName, ver$schemeVersion) ) {
     dmdScheme::scheme_install(ver$schemeName, ver$schemeVersion, repo = "https://github.com/Exp-Micro-Ecol-Hub/dmdSchemeRepository/raw/master/")
   }
 
-  scheme_use( name = ver$schemeName, version = ver$schemeVersion)
+  dmdScheme::scheme_use( name = ver$schemeName, version = ver$schemeVersion)
 
 }

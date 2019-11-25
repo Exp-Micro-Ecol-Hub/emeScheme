@@ -5,7 +5,7 @@ Description: The Authoratative definition of the emeScheme (Experimental Microco
 Version: 0.9.5.1
 schemeName: emeScheme
 schemeVersion: 0.9.5
-Date: 2019-1-21
+Date: 2019-11-25
 Authors@R: c( person( "Rainer M.", "Krug", role = c("aut", "cre"), email = "Rainer.Krug@uzh.ch" ), person( "Owen
              L.", "Petchey", role = c("ctb"), email = "Owen.Petchey@uzh.ch" ), person("Vanessa W.", "de Melo", role
              = c("ctb"), email = "Vanessa Weber de Melo <vanessa.weberdemelo@uzh.ch>" ), person("Frank",
@@ -15,12 +15,12 @@ BugReports: https://github.com/Exp-Micro-Ecol-Hub/emeScheme/issues
 DOI: https://zenodo.org/record/2620097
 Depends: R (>= 3.5.0), dmdScheme (>= 0.9.9)
 Imports: digest, dplyr, magrittr, methods, rlang, rmarkdown, taxize, tibble, utils
+Suggests: knitr, covr (>= 3.2.1), testthat (>= 2.0.1), here (>= 0.1), kableExtra (>= 0.9.0)
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 StagedInstall: true
 RoxygenNote: 6.1.1
-Suggests: covr (>= 3.2.1), testthat (>= 2.0.1), here (>= 0.1), kableExtra (>= 0.9.0)
 Enhances: plantuml (>= 0.2.3.2)
 schemeUpdate: 2019-10-07 14:19:14
 schemeMD5: 19e4762ec7bf3e1917eaf59d15d5ae17
