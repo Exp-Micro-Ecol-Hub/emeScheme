@@ -1,6 +1,6 @@
 context("08-validate()")
 
-x <- dmdScheme_raw
+x <- dmdScheme_raw()
 
 # fails when x of not supported type --------------------------------------
 

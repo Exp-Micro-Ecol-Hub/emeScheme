@@ -8,7 +8,7 @@ test_that(
   {
     expect_equal(
       object = scheme_active()$version,
-      expected = attr(dmdScheme, "dmdSchemeVersion")
+      expected = attr(dmdScheme(), "dmdSchemeVersion")
     )
   }
 )
@@ -18,7 +18,7 @@ test_that(
   {
     expect_equal(
       object = scheme_active()$name,
-      expected = attr(dmdScheme, "dmdSchemeName")
+      expected = attr(dmdScheme(), "dmdSchemeName")
     )
   }
 )

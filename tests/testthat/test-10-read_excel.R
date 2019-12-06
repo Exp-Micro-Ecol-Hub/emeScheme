@@ -37,7 +37,7 @@ test_that(
         raw = TRUE,
         verbose = FALSE
       ),
-      expected = dmdScheme_raw
+      expected = dmdScheme_raw()
     )
   }
 )
@@ -52,7 +52,7 @@ test_that(
         raw = FALSE,
         verbose = FALSE
       ),
-      expected = dmdScheme
+      expected = dmdScheme()
     )
   }
 )

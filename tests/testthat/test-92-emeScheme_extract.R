@@ -49,7 +49,7 @@ test_that(
   "emeScheme_extract( ) returns empty emeScheme",
   {
     expect_known_value(
-      object = emeScheme_extract( dataFile = "DOES_NOT_EXIST", x = dmdScheme_example ) %>% `attr<-`("fileName", "none"),
+      object = emeScheme_extract( dataFile = "DOES_NOT_EXIST", x = dmdScheme_example() ) %>% `attr<-`("fileName", "none"),
       file = "emeScheme_extract_EMPTY.rds",
       update = TRUE
     )
@@ -60,7 +60,7 @@ test_that(
   "emeScheme_extract( ) returns correct data in emeScheme",
   {
     expect_known_value(
-      object = emeScheme_extract( dataFile = "abundances.csv", x = dmdScheme_example ) %>% `attr<-`("fileName", "none"),
+      object = emeScheme_extract( dataFile = "abundances.csv", x = dmdScheme_example() ) %>% `attr<-`("fileName", "none"),
       file = "emeScheme_extract_abundances.csv.rds",
       update = TRUE
     )

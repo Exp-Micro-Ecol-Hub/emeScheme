@@ -22,6 +22,4 @@ LazyData: true
 StagedInstall: true
 RoxygenNote: 6.1.1
 Enhances: plantuml (>= 0.2.3.2)
-schemeUpdate: 2019-10-07 14:19:14
-schemeMD5: 19e4762ec7bf3e1917eaf59d15d5ae17
 VignetteBuilder: knitr
