@@ -855,7 +855,7 @@ validateStructure <- function(x) {
   ##
   struct <- as_dmdScheme( x, keepData = FALSE, verbose = FALSE)
   attr(struct, "propertyName") <- "emeScheme"
-  result$details <- all.equal(struct, get("dmdScheme", pos = "package:dmdScheme"))
+  result$details <- all.equal(struct, dmdScheme())
   if (isTRUE(result$details)) {
     result$error <- 0
   } else {
