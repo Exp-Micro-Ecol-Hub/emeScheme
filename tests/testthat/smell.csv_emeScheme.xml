@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<emeScheme emeSchemeVersion="0.9.5" propertyName="smell.csv_emeScheme">
+<dmdScheme dmdSchemeVersion="0.9.5" propertyName="smell.csv_emeScheme">
  <ExperimentList>
   <Experiment>
    <name>ASR-expt1</name>
@@ -20,6 +20,7 @@
  </ExperimentList>
  <SpeciesList>
   <Species speciesID="tt_1">
+   <speciesID>tt_1</speciesID>
    <name>Tetrahymena thermophila</name>
    <strain>WH-6 (WHI) [ATCC 16539]</strain>
    <source>ATCC</source>
@@ -28,6 +29,7 @@
    <comment>http://www.lgcstandards-atcc.org/products/all/30007.aspx</comment>
   </Species>
   <Species speciesID="unknown">
+   <speciesID>unknown</speciesID>
    <name>unknown</name>
    <strain>unknown</strain>
    <source>unknown</source>
@@ -38,16 +40,19 @@
  </SpeciesList>
  <TreatmentList>
   <Treatment treatmentID="Lid_treatment">
+   <treatmentID>Lid_treatment</treatmentID>
    <unit>None</unit>
    <treatmentLevel>Loose</treatmentLevel>
    <comment></comment>
   </Treatment>
   <Treatment treatmentID="Lid_treatment">
+   <treatmentID>Lid_treatment</treatmentID>
    <unit></unit>
    <treatmentLevel>Tight</treatmentLevel>
    <comment></comment>
   </Treatment>
   <Treatment treatmentID="species_1">
+   <treatmentID>species_1</treatmentID>
    <unit>speciesID</unit>
    <treatmentLevel>tt_1, unknown</treatmentLevel>
    <comment></comment>
@@ -55,6 +60,7 @@
  </TreatmentList>
  <MeasurementList>
   <Measurement measurementID="smell">
+   <measurementID>smell</measurementID>
    <variable>smell</variable>
    <method>nose</method>
    <unit>rotten eggs or not</unit>
@@ -66,20 +72,7 @@
    <comment></comment>
   </Measurement>
  </MeasurementList>
- <DataExtractionList>
-  <DataExtraction dataExtractionID="NA">
-   <method></method>
-   <parameter></parameter>
-   <value></value>
-   <comment></comment>
-  </DataExtraction>
-  <DataExtraction>
-   <method></method>
-   <parameter></parameter>
-   <value></value>
-   <comment></comment>
-  </DataExtraction>
- </DataExtractionList>
+ <DataExtractionList/>
  <DataFileMetaDataList>
   <DataFileMetaData>
    <dataFileName>smell.csv</dataFileName>
@@ -127,4 +120,4 @@
    <comment></comment>
   </DataFileMetaData>
  </DataFileMetaDataList>
-</emeScheme>
+</dmdScheme>

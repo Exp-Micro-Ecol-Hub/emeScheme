@@ -16,13 +16,14 @@
 #'
 #' @importFrom magrittr %>% %<>%
 #' @importFrom dplyr select filter
+#' @importFrom methods is
 #' @export
 #'
 #' @examples
-#' emeScheme_extract("smell.csv", emeScheme_example)
+#' emeScheme_extract("smell.csv", dmdScheme_example())
 #' ## returns the emeScheme data for the data file 'smell.csv'
 #'
-#' emeScheme_extract("DoesNotExist", emeScheme_example)
+#' emeScheme_extract("DoesNotExist", dmdScheme_example())
 #' ## returns an empty emeScheme
 emeScheme_extract <- function(
   dataFile,
@@ -37,8 +38,8 @@ emeScheme_extract <- function(
   if (length(dataFile) > 1) {
     stop("dataFile has to be of length 1")
   }
-  if (!is(x, "emeScheme")) {
-    stop("x has to be an object of type emeScheme")
+  if (!is(x, "emeSchemeSet")) {
+    stop("x has to be an object of type emeSchemeSet")
   }
 
 # Get property name of x --------------------------------------------------

@@ -21,3 +21,6 @@
 ^\.httr-oauth$
 ^ONLYLOCAL
 ^emeScheme\.Rproj$
+^wildcard
+^ONLY_LOCAL
+^deploy\.sh$

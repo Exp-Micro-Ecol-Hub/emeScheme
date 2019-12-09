@@ -11,11 +11,11 @@ vignette("user_manual", "emeScheme")
 
 # open a clean metadata spreadsheet in xl
 # only run once
-#enter_new_metadata()
+#open_new_spreadsheet()
 
 # open a metadata spreadsheet in xl, containing the basic example entries
 # only run once
-#enter_new_metadata(keepData = TRUE)
+#open_new_spreadsheet(keepData = TRUE)
 
 # create a folder in the working directory with the basic example project
 # only run once
