@@ -13,7 +13,7 @@ env:
 matrix:
   include:
   - r: devel
-    r_github_packages: rkrug/dmdScheme@
+    r_github_packages: rkrug/dmdScheme@dev
   - r: release
     os: osx
     osx_image: xcode10.1
