@@ -340,16 +340,21 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <p>You will enter the metadata in a supplied spreadsheet (Googlesheets or Excel), but then use R to do some tasks, like validation and transormation of metadata into more machine readable form. So the first thing to do is get and load the <strong>emeScheme</strong> R package:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co">## install the devtools package if not installed yet</span></span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="co">## install.packages(&quot;devtools&quot;)</span></span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="co">## install the version of emeScheme corresponding to this user manual from github including the vignettes, run:</span></span>
-<span id="cb1-4"><a href="#cb1-4"></a></span>
-<span id="cb1-5"><a href="#cb1-5"></a><span class="co"># devtools::install_github(&quot;Exp-Micro-Ecol-Hub/emeScheme&quot;, ref = &quot;v0.8&quot;, build_opts = c(&quot;--no-resave-data&quot;))</span></span>
-<span id="cb1-6"><a href="#cb1-6"></a></span>
-<span id="cb1-7"><a href="#cb1-7"></a><span class="co">## to install the newest version emeScheme from github including the vignettes, run:</span></span>
-<span id="cb1-8"><a href="#cb1-8"></a></span>
-<span id="cb1-9"><a href="#cb1-9"></a><span class="co"># devtools::install_github(&quot;Exp-Micro-Ecol-Hub/emeScheme&quot;, build_opts = c(&quot;--no-resave-data&quot;))</span></span>
-<span id="cb1-10"><a href="#cb1-10"></a></span>
-<span id="cb1-11"><a href="#cb1-11"></a><span class="co">## than load the package</span></span>
-<span id="cb1-12"><a href="#cb1-12"></a><span class="kw">library</span>(emeScheme)</span></code></pre></div>
+<span id="cb1-3"><a href="#cb1-3"></a></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="co">## as the packages are not yet on CRAN, you have to install the package dmdScheme from github first</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a></span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="co"># devtools::install_github(&quot;Exp-Micro-Ecol-Hub/dmdScheme&quot;, ref = &quot;master&quot;, build_opts = c(&quot;--no-resave-data&quot;))</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a></span>
+<span id="cb1-8"><a href="#cb1-8"></a><span class="co">## install the version of emeScheme corresponding to this user manual from github including the vignettes, run:</span></span>
+<span id="cb1-9"><a href="#cb1-9"></a></span>
+<span id="cb1-10"><a href="#cb1-10"></a><span class="co"># devtools::install_github(&quot;Exp-Micro-Ecol-Hub/emeScheme&quot;, ref = &quot;master&quot;, build_opts = c(&quot;--no-resave-data&quot;))</span></span>
+<span id="cb1-11"><a href="#cb1-11"></a></span>
+<span id="cb1-12"><a href="#cb1-12"></a><span class="co">## to install the newest version emeScheme from github including the vignettes, run:</span></span>
+<span id="cb1-13"><a href="#cb1-13"></a></span>
+<span id="cb1-14"><a href="#cb1-14"></a><span class="co"># devtools::install_github(&quot;Exp-Micro-Ecol-Hub/emeScheme&quot;, build_opts = c(&quot;--no-resave-data&quot;))</span></span>
+<span id="cb1-15"><a href="#cb1-15"></a></span>
+<span id="cb1-16"><a href="#cb1-16"></a><span class="co">## than load the package</span></span>
+<span id="cb1-17"><a href="#cb1-17"></a><span class="kw">library</span>(emeScheme)</span></code></pre></div>
 <pre><code>## Loading required package: dmdScheme</code></pre>
 <pre><code>## Theme switched to dmdScheme_0.9.5</code></pre>
 <pre><code>## Theme switched to emeScheme_0.9.5</code></pre>
