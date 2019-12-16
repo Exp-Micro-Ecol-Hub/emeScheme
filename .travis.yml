@@ -4,6 +4,9 @@ language: r
 
 r_github_packages: r-lib/remotes@340
 
+r_packages:
+  - covr
+
 env:
   matrix:
   - _R_CHECK_SYSTEM_CLOCK_=0
@@ -14,6 +17,8 @@ matrix:
   include:
   - r: devel
     r_github_packages: rkrug/dmdScheme@master
+    after_success:
+      - Rscript -e 'library(covr); codecov()'
   - r: release
     os: osx
     osx_image: xcode10.1
