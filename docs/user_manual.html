@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <meta name="author" content="Owen and Rainer" />
 
-<meta name="date" content="2019-04-05" />
+<meta name="date" content="2019-12-16" />
 
 <title>User manual for experimental microbial ecology metadata tool</title>
 
@@ -20,26 +20,27 @@
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css" data-origin="pandoc">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -48,9 +49,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -96,7 +97,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
       var style = rule.style.cssText;
       // check if color or background-color is set
-      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
       // replace div.sourceCode by a pre.sourceCode rule
       sheets[i].deleteRule(j);
       sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
@@ -303,10 +304,13 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 
 <h1 class="title toc-ignore">User manual for experimental microbial ecology metadata tool</h1>
 <h4 class="author">Owen and Rainer</h4>
-<h4 class="date">2019-04-05</h4>
+<h4 class="date">2019-12-16</h4>
 
 
 
+<div id="todo" class="section level1">
+<h1><strong><span style="color:red">TODO</span></strong></h1>
+</div>
 <div id="introduction" class="section level1">
 <h1>Introduction</h1>
 <p>Researchers are increasingly required to make the data they produce findable, accessible, interoperable, and reusable (<a href="https://en.wikipedia.org/wiki/FAIR_data">wikipedia FAIR entry</a>). Providing metadata that describes our studies, experiments, treatments, measurements, data, and so on is a key part of this endeavour.</p>
@@ -334,26 +338,25 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <div id="getting-started" class="section level1">
 <h1>Getting started</h1>
 <p>You will enter the metadata in a supplied spreadsheet (Googlesheets or Excel), but then use R to do some tasks, like validation and transormation of metadata into more machine readable form. So the first thing to do is get and load the <strong>emeScheme</strong> R package:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="co">## install the devtools package if not installed yet</span></a>
-<a class="sourceLine" id="cb1-2" title="2"><span class="co">## install.packages(&quot;devtools&quot;)</span></a>
-<a class="sourceLine" id="cb1-3" title="3"><span class="co">## install the version of emeScheme corresponding to this user manual from github including the vignettes, run:</span></a>
-<a class="sourceLine" id="cb1-4" title="4"></a>
-<a class="sourceLine" id="cb1-5" title="5"><span class="co"># devtools::install_github(&quot;Exp-Micro-Ecol-Hub/emeScheme&quot;, ref = &quot;v0.8&quot;, build_opts = c(&quot;--no-resave-data&quot;))</span></a>
-<a class="sourceLine" id="cb1-6" title="6"></a>
-<a class="sourceLine" id="cb1-7" title="7"><span class="co">## to install the newest version emeScheme from github including the vignettes, run:</span></a>
-<a class="sourceLine" id="cb1-8" title="8"></a>
-<a class="sourceLine" id="cb1-9" title="9"><span class="co"># devtools::install_github(&quot;Exp-Micro-Ecol-Hub/emeScheme&quot;, build_opts = c(&quot;--no-resave-data&quot;))</span></a>
-<a class="sourceLine" id="cb1-10" title="10"></a>
-<a class="sourceLine" id="cb1-11" title="11"><span class="co">## than load the package</span></a>
-<a class="sourceLine" id="cb1-12" title="12"><span class="kw">library</span>(emeScheme)</a></code></pre></div>
-<<<<<<< HEAD
-<p>You can get either a googlesheet or Excel copy of the spreadsheet (they are identical) in which you enter the metadata. Here is <a href="https://docs.google.com/spreadsheets/d/1plu2RO9Ft5zruUX4on6oSukBlQAzKd8vskAL8b1s734">the googlesheet version</a>. Make a copy (File – Make a copy) and delete the example data in the <strong>green cells</strong>. If you prefer Excel, you can run this R command to get an Excel version of the same but already empty sheet:</p>
-=======
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co">## install the devtools package if not installed yet</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="co">## install.packages(&quot;devtools&quot;)</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="co">## install the version of emeScheme corresponding to this user manual from github including the vignettes, run:</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a></span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="co"># devtools::install_github(&quot;Exp-Micro-Ecol-Hub/emeScheme&quot;, ref = &quot;v0.8&quot;, build_opts = c(&quot;--no-resave-data&quot;))</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a></span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="co">## to install the newest version emeScheme from github including the vignettes, run:</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a></span>
+<span id="cb1-9"><a href="#cb1-9"></a><span class="co"># devtools::install_github(&quot;Exp-Micro-Ecol-Hub/emeScheme&quot;, build_opts = c(&quot;--no-resave-data&quot;))</span></span>
+<span id="cb1-10"><a href="#cb1-10"></a></span>
+<span id="cb1-11"><a href="#cb1-11"></a><span class="co">## than load the package</span></span>
+<span id="cb1-12"><a href="#cb1-12"></a><span class="kw">library</span>(emeScheme)</span></code></pre></div>
+<pre><code>## Loading required package: dmdScheme</code></pre>
+<pre><code>## Theme switched to dmdScheme_0.9.5</code></pre>
+<pre><code>## Theme switched to emeScheme_0.9.5</code></pre>
 <p>To enter the metadata run this R command to get an Excel version of the emeScheme without metadata in it:</p>
->>>>>>> dev
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw">enter_new_metadata</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">open_new_spreadsheet</span>()</span></code></pre></div>
 <p>The following command opens the sheet with the example data in:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">enter_new_metadata</span>(<span class="dt">keepData =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw">open_new_spreadsheet</span>(<span class="dt">keepData =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <p>Either way, make a copy of the spreadsheet and save it somewhere safe, like in the folder for your study/experiment .</p>
 <p>Its probably worth now looking at the spreadsheet (but don’t yet try to fill in anything), to see what metadata you will need to enter. There are several worksheets:</p>
 <ul>
@@ -388,21 +391,17 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <p>The examples (so far only one) are: - <code>basic</code>: a basic simple example</p>
 <p>More examples will follow later.</p>
 <p>You can always see a list of examples included by running the command</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="kw">make_example</span>()</a></code></pre></div>
-<pre><code>## Included examples are:
-## basic</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="kw">make_example</span>()</span></code></pre></div>
+<pre><code>## Included examples are:</code></pre>
+<pre><code>## </code></pre>
 <p>You can get one of the examples, e.g. the basic example by running:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="kw">make_example</span>(<span class="st">&quot;basic&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="kw">make_example</span>(<span class="st">&quot;basic&quot;</span>)</span></code></pre></div>
 <p>This will copy the basic example into your current working directory in a folder named <code>basic</code>.</p>
 <p>The worked <strong>basic</strong> example shows appropriate preparation of data for archiving and ease of further use. Its an example of what you could do, not what you have to do, though probably you benefit from doing something similar.</p>
 <p>The <code>basic</code> folder contains:</p>
 <ul>
 <li>An R-project file <code>expt1.Rproj</code></li>
-<<<<<<< HEAD
-<li>A spreadsheet file <code>expt1_emeScheme.xlsx</code> (identical to this <a href="https://docs.google.com/spreadsheets/d/1plu2RO9Ft5zruUX4on6oSukBlQAzKd8vskAL8b1s734">googlesheet</a>)</li>
-=======
 <li>A spreadsheet file <code>expt1_emeScheme.xlsx</code></li>
->>>>>>> dev
 <li>A folder named <code>data</code> with two subfolders:
 <ul>
 <li>A <code>raw_data</code> folder containing files and folders of files that contain the data as it was entered by the researcher, or produced by the measurement machine.</li>
@@ -423,11 +422,7 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <div id="FillInMetadata" class="section level1">
 <h1>Fill in the Metadata</h1>
 <p>There’s no more putting it off… lets try filling in the metadata. First, find and open your copy of the metadata spreadsheet you made.</p>
-<<<<<<< HEAD
-<p>If you’re working through the worked example (<code>basic</code>), open the <code>expt1_emeScheme.xlsx</code> file, or open the <a href="https://docs.google.com/spreadsheets/d/1plu2RO9Ft5zruUX4on6oSukBlQAzKd8vskAL8b1s734">googlesheet</a>.</p>
-=======
 <p>If you’re working through the worked example (<code>basic</code>), open the <code>expt1_emeScheme.xlsx</code> file.</p>
->>>>>>> dev
 <ul>
 <li>Green cells are where you enter information.</li>
 <li>Pink cells are places where you should not try to type anything (they should be locked anyway).</li>
@@ -472,7 +467,7 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <p>Here you give a row for each of the variables in each of the data files.</p>
 <ul>
 <li><strong>dataFileName</strong> Here enter the file name of the data file.</li>
-<li><strong>columnName</strong> Here enter the exact variable name used in the datasheet / database / tabular data. If the <em>columnData</em> <em>mappingColumn</em> combination refers to a condition for the whole data file, e.g. when only one species combination is used in the experiment from this data set, than enter <em>NA</em>.</li>
+<li><strong>columnName</strong> Here enter the name used in the datasheet / database / tabular data. This can be the exact name, a regular expression, or an expression with wildcards (<code>*</code> and <code>?</code>). If wildcards has used, they need to be enclosed in triple exclamation marks, i.e. <code>Species_!!!*!!!</code> would match <code>Species_1</code> as well as <code>Species_123</code>. If the <em>columnData</em> <em>mappingColumn</em> combination refers to a condition for the whole data file, e.g. when only one species combination is used in the experiment from this data set, than enter <em>NA</em>.</li>
 <li><strong>columnData</strong> Here enter whether the variable/column in the datafile contains a <em>Measurement</em>, a <em>Treatment</em>, an <em>ID</em> variable, <em>Species</em> or something else (<em>other</em>).</li>
 <li><strong>mappingColumn</strong> If
 <ul>
@@ -491,8 +486,8 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <h1>Validation</h1>
 <p><strong><span style="color:red">This is work in progress. Please give it a go and have a look at the produced validation report, but note that we are leaving most of the development to the next stage of development.</span></strong></p>
 <p>After entering your data, you should do a validation test of your metadata and data. The validation will check many different aspects of your metadata and data, and returns a report (html, pdf, docx or all three). The validation and resulting report is a work in progress</p>
-<p>To produce a validation report, use the <code>validate</code> function and give it your spreadsheet, the path to your data folder, and the type of report you want:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="kw">validate</span>(<span class="st">&quot;thenameofyourmetadataspreadsheet.xlsx&quot;</span>, <span class="st">&quot;the/path/to/your/datafiles&quot;</span>, <span class="dt">report =</span> <span class="st">&quot;html&quot;</span>)</a></code></pre></div>
+<p>To produce a validation report, use the <code>report</code> function and give it your spreadsheet, the path to your data folder, and the type of report you want:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="kw">report</span>(<span class="st">&quot;thenameofyourmetadataspreadsheet.xlsx&quot;</span>, <span class="st">&quot;the/path/to/your/datafiles&quot;</span>, <span class="dt">report =</span> <span class="st">&quot;html&quot;</span>)</span></code></pre></div>
 <p>As mentioned already, the validation and resulting report is a work in progress. Don’t feel the need to look at it so hard. Please let us know if you suggest particular validation checks.</p>
 </div>
 <div id="Fixing" class="section level1">
@@ -501,18 +496,13 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 </div>
 <div id="making-the-final-xml-version" class="section level1">
 <h1>Making the final xml version</h1>
-<<<<<<< HEAD
-<p>The Excel/googlesheet version of the metadata is most useful for us to enter the metadata easily. It is not so useful for standardised/automated metadata enquiry/search/submission… i.e. excel/googlesheet versions of metadata are not really FAIR compliable. The metadata gurus decided that it should be stored as xml files, as it is plain text, it is in principle readable by humans (though is not meant to be read by humans really), it is machine readable (and then easily converted into any other format, e.g. ones easy for humans to read).</p>
-<p>Therefore, you should submit the final xml version of your metadata. Only do this after you have a satisfactory validation. As the metadata as it is entered in the spreadsheet contains metadata for <em>many</em> different data files (as enterd in the column <code>DataFileMetaData / dataFileName</code>), the metadata needs to be split first into files containing only the metadata related to a specific data file. this is done by using the function:</p>
-=======
 <p>The Excel version of the metadata is most useful for us to enter the metadata easily. It is not so useful for standardised/automated metadata enquiry/search/submission… i.e. Excel versions of metadata are not really FAIR compliable. The metadata gurus decided that it should be stored as xml files, as it is plain text, it is in principle readable by humans (though is not meant to be read by humans really), it is machine readable (and then easily converted into any other format, e.g. ones easy for humans to read).</p>
 <p>Therefore, you should submit the final xml version of your metadata. Only do this after you have a satisfactory validation. As the metadata as it is entered in the spreadsheet contains metadata for <em>many</em> different data files (as enterd in the column <code>DataFileMetaData / dataFileName</code>), the metadata will be split and exported to multiple xml files.</p>
->>>>>>> dev
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">my_medata_spreadsheet &lt;-<span class="st"> </span><span class="kw">read_from_excel</span>(<span class="st">&quot;thenameofyourmetadataspreadsheet.xlsx&quot;</span>)</a>
-<a class="sourceLine" id="cb8-2" title="2"><span class="kw">emeScheme_split</span>( <span class="dt">x =</span> my_medata_spreadsheet, <span class="dt">saveAsType =</span> <span class="st">&quot;xml&quot;</span>, <span class="dt">path =</span> <span class="st">&quot;.&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>my_medata_spreadsheet &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;thenameofyourmetadataspreadsheet.xlsx&quot;</span>)</span>
+<span id="cb12-2"><a href="#cb12-2"></a><span class="kw">emeScheme_split</span>( <span class="dt">x =</span> my_medata_spreadsheet, <span class="dt">saveAsType =</span> <span class="st">&quot;xml&quot;</span>, <span class="dt">path =</span> <span class="st">&quot;.&quot;</span>)</span></code></pre></div>
 <p>This will split your metadata into metadata sets for each data file and save it in the current working directory.</p>
 <p>If you want to save the metadata for later usage or analysis in R, you should use</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="kw">emeScheme_split</span>( <span class="dt">x =</span> my_medata_spreadsheet, <span class="dt">saveAsType =</span> <span class="kw">c</span>(<span class="st">&quot;xml&quot;</span>, <span class="st">&quot;rds&quot;</span>), <span class="dt">path =</span> <span class="st">&quot;.&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="kw">emeScheme_split</span>( <span class="dt">x =</span> my_medata_spreadsheet, <span class="dt">saveAsType =</span> <span class="kw">c</span>(<span class="st">&quot;xml&quot;</span>, <span class="st">&quot;rds&quot;</span>), <span class="dt">path =</span> <span class="st">&quot;.&quot;</span>)</span></code></pre></div>
 <p>which will also save the metadata in <code>rds</code> files, so that it can be lossless read into R again by using the function `readRDS()’.</p>
 </div>
 <div id="depositing" class="section level1">
@@ -520,6 +510,9 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <p>We suggest that your metadata (the produced xml file), data, and validation report are deposited as one submission, e.g. to a repository such as dryad or zenodo.</p>
 </div>
 
+
+
+<!-- code folding -->
 
 
 <!-- dynamically load mathjax for compatibility with self-contained -->

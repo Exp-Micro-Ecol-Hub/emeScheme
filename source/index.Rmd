@@ -1,5 +1,5 @@
 ---
-title: "Experimental Microbial Ecology Metadata Scheme"
+title: "Experimental Microbial Ecology metadata Scheme (emeScheme)"
 subtitle: "emeScheme version v`r read.dcf(here::here('DESCRIPTION'), all = TRUE)[['Version']]`"
 author: "Rainer M. Krug"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
@@ -16,7 +16,7 @@ output:
     toc: true
     toc_float: true
 nocite: '@*'
-bibliography: emeScheme_papers.bib
+# bibliography: emeScheme_papers.bib
 link-citations: TRUE
 ---
 
@@ -42,16 +42,16 @@ devtools::load_all(here())
 v <- read.dcf(here::here('DESCRIPTION'), all = TRUE)[['Version']]
 ```
 
-[![DOI](https://zenodo.org/badge/156543918.svg)](https://zenodo.org/badge/latestdoi/156543918)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1544945.svg)](https://doi.org/10.5281/zenodo.1544945)
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 [![Build Status](https://travis-ci.com/Exp-Micro-Ecol-Hub/emeScheme.svg?branch=dev)](https://travis-ci.com/Exp-Micro-Ecol-Hub/emeScheme)
 <!-- [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/Exp-Micro-Ecol-Hub/emeScheme?branch=dev&svg=true)](https://ci.appveyor.com/project/Exp-Micro-Ecol-Hub/emeScheme) -->
 
-[![Coverage status](https://codecov.io/gh/Exp-Micro-Ecol-Hub/emeScheme/branch/master/graph/badge.svg)](https://codecov.io/github/Exp-Micro-Ecol-Hub/emeScheme?branch=dev)
+[![Coverage status](https://codecov.io/gh/Exp-Micro-Ecol-Hub/emeScheme/branch/master/graph/badge.svg)](https://codecov.io/github/Exp-Micro-Ecol-Hub/emeScheme?branch=master)
 
 [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-orange.png)](https://www.tidyverse.org/lifecycle/#mturing)
-[![Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
 
 Github site [https://github.com/Exp-Micro-Ecol-Hub/emeScheme](https://github.com/Exp-Micro-Ecol-Hub/emeScheme)
 
@@ -59,21 +59,16 @@ Github site [https://github.com/Exp-Micro-Ecol-Hub/emeScheme](https://github.com
 # User Manual of the emeScheme
 See the vignette "User Manual" at <a href="user_manual.html" target="_blank">vignette 'User manual'</a>.
 
-# Desription and Definition of the emeScheme
-See the vignette "Description" at <a href="description_emescheme.html" target="_blank">vignette 'Description'</a>.
+<!-- # Desription and Definition of the emeScheme -->
+<!-- See the vignette "Description" at <a href="description_emeScheme.html" target="_blank">vignette 'Description'</a>. -->
 
 # The R Package
-The Definition of the emeScheme is done in an R package, which gives all the tools to enter the metadata and to export it into xml.
+The definition of the dmdScheme can be found at the [dmdScheme repository](https://github.com/Exp-Micro-Ecol-Hub/dmdSchemeRepository/tree/master) The R package provides the functionality to work in R with the scheme, i.e. to enter, validate and export the metadata.
 
 ## Installation
 
-The package is not yet on CRAN. Therefore it needs to be installed from github. This will install the last verion on github. 
+The package is not yet on CRAN. Therefore it needs to be installed from github:
 
-For a list of releases see [here](https://github.com/Exp-Micro-Ecol-Hub/emeScheme/releases)
-
-```{r echo = FALSE, eval = TRUE, options}
-
-```
 
 ```{r echo=TRUE, eval = FALSE}
 ## install the devtools package if not installed yet
@@ -82,60 +77,19 @@ For a list of releases see [here](https://github.com/Exp-Micro-Ecol-Hub/emeSchem
 ## install the last version of emeScheme from github incl vignettes
 devtools::install_github("Exp-Micro-Ecol-Hub/emeScheme", build_opts = c("--no-resave-data"))
 
-## install a specific release of emeScheme from github
-devtools::install_github("Exp-Micro-Ecol-Hub/emeScheme", ref = "v0.8", build_opts = c("--no-resave-data"))
+## install a specific release of emeScheme from github, e.g. `dav`
+devtools::install_github("Exp-Micro-Ecol-Hub/emeScheme", ref = "dev", build_opts = c("--no-resave-data"))
 ```
 
 for a list of releases see this [link on github](https://github.com/Exp-Micro-Ecol-Hub/emeScheme/tags).
 
-## Introduction
+## Accompagnying documentation (vignettes)
 
-See the vignette "Introduction" at <a href="r_package_introduction.html" target="_blank">vignette 'Introduction'</a>.
+- <a href="user_manual.html" target="_blank">'User manual for experimental microbial ecology metadata tool'</a> for a walk-through of using te emeScheme
 
 # Other Resources
-## Outdated Presentations
-* [The emeScheme - an Introduction](https://rkrug.github.io/emeScheme_Introduction/The_emeScheme.html) by Rainer M Krug. [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2247069.svg)](https://doi.org/10.5281/zenodo.2247069)
 
+For further documentation of the dmdSchemes in general, see [dmdScheme](https://exp-micro-ecol-hub.github.io/dmdScheme/)
 
-# Appendix
-## Experimental Microbial Ecology Protocols
-In the  [supplement to their paper](https://emeh-protocols.readthedocs.io/en/latest/) to their paper, @altermatt_big_2015 specify the following sections for a protocoll. The sections are as followed:
-
-```
-1. Materials
-1.1 Species used
-1.2 Culture medium
-1.3 Bacteria
-1.4 Apparatus
-1.5 Lab practices
-1.6 Long term maintenance
-1.7 Long term preservation
-2. Measurements
-2.1 Sampling
-2.2 Microscopy
-2.3 Image analysis
-2.4 Particle counter
-2.5 Bacterial density
-2.6 Raman microspectroscopy
-2.7 Barcoding
-2.8 Ge-, prote- and epigenomics
-2.9 Respirometry
-2.10 Nutrients and decomposition
-2.11 Protocol unavailable
-2.12 Interactions
-3. Manipulations
-3.1 Protocol unavailable
-3.2 Density
-3.3 Disturbance
-3.4 Nutrients and viscosity
-3.5 Spatial structure
-3.6 temperature
-3.7 Biotic environment
-```
-
-We use these sections as a starting point to define a metadata scheme to describe the microcosm experiment. 
-
-The sections in the [Experimental Microbial Ecology Protocols] were supplemented and assessed by reviewing the methods in the papers in the [References] section below.
-
-# References
+<!-- # References -->
 
