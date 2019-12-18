@@ -147,7 +147,6 @@ code span.ot { color: #007020; }
 <div id="TOC" class="toc">
 <ul>
 <li><a href="#user-manual-of-the-emescheme">User Manual of the emeScheme</a></li>
-<li><a href="#desription-and-definition-of-the-emescheme">Desription and Definition of the emeScheme</a></li>
 <li><a href="#the-r-package">The R Package</a>
 <ul>
 <li><a href="#installation">Installation</a></li>
@@ -155,6 +154,7 @@ code span.ot { color: #007020; }
 </ul></li>
 <li><a href="#other-resources">Other Resources</a>
 <ul>
+<li><a href="#documentation-of-the-base-package-dmdscheme">Documentation of the base package <code>dmdScheme</code></a></li>
 <li><a href="#outdated-presentations">Outdated Presentations</a></li>
 </ul></li>
 <li><a href="#appendix">Appendix</a>
@@ -175,26 +175,17 @@ code span.ot { color: #007020; }
 <h1>User Manual of the emeScheme</h1>
 <p>See the vignette “User Manual” at <a href="user_manual.html" target="_blank">vignette ‘User manual’</a>.</p>
 </div>
-<div id="desription-and-definition-of-the-emescheme" class="section level1">
-<h1>Desription and Definition of the emeScheme</h1>
-<p>See the vignette “Description” at <a href="description_emescheme.html" target="_blank">vignette ‘Description’</a>.</p>
-</div>
 <div id="the-r-package" class="section level1">
 <h1>The R Package</h1>
-<p>The Definition of the emeScheme is done in an R package, which gives all the tools to enter the metadata and to export it into xml.</p>
+<p>The R package <code>emeScheme</code> contains additional functionality for entering, editing, validating and exporting.</p>
 <div id="installation" class="section level2">
 <h2>Installation</h2>
-<p>The package is not yet on CRAN. Therefore it needs to be installed from github. This will install the last verion on github.</p>
-<p>For a list of releases see <a href="https://github.com/Exp-Micro-Ecol-Hub/emeScheme/releases">here</a></p>
+<p>The package is not on CRAN. Therefore it needs to be installed from github.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co">## install the devtools package if not installed yet</span></span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="co"># install.packages(&quot;devtools&quot;)</span></span>
 <span id="cb1-3"><a href="#cb1-3"></a></span>
 <span id="cb1-4"><a href="#cb1-4"></a><span class="co">## install the last version of emeScheme from github incl vignettes</span></span>
-<span id="cb1-5"><a href="#cb1-5"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;Exp-Micro-Ecol-Hub/emeScheme&quot;</span>, <span class="dt">build_opts =</span> <span class="kw">c</span>(<span class="st">&quot;--no-resave-data&quot;</span>))</span>
-<span id="cb1-6"><a href="#cb1-6"></a></span>
-<span id="cb1-7"><a href="#cb1-7"></a><span class="co">## install a specific release of emeScheme from github</span></span>
-<span id="cb1-8"><a href="#cb1-8"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;Exp-Micro-Ecol-Hub/emeScheme&quot;</span>, <span class="dt">ref =</span> <span class="st">&quot;v0.8&quot;</span>, <span class="dt">build_opts =</span> <span class="kw">c</span>(<span class="st">&quot;--no-resave-data&quot;</span>))</span></code></pre></div>
-<p>for a list of releases see this <a href="https://github.com/Exp-Micro-Ecol-Hub/emeScheme/tags">link on github</a>.</p>
+<span id="cb1-5"><a href="#cb1-5"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;Exp-Micro-Ecol-Hub/emeScheme&quot;</span>, <span class="dt">ref =</span> <span class="st">&quot;master&quot;</span>, <span class="dt">build_opts =</span> <span class="ot">NULL</span>)</span></code></pre></div>
 </div>
 <div id="introduction" class="section level2">
 <h2>Introduction</h2>
@@ -203,6 +194,10 @@ code span.ot { color: #007020; }
 </div>
 <div id="other-resources" class="section level1">
 <h1>Other Resources</h1>
+<div id="documentation-of-the-base-package-dmdscheme" class="section level2">
+<h2>Documentation of the base package <code>dmdScheme</code></h2>
+<p>The documentation of the base package <code>dmdScheme</code> can be found at <a href="https://exp-micro-ecol-hub.github.io/dmdScheme/">Experimental Microbial Ecology Metadata Scheme</a></p>
+</div>
 <div id="outdated-presentations" class="section level2">
 <h2>Outdated Presentations</h2>
 <ul>

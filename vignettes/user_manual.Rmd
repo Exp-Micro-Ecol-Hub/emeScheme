@@ -12,9 +12,9 @@ vignette: >
 
 # Introduction
 
-Researchers are increasingly required to make the data they produce findable, accessible, interoperable, and reusable ([wikipedia FAIR entry](https://en.wikipedia.org/wiki/FAIR_data)). Providing metadata that describes our studies, experiments, treatments, measurements, data, and so on is a key part of this endeavour.
+Researchers are increasingly required to make the data they produce **F**indable, **A**ccessible, **I**nteroperable, and **R**eusable ([wikipedia FAIR entry](https://en.wikipedia.org/wiki/FAIR_data)). Providing metadata that describes our studies, experiments, treatments, measurements, data, and so on is a key part of this endeavour.
 
-The aim of the experimental microbial ecology metadata tool and the associated experimental microbial ecologal experiments metadata scheme (emeScheme) is to help you describe your study and its data, i.e. to produce useful metadata. You will do this by 
+The aim of the experimental microbial ecology metadata tool (`emeScheme` R package on [https://github.com/Exp-Micro-Ecol-Hub/emeScheme](https://github.com/Exp-Micro-Ecol-Hub/emeScheme)) and the associated experimental microbial ecologal experiments metadata scheme (`emeScheme` scheme package on [https://github.com/Exp-Micro-Ecol-Hub/dmdSchemeRepository](https://github.com/Exp-Micro-Ecol-Hub/dmdSchemeRepository)) is to help you describe your study and its data, i.e. to produce useful metadata. You will do this by 
 
 1. Preparing your datasets for archiving (see [Prepare Data for Archiving](#PrepareDataForArchiving)), 
 2. Filling in your metadata the spreadsheet supplied (see [Fill in Metadata](#FillInMetadata)), 
@@ -44,15 +44,31 @@ You will enter the metadata in a supplied spreadsheet (Googlesheets or Excel), b
 ## install.packages("devtools")
 ## install the version of emeScheme corresponding to this user manual from github including the vignettes, run:
 
-# devtools::install_github("Exp-Micro-Ecol-Hub/emeScheme", ref = "v0.8", build_opts = c("--no-resave-data"))
+# devtools::install_github("Exp-Micro-Ecol-Hub/emeScheme", ref = "v0.8", build_opts = NULL)
 
 ## to install the newest version emeScheme from github including the vignettes, run:
 
-# devtools::install_github("Exp-Micro-Ecol-Hub/emeScheme", build_opts = c("--no-resave-data"))
+# devtools::install_github("Exp-Micro-Ecol-Hub/emeScheme", build_opts = NULL)
 
 ## than load the package
 library(emeScheme)
 ```
+
+This will do several things:
+
+1. Download and install the scheme definition for the `emeScheme` and install it in a temporary scheme library by running `scheme_install("emeScheme", "0.9.5)`
+2. activate the new scheme definition by calling `scheme_use("emeScheme", "0.9.5"`
+
+This wil be done each time you load the package in a new session, as the session library is only temporary.
+
+To make this library permanent, run
+
+```{r eval = FALSE, echo = TRUE}
+cache(createPermanent = TRUE)
+```
+
+and restart your R session. This will create a permanent cache which is used for the scheme library in your user directory, so that schemes are installed permanently.
+For details on the managing of schemes, see [vignette R r_package_introduction or on the web](https://exp-micro-ecol-hub.github.io/dmdScheme/r_package_introduction.html).
 
 To enter the metadata run this R command to get an Excel version of the emeScheme without metadata in it: 
 
@@ -75,7 +91,7 @@ Its probably worth now looking at the spreadsheet (but don't yet try to fill in 
 * **Treatments** Here we give the manipulations involved in the experiment.
 * **Measurements** Details of what was measured, and how data was extracted from the measurements.
 * **DataExtraction** Details of how measurements were extracted from raw data, if that happened.
-* **DataFileMetaDat** Details of the data files, description of the variables they contain, and validation conditions for the data.
+* **DataFileMetaData** Details of the data files, description of the variables they contain, and validation conditions for the data.
 
 # Preparing data for archiving {#PrepareDataForArchiving}
 
@@ -109,13 +125,13 @@ More examples will follow later.
 You can always see a list of examples included by running the command
 
 ```{r}
-make_example()
+make_example(schemeName = "emeScheme")
 ```
 
 You can get one of the examples, e.g. the basic example by running:
 
 ```{r eval = FALSE}
-make_example("basic")
+make_example("basic", schemeName = "emeScheme")
 ```
 
 This will copy the basic example into your current working directory in a folder named `basic`.
@@ -226,7 +242,7 @@ After entering your data, you should do a validation test of your metadata and d
 To produce a validation report, use the `report` function and give it your spreadsheet, the path to your data folder, and the type of report you want:
 
 ```{r eval = FALSE}
-report("thenameofyourmetadataspreadsheet.xlsx", "the/path/to/your/datafiles", report = "html")
+report("thenameofyourmetadataspreadsheet.xlsx", path = "the/path/to/your/datafiles", report = "html")
 ```
 
 As mentioned already, the validation and resulting report is a work in progress. Don't feel the need to look at it so hard. Please let us know if you suggest particular validation checks.
@@ -243,19 +259,24 @@ Therefore, you should submit the final xml version of your metadata. Only do thi
 As the metadata as it is entered in the spreadsheet contains metadata for *many* different data files (as enterd in the column `DataFileMetaData / dataFileName`), the metadata will be split and exported to multiple xml files.
 
 ```{r eval=FALSE}
-my_medata_spreadsheet <- read_excel("thenameofyourmetadataspreadsheet.xlsx")
-emeScheme_split( x = my_medata_spreadsheet, saveAsType = "xml", path = ".")
+write_xml( read_excel("thenameofyourmetadataspreadsheet.xlsx", file = "thenameofyourmetadataspreadsheet.xlm")
 ```
 
-This will split your metadata into metadata sets for each data file and save it in the current working directory.
+This will create one xml file per data file specified in the DataFileMetaData tab.
 
-If you want to save the metadata for later usage or analysis in R, you should use
+If you want to save the metadata for later usage or analysis in R, you should use standard R functions like
 
 ```{r eval=FALSE}
-emeScheme_split( x = my_medata_spreadsheet, saveAsType = c("xml", "rds"), path = ".")
+saveRDS( x = read_excel("thenameofyourmetadataspreadsheet.xlsx", file = "thenameofyourmetadataspreadsheet.RDS" )
 ```
 
-which will also save the metadata in `rds` files, so that it can be lossless read into R again by using the function `readRDS()'.
+which will also save the metadata in an `rds` file.
+
+You can read it in again by using
+
+```{r eval=FALSE}
+readRDS( file = "thenameofyourmetadataspreadsheet.RDS" )
+```
 
 # Depositing in a repository {#depositing}
 
