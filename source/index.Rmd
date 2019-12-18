@@ -26,7 +26,6 @@ library(magrittr)
 library(dplyr)
 library(knitr)
 library(kableExtra)
-library(plantuml)
 ##
 knitr::opts_chunk$set(
 	echo = FALSE,
