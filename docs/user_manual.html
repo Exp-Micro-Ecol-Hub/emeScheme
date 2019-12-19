@@ -12,7 +12,7 @@
 
 <meta name="author" content="Owen and Rainer" />
 
-<meta name="date" content="2019-12-18" />
+<meta name="date" content="2019-12-19" />
 
 <title>User manual for experimental microbial ecology metadata tool</title>
 
@@ -20,18 +20,19 @@
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css" data-origin="pandoc">
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -51,7 +52,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -304,7 +305,7 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 
 <h1 class="title toc-ignore">User manual for experimental microbial ecology metadata tool</h1>
 <h4 class="author">Owen and Rainer</h4>
-<h4 class="date">2019-12-18</h4>
+<h4 class="date">2019-12-19</h4>
 
 
 
@@ -355,16 +356,17 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 ## #############################################
 ## The cache will be in a temporary location and be deleted when you quit R.
 ## It is located at
-##    /var/folders/50/wcr5bjwn75q595n6x82gxj280000gq/T//Rtmp2uEYhz/dmdScheme_5035538bc43d
+##    /var/folders/5k/g8z_7q3d6vb54m8k0cjy940r0000gp/T//Rtmp9ltEYE/dmdScheme_12bc53b6a9150
 ## To make it permanent, call
 ##    cache(createPermanent = TRUE)
 ## and restart R
-## and a permanent cache will be created which will survive restarts.#############################################</code></pre>
-<pre><code>## Scheme definition `/var/folders/50/wcr5bjwn75q595n6x82gxj280000gq/T//Rtmp2uEYhz/file50357d00aba4/dmdScheme_0.9.5.tar.gz, installed with
+## and a permanent cache will be created which will survive restarts.
+## #############################################</code></pre>
+<pre><code>## Scheme definition `/var/folders/5k/g8z_7q3d6vb54m8k0cjy940r0000gp/T//Rtmp9ltEYE/file12bc5516a39a9/dmdScheme_0.9.5.tar.gz, installed with
 ## name:    dmdScheme
 ## version: 0.9.5</code></pre>
 <pre><code>## Theme switched to dmdScheme_0.9.5</code></pre>
-<pre><code>## Scheme definition `/var/folders/50/wcr5bjwn75q595n6x82gxj280000gq/T//Rtmp2uEYhz/file50353704dc19/emeScheme_0.9.5.tar.gz, installed with
+<pre><code>## Scheme definition `/var/folders/5k/g8z_7q3d6vb54m8k0cjy940r0000gp/T//Rtmp9ltEYE/file12bc514efb001/emeScheme_0.9.5.tar.gz, installed with
 ## name:    emeScheme
 ## version: 0.9.5</code></pre>
 <pre><code>## Theme switched to emeScheme_0.9.5</code></pre>
@@ -414,12 +416,13 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <p>The package <code>emeScheme</code> includes examples of raw data, processing scripts, processed data for archiving and the associated metadata.</p>
 <p>The examples (so far only one) are: - <code>basic</code>: a basic simple example</p>
 <p>More examples will follow later.</p>
-<p>You can always see a list of examples included by running the command</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="kw">make_example</span>(<span class="dt">schemeName =</span> <span class="st">&quot;emeScheme&quot;</span>)</span></code></pre></div>
+<p>You can always see a list of examples included in the active scheme by running the command</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="kw">make_example</span>()</span></code></pre></div>
 <pre><code>## Included examples are:</code></pre>
-<pre><code>## basicex_2</code></pre>
+<pre><code>## basic
+## ex_2</code></pre>
 <p>You can get one of the examples, e.g. the basic example by running:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="kw">make_example</span>(<span class="st">&quot;basic&quot;</span>, <span class="dt">schemeName =</span> <span class="st">&quot;emeScheme&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="kw">make_example</span>(<span class="st">&quot;basic&quot;</span>)</span></code></pre></div>
 <p>This will copy the basic example into your current working directory in a folder named <code>basic</code>.</p>
 <p>The worked <strong>basic</strong> example shows appropriate preparation of data for archiving and ease of further use. Its an example of what you could do, not what you have to do, though probably you benefit from doing something similar.</p>
 <p>The <code>basic</code> folder contains:</p>

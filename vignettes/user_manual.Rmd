@@ -122,16 +122,16 @@ The examples (so far only one) are:
 
 More examples will follow later.
 
-You can always see a list of examples included by running the command
+You can always see a list of examples included in the active scheme by running the command
 
 ```{r}
-make_example(schemeName = "emeScheme")
+make_example()
 ```
 
 You can get one of the examples, e.g. the basic example by running:
 
 ```{r eval = FALSE}
-make_example("basic", schemeName = "emeScheme")
+make_example("basic")
 ```
 
 This will copy the basic example into your current working directory in a folder named `basic`.
