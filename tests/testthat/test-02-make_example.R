@@ -5,7 +5,7 @@ test_that(
   "make_example returns list of examples when called without argument, i,.e. here empty",
   {
     expect_message(
-      object = make_example( schemeName = "emeScheme"),
+      object = make_example( ),
       file = "Included examples are:",
     )
   }

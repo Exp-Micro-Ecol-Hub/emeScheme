@@ -138,9 +138,9 @@ code span.ot { color: #007020; }
 
 <section class="page-header">
 <h1 class="title toc-ignore project-name">Experimental Microbial Ecology metadata Scheme (emeScheme)</h1>
-<h3 class="subtitle project-tagline">emeScheme version v0.9.6</h3>
+<h3 class="subtitle project-tagline">emeScheme version v1.0.0</h3>
 <h4 class="author project-author">Rainer M. Krug</h4>
-<h4 class="date project-date">16 December, 2019</h4>
+<h4 class="date project-date">20 December, 2019</h4>
 </section>
 
 
@@ -150,9 +150,13 @@ code span.ot { color: #007020; }
 <li><a href="#the-r-package">The R Package</a>
 <ul>
 <li><a href="#installation">Installation</a></li>
-<li><a href="#accompagnying-documentation-vignettes">Accompagnying documentation (vignettes)</a></li>
+<li><a href="#introduction">Introduction</a></li>
 </ul></li>
-<li><a href="#other-resources">Other Resources</a></li>
+<li><a href="#other-resources">Other Resources</a>
+<ul>
+<li><a href="#documentation-of-the-base-package-dmdscheme">Documentation of the base package <code>dmdScheme</code></a></li>
+<li><a href="#outdated-presentations">Outdated Presentations</a></li>
+</ul></li>
 </ul>
 </div>
 
@@ -166,27 +170,36 @@ code span.ot { color: #007020; }
 <div id="user-manual-of-the-emescheme" class="section level1">
 <h1>User Manual of the emeScheme</h1>
 <p>See the vignette “User Manual” at <a href="user_manual.html" target="_blank">vignette ‘User manual’</a>.</p>
-<!-- # Desription and Definition of the emeScheme -->
-<!-- See the vignette "Description" at <a href="description_emeScheme.html" target="_blank">vignette 'Description'</a>. -->
 </div>
 <div id="the-r-package" class="section level1">
 <h1>The R Package</h1>
-<p>The definition of the dmdScheme can be found at the <a href="https://github.com/Exp-Micro-Ecol-Hub/dmdSchemeRepository/tree/master">dmdScheme repository</a> The R package provides the functionality to work in R with the scheme, i.e. to enter, validate and export the metadata.</p>
+<p>The R package <code>emeScheme</code> contains additional functionality for entering, editing, validating and exporting.</p>
 <div id="installation" class="section level2">
 <h2>Installation</h2>
-<p>The package is not yet on CRAN. Therefore it needs to be installed from github:</p>
+<p>The package is not on CRAN. Therefore it needs to be installed from github.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co">## install the devtools package if not installed yet</span></span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="co"># install.packages(&quot;devtools&quot;)</span></span>
 <span id="cb1-3"><a href="#cb1-3"></a></span>
 <span id="cb1-4"><a href="#cb1-4"></a><span class="co">## install the last version of emeScheme from github incl vignettes</span></span>
-<span id="cb1-5"><a href="#cb1-5"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;Exp-Micro-Ecol-Hub/emeScheme&quot;</span>, <span class="dt">build_opts =</span> <span class="kw">c</span>(<span class="st">&quot;--no-resave-data&quot;</span>))</span>
-<span id="cb1-6"><a href="#cb1-6"></a></span>
-<span id="cb1-7"><a href="#cb1-7"></a><span class="co">## install a specific release of emeScheme from github, e.g. `dav`</span></span>
-<span id="cb1-8"><a href="#cb1-8"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;Exp-Micro-Ecol-Hub/emeScheme&quot;</span>, <span class="dt">ref =</span> <span class="st">&quot;dev&quot;</span>, <span class="dt">build_opts =</span> <span class="kw">c</span>(<span class="st">&quot;--no-resave-data&quot;</span>))</span></code></pre></div>
-<p>for a list of releases see this <a href="https://github.com/Exp-Micro-Ecol-Hub/emeScheme/tags">link on github</a>.</p>
+<span id="cb1-5"><a href="#cb1-5"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;Exp-Micro-Ecol-Hub/emeScheme&quot;</span>, <span class="dt">ref =</span> <span class="st">&quot;master&quot;</span>, <span class="dt">build_opts =</span> <span class="ot">NULL</span>)</span></code></pre></div>
 </div>
-<div id="accompagnying-documentation-vignettes" class="section level2">
-<h2>Accompagnying documentation (vignettes)</h2>
+<div id="introduction" class="section level2">
+<h2>Introduction</h2>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>separateDefinition</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
 <ul>
 <li><a href="user_manual.html" target="_blank">‘User manual for experimental microbial ecology metadata tool’</a> for a walk-through of using te emeScheme</li>
 </ul>
@@ -194,8 +207,17 @@ code span.ot { color: #007020; }
 </div>
 <div id="other-resources" class="section level1">
 <h1>Other Resources</h1>
-<p>For further documentation of the dmdSchemes in general, see <a href="https://exp-micro-ecol-hub.github.io/dmdScheme/">dmdScheme</a></p>
+<div id="documentation-of-the-base-package-dmdscheme" class="section level2">
+<h2>Documentation of the base package <code>dmdScheme</code></h2>
+<p>The documentation of the base package <code>dmdScheme</code> can be found at <a href="https://exp-micro-ecol-hub.github.io/dmdScheme/">Experimental Microbial Ecology Metadata Scheme</a></p>
+</div>
+<div id="outdated-presentations" class="section level2">
+<h2>Outdated Presentations</h2>
+<ul>
+<li><a href="https://rkrug.github.io/emeScheme_Introduction/The_emeScheme.html">The emeScheme - an Introduction</a> by Rainer M Krug. <a href="https://doi.org/10.5281/zenodo.2247069"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiAgICAgd2lkdGg9IjE4NiIgaGVpZ2h0PSIyMCI+CiAgICAgICAgPGxpbmVhckdyYWRpZW50IGlkPSJiIiB4Mj0iMCIgeTI9IjEwMCUiPgogICAgICAgICAgICA8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNiYmIiIHN0b3Atb3BhY2l0eT0iLjEiLz4KICAgICAgICAgICAgPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLW9wYWNpdHk9Ii4xIi8+CiAgICAgICAgPC9saW5lYXJHcmFkaWVudD4KICAgICAgICA8bWFzayBpZD0iYSIgd2lkdGg9IjE4NiIgaGVpZ2h0PSIyMCI+CiAgICAgICAgICAgIDxyZWN0IHdpZHRoPSIxODYiIGhlaWdodD0iMjAiIHJ4PSIzIgogICAgICAgICAgICBmaWxsPSIjZmZmIi8+CiAgICAgICAgPC9tYXNrPgogICAgICAgIDxnIG1hc2s9InVybCgjYSkiPgogICAgICAgICAgICA8cGF0aCBmaWxsPSIjNTU1IiBkPSJNMCAwaDMxdjIwSDB6IiAvPgogICAgICAgICAgICA8cGF0aCBmaWxsPSIjMDA3ZWM2IgogICAgICAgICAgICBkPSJNMzEgMGgxNTV2MjBIMzF6IgogICAgICAgICAgICAvPgogICAgICAgICAgICA8cGF0aCBmaWxsPSJ1cmwoI2IpIiBkPSJNMCAwaDE4NnYyMEgweiIgLz4KICAgICAgICA8L2c+CiAgICAgICAgPGcgZmlsbD0iI2ZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkRlamFWdSBTYW5zLAogICAgICAgIFZlcmRhbmEsR2VuZXZhLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTEiPgogICAgICAgICAgICA8dGV4dCB4PSIxNiIgeT0iMTUiIGZpbGw9IiMwMTAxMDEiCiAgICAgICAgICAgIGZpbGwtb3BhY2l0eT0iLjMiPgogICAgICAgICAgICAgICAgRE9JCiAgICAgICAgICAgIDwvdGV4dD4KICAgICAgICAgICAgPHRleHQgeD0iMTYiIHk9IjE0Ij4KICAgICAgICAgICAgICAgIERPSQogICAgICAgICAgICA8L3RleHQ+CiAgICAgICAgICAgIDx0ZXh0IHg9IjEwOCIKICAgICAgICAgICAgeT0iMTUiIGZpbGw9IiMwMTAxMDEiIGZpbGwtb3BhY2l0eT0iLjMiPgogICAgICAgICAgICAgICAgMTAuNTI4MS96ZW5vZG8uMjI0NzA2OQogICAgICAgICAgICA8L3RleHQ+CiAgICAgICAgICAgIDx0ZXh0IHg9IjEwOCIgeT0iMTQiPgogICAgICAgICAgICAgICAgMTAuNTI4MS96ZW5vZG8uMjI0NzA2OQogICAgICAgICAgICA8L3RleHQ+CiAgICAgICAgPC9nPgogICAgPC9zdmc+" alt="DOI" /></a></li>
+</ul>
 <!-- # References -->
+</div>
 </div>
 </section>
 

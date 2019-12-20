@@ -26,7 +26,6 @@ library(magrittr)
 library(dplyr)
 library(knitr)
 library(kableExtra)
-library(plantuml)
 ##
 knitr::opts_chunk$set(
 	echo = FALSE,
@@ -59,15 +58,13 @@ Github site [https://github.com/Exp-Micro-Ecol-Hub/emeScheme](https://github.com
 # User Manual of the emeScheme
 See the vignette "User Manual" at <a href="user_manual.html" target="_blank">vignette 'User manual'</a>.
 
-<!-- # Desription and Definition of the emeScheme -->
-<!-- See the vignette "Description" at <a href="description_emeScheme.html" target="_blank">vignette 'Description'</a>. -->
 
 # The R Package
-The definition of the dmdScheme can be found at the [dmdScheme repository](https://github.com/Exp-Micro-Ecol-Hub/dmdSchemeRepository/tree/master) The R package provides the functionality to work in R with the scheme, i.e. to enter, validate and export the metadata.
+The R package `emeScheme` contains additional functionality for entering, editing, validating and exporting.
 
 ## Installation
 
-The package is not yet on CRAN. Therefore it needs to be installed from github:
+The package is not on CRAN. Therefore it needs to be installed from github.
 
 
 ```{r echo=TRUE, eval = FALSE}
@@ -75,21 +72,22 @@ The package is not yet on CRAN. Therefore it needs to be installed from github:
 # install.packages("devtools")
 
 ## install the last version of emeScheme from github incl vignettes
-devtools::install_github("Exp-Micro-Ecol-Hub/emeScheme", build_opts = c("--no-resave-data"))
-
-## install a specific release of emeScheme from github, e.g. `dav`
-devtools::install_github("Exp-Micro-Ecol-Hub/emeScheme", ref = "dev", build_opts = c("--no-resave-data"))
+devtools::install_github("Exp-Micro-Ecol-Hub/emeScheme", ref = "master", build_opts = NULL)
 ```
 
-for a list of releases see this [link on github](https://github.com/Exp-Micro-Ecol-Hub/emeScheme/tags).
-
-## Accompagnying documentation (vignettes)
+## Introduction
+>>>>>>> separateDefinition
 
 - <a href="user_manual.html" target="_blank">'User manual for experimental microbial ecology metadata tool'</a> for a walk-through of using te emeScheme
 
 # Other Resources
 
-For further documentation of the dmdSchemes in general, see [dmdScheme](https://exp-micro-ecol-hub.github.io/dmdScheme/)
+## Documentation of the base package `dmdScheme`
+The documentation of the base package `dmdScheme` can be found at [Experimental Microbial Ecology Metadata Scheme](https://exp-micro-ecol-hub.github.io/dmdScheme/)
+
+## Outdated Presentations
+* [The emeScheme - an Introduction](https://rkrug.github.io/emeScheme_Introduction/The_emeScheme.html) by Rainer M Krug. [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2247069.svg)](https://doi.org/10.5281/zenodo.2247069)
+
 
 <!-- # References -->
 
