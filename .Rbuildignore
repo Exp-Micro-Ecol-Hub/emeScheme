@@ -24,3 +24,5 @@
 ^emeScheme\.Rproj$
 ^wildcard
 ^ONLY_LOCAL
+^deploy\.sh$
+^SCHEME_PACKAGE$

@@ -32,11 +32,11 @@ READMEHTML = Readme.html
 
 #############
 
-all: check clean_web web clean_check
+all: check example web build
 
 ####
 
-clean: clean_web
+clean: clean_web  clean_example
 
 ########### Website ###########
 
@@ -62,6 +62,14 @@ clean_vignettes:
 
 #####
 
+example: vignettes
+	cp ./$(DOCDIR)/user_manual.html ./SCHEME_PACKAGE/examples/basic/basic.html
+
+clean_example:
+	rm ./SCHEME_PACKAGE/examples/basic/basic.html
+
+#####
+
 html:	$(HTML)
 # %.html: %.Rmd
 $(OUTDIR)/%.html: $(SRCDIR)/%.Rmd
@@ -74,8 +82,8 @@ clean_html:
 
 web: html vignettes readme
 	cp -f $(VIGHTML) $(OUTDIR)/
-	mkdir -p $(DATADIR)
-	cp -f $(EXAMPLEXML) $(DATADIR)/
+#	mkdir -p $(DATADIR)
+#	cp -f $(EXAMPLEXML) $(DATADIR)/
 
 clean_web: clean_html clean_vignettes clean_readme
 	rm -f VIGHTMLOUT

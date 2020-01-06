@@ -1,26 +1,24 @@
-context("new_dmdSchemeSet()")
+context("03-as_dmdScheme()")
 
 
-# fail because of erong type -------------------------------------------------------------
+# as_dmdScheme --- verbose -----------------------------------------------
 
 test_that(
-  "new_dmdSchemeSet() fails when x of wrong class",
+  "as_dmdScheme() verbose",
   {
-    expect_error(
-      object = new_dmdSchemeSet(x = "character"),
-      regexp = "x has to be inherit from class 'dmdSchemeSet_raw'"
+    expect_equal(
+      object = as_dmdScheme( x = dmdScheme_raw(), verbose = FALSE ),
+      expected = dmdScheme()
     )
   }
 )
 
-# new_dmdSchemeSet --- verbose -----------------------------------------------
-
 test_that(
-  "new_dmdSchemeSet() verbose",
+  "as_dmdScheme() verbose",
   {
-    expect_known_output(
-      object = new_dmdSchemeSet( x = emeScheme_raw, verbose = TRUE ),
-      file = "ref-03-new_dmdSchemeSet.output"
+    expect_equal(
+      object = as_dmdScheme( x = dmdScheme_raw(), keepData = TRUE, verbose = FALSE ),
+      expected = dmdScheme_example()
     )
   }
 )

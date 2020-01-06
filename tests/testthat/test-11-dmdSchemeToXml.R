@@ -1,46 +1,33 @@
-context("dmdScheme_to_xml()")
+context("11-as_xml()")
 
 test_that(
-  "dmdScheme_to_xml() raises error with wrong input value",
+  "as_xml() raises error with wrong input value",
   {
     expect_error(
-      object = dmdScheme_to_xml(x = emeScheme_raw),
-      regexp = "no applicable method for 'dmdScheme_to_xml' applied to an object of class"
+      object = as_xml(x = dmdScheme_raw()),
+      regexp = "no applicable method for 'as_xml' applied to an object of class"
     )
   }
 )
 
 test_that(
-  "dmdScheme_to_xml() returns expected xml for output = metadata",
+  "roundtrip as_xml() output = metadata",
   {
-    expect_known_output(
-      object = dmdScheme_to_xml(x = emeScheme_example, output = "metadata"),
-      file   = "ref-11-dmdScheme_to_xml_metadata.xml",
-      print = TRUE,
-      update = TRUE
+    expect_equal(
+      object = as_xml(x = dmdScheme_example(), output = "metadata") %>% as_dmdScheme(keepData = TRUE),
+      expected = dmdScheme_example()
     )
   }
 )
 
 test_that(
-  "dmdScheme_to_xml() returns expected xml for output = complete",
+  "roundtrip as_xml() output = complete",
   {
-    expect_known_output(
-      object = dmdScheme_to_xml(x = emeScheme_example, output = "complete" ),
-      file   = "ref-11-dmdScheme_to_xml_complete.xml",
-      print = TRUE,
-      update = TRUE
+    expect_equal(
+      object = as_xml(x = dmdScheme_example(), output = "complete" ) %>% as_dmdScheme(keepData = TRUE, useSchemeInXml = TRUE),
+      expected = dmdScheme_example()
     )
   }
 )
 
-test_that(
-  "dmdScheme_to_xml() raises warning with space in tag name",
-  {
-    expect_warning(
-      object = dmdScheme_to_xml( x = emeScheme_example, tag = "a test" ),
-      regexp = "Spaces are not allowed in tag names!"
-    )
-  }
-)
 

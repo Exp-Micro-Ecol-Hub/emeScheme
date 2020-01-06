@@ -17,7 +17,6 @@ Split into two packages, namely:
 * Include wildcards and regular expressions in columnName in DataFileMetaData. Wildcards (i.e. * and ?) have to be enclosed by three exclamation marks (`!!!`), e.g. `Species_!!!*!!!` which will match all `Species_1` as well as `Species_Not KnownSoFar`. Regular expressions do not need to be enclosed with any special characters.
 * fix error where a minimum of two rows were imported, even if the second one contains only NAs. Introduced an exclusion of all NA rows (commit db53c83).
 * Add error level to print of validation results
->>>>>>> dev
 * Add xml import to re-import xml data and validate certain features (types) during the import.
 
 ## Fix
@@ -29,7 +28,6 @@ Split into two packages, namely:
 
 * added descriptions of validation results and details to validate() function
 TO BE ADDED FROM master
->>>>>>> dev
 
 # release 0.9
 This should finalise the spreadsheet

@@ -1,6 +1,6 @@
-context("validate()")
+context("08-validate()")
 
-x <- emeScheme_raw
+x <- dmdScheme_raw()
 
 # fails when x of not supported type --------------------------------------
 
@@ -17,7 +17,7 @@ test_that(
 # returns TRUE -------------------------------------------------------------
 
 test_that(
-  "validate() emeScheme_raw object",
+  "validate() dmdScheme_raw object",
   {
     expect_known_value(
       object = validate( x = x, errorIfStructFalse = TRUE),
@@ -30,7 +30,7 @@ test_that(
   "validate() character( file name )",
   {
     expect_known_value(
-      object = validate( x = "./emeScheme.xlsx", errorIfStructFalse = TRUE),
+      object = validate( x = scheme_path_xlsx(), errorIfStructFalse = TRUE),
       file = "ref-08-validate.character.CORRECT.rda"
     )
   }

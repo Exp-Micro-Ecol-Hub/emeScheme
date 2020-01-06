@@ -39,9 +39,9 @@ validate.emeSchemeSet_raw <- function(
 
   # Validata data -----------------------------------------------------------
 
-  if ((result$structure$error == 0) & validateData){
-    xconv <- suppressWarnings( new_dmdSchemeSet(x, keepData = TRUE, convertTypes = TRUE,  verbose = FALSE, warnToError = FALSE) )
-    xraw  <-                   new_dmdSchemeSet(x, keepData = TRUE, convertTypes = FALSE, verbose = FALSE, warnToError = FALSE)
+  if ((result$structure$error == 0) & validateData) {
+    xconv <- suppressWarnings( as_dmdScheme(x, keepData = TRUE, convertTypes = TRUE,  verbose = FALSE, warnToError = FALSE) )
+    xraw  <-                   as_dmdScheme(x, keepData = TRUE, convertTypes = FALSE, verbose = FALSE, warnToError = FALSE)
 
     result$Experiment <- validateExperiment(x, xraw, xconv)
     result$Species <- validateSpecies(x, xraw, xconv)
@@ -102,13 +102,17 @@ validateTypes <- function(sraw, sconv) {
     "One or more FALSE values will result in an ERROR."
   )
   ##
-  t <- sraw == sconv
-  na <- is.na(t)
-  t[na] <- TRUE
   result$details <- as.data.frame(sraw, stringsAsFactors = FALSE)
-  result$details[t] <- TRUE
-  result$details[!t] <- paste( result$details[!t], "!=", as.data.frame(sconv)[!t])
-  result$details[na] <- NA
+  if ( nrow(sraw) != 0 ) {
+    t <- sraw == sconv
+    na <- is.na(t)
+    t[na] <- TRUE
+    result$details[t] <- TRUE
+    result$details[!t] <- paste( result$details[!t], "!=", as.data.frame(sconv)[!t])
+    result$details[na] <- NA
+  } else {
+    result$details[1,] <- rep(NA, ncol(result$details))
+  }
   result$details <- tibble::as_tibble(result$details, .name_repair = "unique")
   ##
   result$error = ifelse(
@@ -214,7 +218,7 @@ validateAllowedValues <- function(sraw) {
   return( result )
 }
 
-valitdateSpeciesIDUnique <- function(x){
+valitdateSpeciesIDUnique <- function(x) {
   result <- new_emeScheme_validation()
   ##
   result$header <- "Test if `speciesID` is unique"
@@ -288,7 +292,7 @@ validateSpeciesNames <- function(x) {
   return(result)
 }
 
-validateTreatmentMapping <- function(x){
+validateTreatmentMapping <- function(x) {
   result <- new_emeScheme_validation()
   result$header <- "Test if treatmentID is in mappingColumn"
   result$description <- paste(
@@ -329,7 +333,7 @@ validateTreatmentMapping <- function(x){
   return(result)
 }
 
-validateMeasurementIDsUnique <- function(x){
+validateMeasurementIDsUnique <- function(x) {
   result <- new_emeScheme_validation()
   ##
   result$header <- "names unique"
@@ -407,7 +411,7 @@ validateMeasurementMeasuredFrom <- function(x) {
   return(result)
 }
 
-validateMeasurementMapping <- function(x){
+validateMeasurementMapping <- function(x) {
   result <- new_emeScheme_validation()
   ##
   result$header <- "Test if `measurementID` is in mappingColumn"
@@ -570,7 +574,7 @@ validateDataFileMetaDataDataFileExists <- function(x, path) {
   return(result)
 }
 
-validateDataFileMetaDataDateTimeSpecified <- function(x){
+validateDataFileMetaDataDateTimeSpecified <- function(x) {
   result <- new_emeScheme_validation()
   result$header <- "Test if date time format has been specified if required"
   result$description <- paste(
@@ -617,6 +621,7 @@ validateDataFileMetaDataMapping <- function(x) {
   result$header <- "correct values in `mappingColumn`` in dependence on columnData"
   result$description <- paste(
     "Test if `mappingColumn` is found in the appropriate table.",
+    "If `columnData == Species`,  `mappingColumn` has to be `NA` to result in TRUE!",
     "The `error` can have the following values apart from `OK`:\n",
     "\n",
     "   error   : If not all `mappingColumn` are found in the appropriate columns\n",
@@ -634,15 +639,26 @@ validateDataFileMetaDataMapping <- function(x) {
   ##
   result$details <- x$DataFileMetaData$mappingColumn
   result$details[] <- NA
-  i <- x$DataFileMetaData$columnData == "Treatment"
+  #
+  cd <- x$DataFileMetaData$columnData
+  cd[is.na(cd)] <- "NA"
+  #
+  i <- cd == "Species"
+  result$details[i] <- is.na(x$DataFileMetaData$mappingColumn[i])
+  i <- cd == "Treatment"
   result$details[i] <- x$DataFileMetaData$mappingColumn[i] %in% x$Treatment$treatmentID
-  i <- x$DataFileMetaData$columnData == "Measurement"
+  i <- cd == "Measurement"
   result$details[i] <- x$DataFileMetaData$mappingColumn[i] %in% x$Measurement$measurementID
-  i <- x$DataFileMetaData$columnData == "ID"
+  i <- cd == "ID"
   result$details[i] <- x$DataFileMetaData$mappingColumn[i] %in% c("NA", NA)
-  i <- x$DataFileMetaData$columnData == "other"
+  i <- cd == "other"
   result$details[i] <- x$DataFileMetaData$mappingColumn[i] %in% c("NA", NA)
+  i <- cd == "NA"
+  result$details[i] <- FALSE
+  #
+
   result$details <- data.frame(
+    columnData = x$DataFileMetaData$columnData,
     mappingColumn = x$DataFileMetaData$mappingColumn,
     IsOK = as.logical(result$details),
     stringsAsFactors = FALSE
@@ -765,7 +781,7 @@ validateDataFileMetaDataDataFileColumnDefined <- function(x, path) {
   dfcol <- readColumnNamesFromDataFiles(x, path)
   result$details <- lapply(
     1:length(dfcol),
-    function(i){
+    function(i) {
       cn <- dplyr::filter(x$DataFileMetaData, .data$dataFileName == names(dfcol[i])) %>%
         dplyr::select(.data$columnName) %>%
         magrittr::extract2(1)
@@ -826,7 +842,7 @@ validateDataFileMetaDataDataFileColumnDefined <- function(x, path) {
 
 # Internal validation functions -------------------------------------------
 
-validateStructure <- function( x ){
+validateStructure <- function(x) {
   result <- new_emeScheme_validation()
   ##
   result$header <- "Structural / Formal validity"
@@ -837,10 +853,13 @@ validateStructure <- function( x ){
   )
   result$descriptionDetails <- ""
   ##
-  struct <- new_dmdSchemeSet( x, keepData = FALSE, verbose = FALSE)
-  attr(struct, "propertyName") <- "emeScheme"
-  result$details <- all.equal(struct, emeScheme)
-  if (isTRUE(result$details)){
+  struct <- as_dmdScheme( x, keepData = FALSE, verbose = FALSE)
+  # attr(struct, "propertyName") <- "emeScheme"
+  dmdScheme_test <- dmdScheme()
+  attr(struct, "fileName") <- "none"
+  attr(dmdScheme_test, "fileName") <- "none"
+  result$details <- all.equal(struct, dmdScheme_test)
+  if (isTRUE(result$details)) {
     result$error <- 0
   } else {
     result$error <- 3
@@ -852,7 +871,7 @@ validateStructure <- function( x ){
 }
 
 
-validateExperiment <- function( x, xraw, xconv ){
+validateExperiment <- function( x, xraw, xconv ) {
   result <- new_emeScheme_validation()
   ##
   result$header <- "Experiment"
@@ -887,7 +906,7 @@ validateExperiment <- function( x, xraw, xconv ){
 }
 
 
-validateSpecies <- function( x, xraw, xconv ){
+validateSpecies <- function( x, xraw, xconv ) {
   result <- new_emeScheme_validation()
   ##
   result$header <- "Species"
@@ -924,7 +943,7 @@ validateSpecies <- function( x, xraw, xconv ){
 }
 
 
-validateTreatment <- function( x, xraw, xconv ){
+validateTreatment <- function( x, xraw, xconv ) {
   result <- new_emeScheme_validation()
   ##
   result$header <- "Treatment"
@@ -960,7 +979,7 @@ validateTreatment <- function( x, xraw, xconv ){
 }
 
 
-validateMeasurement <- function( x, xraw, xconv ){
+validateMeasurement <- function( x, xraw, xconv ) {
   result <- new_emeScheme_validation()
   ##
   result$header <- "Measurement"
@@ -999,7 +1018,7 @@ validateMeasurement <- function( x, xraw, xconv ){
 }
 
 
-validateDataExtraction <- function( x, xraw, xconv ){
+validateDataExtraction <- function( x, xraw, xconv ) {
   result <- new_emeScheme_validation()
   ##
   result$header <- "DataExtraction"
@@ -1035,7 +1054,7 @@ validateDataExtraction <- function( x, xraw, xconv ){
 }
 
 
-validateDataFileMetaData <- function( x, xraw, xconv, path ){
+validateDataFileMetaData <- function( x, xraw, xconv, path ) {
   result <- new_emeScheme_validation()
   ##
   result$header <- "DataFileMetaData"
@@ -1075,7 +1094,7 @@ validateDataFileMetaData <- function( x, xraw, xconv, path ){
 }
 
 
-validateDataFiles <- function( x, xraw, xconv, path ){
+validateDataFiles <- function( x, xraw, xconv, path ) {
   result <- new_emeScheme_validation()
   ##
   result$header <- "Data Files"
