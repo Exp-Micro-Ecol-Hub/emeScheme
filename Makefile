@@ -30,6 +30,18 @@ READMERMD = Readme.Rmd
 READMEMD = Readme.md
 READMEHTML = Readme.html
 
+
+SCHEMEMAKE = library(dmdScheme); \
+	setwd('SCHEME_PACKAGE'); \
+	scheme_make( \
+		schemeDefinition = 'emeScheme.xlsx', \
+		examples = list.dirs('examples/', recursive = FALSE), \
+		install_R_package = 'install_R_package.R', \
+		path = '.', \
+		overwrite = TRUE \
+	)
+
+
 #############
 
 all: check example web build
@@ -37,6 +49,11 @@ all: check example web build
 ####
 
 clean: clean_web  clean_example
+
+########### scheme package ###########
+
+scheme_package:
+	Rscript -e "$(SCHEMEMAKE)"
 
 ########### Website ###########
 
@@ -163,4 +180,4 @@ list: list_variables list_targets
 
 #############
 
-.PHONY: list files update clean clean_vignettes clean_web clean_html publish docs
+.PHONY: list files update clean clean_vignettes clean_web clean_html publish docs scheme_package
