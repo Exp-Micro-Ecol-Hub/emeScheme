@@ -1,4 +1,4 @@
-context("10-read_excel(schemeName = \"dmdScheme\")")
+context("10-read_excel(schemeName = \"emeScheme\")")
 
 
 # fail because of file -------------------------------------------------------------
@@ -36,8 +36,8 @@ test_that(
         keepData = TRUE,
         raw = TRUE,
         verbose = FALSE
-      ),
-      expected = dmdScheme_raw()
+      ) %>% `attr<-`("fileName", "none"),
+      expected = dmdScheme_raw() %>% `attr<-`("fileName", "none")
     )
   }
 )
@@ -51,8 +51,8 @@ test_that(
         keepData = FALSE,
         raw = FALSE,
         verbose = FALSE
-      ),
-      expected = dmdScheme()
+      ) %>% `attr<-`("fileName", "none"),
+      expected = dmdScheme() %>% `attr<-`("fileName", "none")
     )
   }
 )
