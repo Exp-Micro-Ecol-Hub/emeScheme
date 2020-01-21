@@ -2,8 +2,6 @@ sudo: false
 cache: packages
 language: r
 
-r_github_packages: r-lib/remotes@340
-
 r_packages:
   - covr
 
@@ -16,22 +14,17 @@ env:
 matrix:
   include:
   - r: devel
-    r_github_packages: rkrug/dmdScheme@master
     after_success:
       - Rscript -e 'library(covr); codecov()'
   - r: release
     os: osx
     osx_image: xcode10.1
-    r_github_packages: rkrug/dmdScheme@master
     before_install:
     - sudo tlmgr install inconsolata
     - sw_vers
   - r: release
-    r_github_packages: rkrug/dmdScheme@master
   - r: oldrel
-    r_github_packages: rkrug/dmdScheme@master
   - r: 3.5
-    r_github_packages: rkrug/dmdScheme@master
 
 before_install:
   - echo "TRAVIS_OS_NAME = $TRAVIS_OS_NAME"
