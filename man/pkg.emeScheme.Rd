@@ -3,7 +3,6 @@
 \docType{package}
 \name{pkg.emeScheme}
 \alias{pkg.emeScheme}
-\alias{pkg.emeScheme-package}
 \title{emeScheme: A package containing the definition for a metadata scheme for Experimental Microcosm Ecological experiments.}
 \description{
 Metadata is essential for the managing of data. Consequentally, metadata
