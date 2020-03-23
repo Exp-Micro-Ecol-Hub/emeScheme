@@ -26,3 +26,4 @@
 ^ONLY_LOCAL
 ^deploy\.sh$
 ^SCHEME_PACKAGE$
+^emeScheme\.bbprojectd$

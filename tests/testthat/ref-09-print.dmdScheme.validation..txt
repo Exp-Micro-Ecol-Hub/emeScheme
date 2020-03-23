@@ -36,19 +36,18 @@ $comment
 [1] ""
 
 attr(,"class")
-[1] "emeScheme_validation" "dmdScheme_validation" "list"                
+[1] "dmdScheme_validation" "list"                
 
 $Experiment
 $error
-[1] 1
+[1] 0
 
 $details
-           Module errorCode  isOK
-1           types        OK  TRUE
-2 suggestedValues      note FALSE
+  Module errorCode isOK
+1  types        OK TRUE
 
 $header
-[1] "**<span style=\"color:#55AA00\">Experiment - note</span>**"
+[1] "**<span style=\"color:#00FF00\">Experiment - OK</span>**"
 
 $description
 [1] "Test if the metadata concerning **Experiment** is correct.  This includes column names, required info, ... "
@@ -64,12 +63,12 @@ $error
 [1] 0
 
 $details
-# A tibble: 1 x 14
-  name  temperature light humidity incubator container microcosmVolume mediaType
-  <chr> <chr>       <chr> <chr>    <chr>     <chr>     <chr>           <chr>    
-1 TRUE  TRUE        TRUE  TRUE     TRUE      TRUE      TRUE            TRUE     
-# … with 6 more variables: mediaConcentration <chr>, cultureConditions <chr>,
-#   comunityType <chr>, mediaAdditions <chr>, duration <chr>, comment <chr>
+  name temperature light humidity incubator container microcosmVolume mediaType
+1 TRUE        TRUE  TRUE     TRUE      TRUE      TRUE            TRUE      TRUE
+  mediaConcentration cultureConditions comunityType mediaAdditions duration
+1               TRUE              TRUE         TRUE           TRUE     TRUE
+  comment
+1    <NA>
 
 $header
 [1] "**<span style=\"color:#00FF00\">conversion of values into specified type lossless possible - OK</span>**"
@@ -84,49 +83,23 @@ $comment
 [1] ""
 
 attr(,"class")
-[1] "emeScheme_validation" "dmdScheme_validation" "list"                
-
-$suggestedValues
-$error
-[1] 1
-
-$details
-# A tibble: 1 x 6
-  temperature light humidity incubator cultureConditions comunityType
-  <chr>       <chr> <chr>    <chr>     <chr>             <chr>       
-1 FALSE       FALSE FALSE    FALSE     TRUE              FALSE       
-
-$header
-[1] "**<span style=\"color:#55AA00\">values in suggestedValues - note</span>**"
-
-$description
-[1] "Test if the metadata entered is ion the suggestedValues list. The value NA is allowed in all column types, empty cells should be avoided."
-
-$descriptionDetails
-[1] "The details are a table of the same dimension as the input (green) area of the meatadata sheet. The following values are possible:\n \n    FALSE: If the cell value is not contained in the suggestedValues list.\n    TRUE : If the cell value is contained in the suggestedValues list.\n    NA   : empty cell\n \n One or more FALSE values will result in a WARNING."
-
-$comment
-[1] ""
-
-attr(,"class")
-[1] "emeScheme_validation" "dmdScheme_validation" "list"                
+[1] "dmdScheme_validation" "list"                
 
 attr(,"class")
 [1] "emeScheme_validation" "dmdScheme_validation" "list"                
 
 $Species
 $error
-[1] 1
+[1] 0
 
 $details
-           Module errorCode  isOK
-1           types        OK  TRUE
-2 suggestedValues      note FALSE
-3 speciesIDUnique        OK  TRUE
-4    speciesNames        OK  TRUE
+           Module errorCode isOK
+1           types        OK TRUE
+2 speciesIDUnique        OK TRUE
+3    speciesNames        OK TRUE
 
 $header
-[1] "**<span style=\"color:#55AA00\">Species - note</span>**"
+[1] "**<span style=\"color:#00FF00\">Species - OK</span>**"
 
 $description
 [1] "Test if the metadata concerning **Species** is correct.  This includes column names, required info, ... "
@@ -142,11 +115,9 @@ $error
 [1] 0
 
 $details
-# A tibble: 2 x 7
-  speciesID name  strain source density functionalGroup comment
-  <chr>     <chr> <chr>  <chr>  <chr>   <chr>           <chr>  
-1 TRUE      TRUE  TRUE   TRUE   TRUE    TRUE            TRUE   
-2 TRUE      TRUE  TRUE   TRUE   <NA>    TRUE            <NA>   
+  speciesID name strain source density functionalGroup comment
+1      TRUE TRUE   TRUE   TRUE    TRUE            TRUE    TRUE
+2      TRUE TRUE   TRUE   TRUE    <NA>            TRUE    <NA>
 
 $header
 [1] "**<span style=\"color:#00FF00\">conversion of values into specified type lossless possible - OK</span>**"
@@ -161,33 +132,7 @@ $comment
 [1] ""
 
 attr(,"class")
-[1] "emeScheme_validation" "dmdScheme_validation" "list"                
-
-$suggestedValues
-$error
-[1] 1
-
-$details
-# A tibble: 2 x 2
-  density functionalGroup
-  <chr>   <chr>          
-1 FALSE   TRUE           
-2 TRUE    FALSE          
-
-$header
-[1] "**<span style=\"color:#55AA00\">values in suggestedValues - note</span>**"
-
-$description
-[1] "Test if the metadata entered is ion the suggestedValues list. The value NA is allowed in all column types, empty cells should be avoided."
-
-$descriptionDetails
-[1] "The details are a table of the same dimension as the input (green) area of the meatadata sheet. The following values are possible:\n \n    FALSE: If the cell value is not contained in the suggestedValues list.\n    TRUE : If the cell value is contained in the suggestedValues list.\n    NA   : empty cell\n \n One or more FALSE values will result in a WARNING."
-
-$comment
-[1] ""
-
-attr(,"class")
-[1] "emeScheme_validation" "dmdScheme_validation" "list"                
+[1] "dmdScheme_validation" "list"                
 
 $speciesIDUnique
 $error
@@ -249,8 +194,7 @@ $error
 $details
                    Module errorCode  isOK
 1                   types        OK  TRUE
-2         suggestedValues      note FALSE
-3 parameterInMappinColumn   warning FALSE
+2 parameterInMappinColumn   warning FALSE
 
 $header
 [1] "**<span style=\"color:#AA5500\">Treatment - warning</span>**"
@@ -269,14 +213,12 @@ $error
 [1] 0
 
 $details
-# A tibble: 5 x 4
-  treatmentID unit  treatmentLevel comment
-  <chr>       <chr> <chr>          <chr>  
-1 TRUE        TRUE  TRUE           <NA>   
-2 TRUE        <NA>  TRUE           <NA>   
-3 TRUE        TRUE  TRUE           <NA>   
-4 TRUE        TRUE  TRUE           <NA>   
-5 TRUE        TRUE  TRUE           <NA>   
+  treatmentID unit treatmentLevel comment
+1        TRUE TRUE           TRUE    <NA>
+2        TRUE <NA>           TRUE    <NA>
+3        TRUE TRUE           TRUE    <NA>
+4        TRUE TRUE           TRUE    <NA>
+5        TRUE TRUE           TRUE    <NA>
 
 $header
 [1] "**<span style=\"color:#00FF00\">conversion of values into specified type lossless possible - OK</span>**"
@@ -291,36 +233,7 @@ $comment
 [1] ""
 
 attr(,"class")
-[1] "emeScheme_validation" "dmdScheme_validation" "list"                
-
-$suggestedValues
-$error
-[1] 1
-
-$details
-# A tibble: 5 x 3
-  treatmentID unit  treatmentLevel
-  <chr>       <chr> <chr>         
-1 FALSE       FALSE FALSE         
-2 FALSE       TRUE  FALSE         
-3 FALSE       FALSE FALSE         
-4 FALSE       FALSE FALSE         
-5 FALSE       FALSE FALSE         
-
-$header
-[1] "**<span style=\"color:#55AA00\">values in suggestedValues - note</span>**"
-
-$description
-[1] "Test if the metadata entered is ion the suggestedValues list. The value NA is allowed in all column types, empty cells should be avoided."
-
-$descriptionDetails
-[1] "The details are a table of the same dimension as the input (green) area of the meatadata sheet. The following values are possible:\n \n    FALSE: If the cell value is not contained in the suggestedValues list.\n    TRUE : If the cell value is contained in the suggestedValues list.\n    NA   : empty cell\n \n One or more FALSE values will result in a WARNING."
-
-$comment
-[1] ""
-
-attr(,"class")
-[1] "emeScheme_validation" "dmdScheme_validation" "list"                
+[1] "dmdScheme_validation" "list"                
 
 $parameterInMappinColumn
 $error
@@ -358,11 +271,10 @@ $error
 $details
                               Module errorCode  isOK
 1                              types        OK  TRUE
-2                    suggestedValues      note FALSE
-3                measurementIDUnique        OK  TRUE
-4                       measuredFrom        OK  TRUE
-5             variableInMappinColumn   warning FALSE
-6 dataExtractionIDInDataExtractionID        OK  TRUE
+2                measurementIDUnique        OK  TRUE
+3                       measuredFrom        OK  TRUE
+4             variableInMappinColumn   warning FALSE
+5 dataExtractionIDInDataExtractionID        OK  TRUE
 
 $header
 [1] "**<span style=\"color:#AA5500\">Measurement - warning</span>**"
@@ -381,15 +293,16 @@ $error
 [1] 0
 
 $details
-# A tibble: 4 x 10
-  measurementID variable method unit  object noOfSamplesInTi… samplingVolume
-  <chr>         <chr>    <chr>  <chr> <chr>  <chr>            <chr>         
-1 TRUE          TRUE     TRUE   TRUE  TRUE   TRUE             TRUE          
-2 TRUE          TRUE     TRUE   TRUE  TRUE   TRUE             TRUE          
-3 TRUE          TRUE     TRUE   TRUE  TRUE   TRUE             TRUE          
-4 TRUE          TRUE     TRUE   TRUE  TRUE   TRUE             TRUE          
-# … with 3 more variables: dataExtractionID <chr>, measuredFrom <chr>,
-#   comment <chr>
+  measurementID variable method unit object noOfSamplesInTimeSeries
+1          TRUE     TRUE   TRUE TRUE   TRUE                    TRUE
+2          TRUE     TRUE   TRUE TRUE   TRUE                    TRUE
+3          TRUE     TRUE   TRUE TRUE   TRUE                    TRUE
+4          TRUE     TRUE   TRUE TRUE   TRUE                    TRUE
+  samplingVolume dataExtractionID measuredFrom comment
+1           TRUE             TRUE         TRUE    <NA>
+2           TRUE             TRUE         TRUE    <NA>
+3           TRUE             TRUE         TRUE    <NA>
+4           TRUE             TRUE         TRUE    <NA>
 
 $header
 [1] "**<span style=\"color:#00FF00\">conversion of values into specified type lossless possible - OK</span>**"
@@ -404,35 +317,7 @@ $comment
 [1] ""
 
 attr(,"class")
-[1] "emeScheme_validation" "dmdScheme_validation" "list"                
-
-$suggestedValues
-$error
-[1] 1
-
-$details
-# A tibble: 4 x 4
-  variable method unit  object
-  <chr>    <chr>  <chr> <chr> 
-1 FALSE    TRUE   TRUE  TRUE  
-2 TRUE     FALSE  TRUE  TRUE  
-3 FALSE    FALSE  FALSE TRUE  
-4 TRUE     FALSE  FALSE FALSE 
-
-$header
-[1] "**<span style=\"color:#55AA00\">values in suggestedValues - note</span>**"
-
-$description
-[1] "Test if the metadata entered is ion the suggestedValues list. The value NA is allowed in all column types, empty cells should be avoided."
-
-$descriptionDetails
-[1] "The details are a table of the same dimension as the input (green) area of the meatadata sheet. The following values are possible:\n \n    FALSE: If the cell value is not contained in the suggestedValues list.\n    TRUE : If the cell value is contained in the suggestedValues list.\n    NA   : empty cell\n \n One or more FALSE values will result in a WARNING."
-
-$comment
-[1] ""
-
-attr(,"class")
-[1] "emeScheme_validation" "dmdScheme_validation" "list"                
+[1] "dmdScheme_validation" "list"                
 
 $measurementIDUnique
 $error
@@ -548,8 +433,7 @@ $error
 $details
                     Module errorCode isOK
 1                    types        OK TRUE
-2          suggestedValues        OK TRUE
-3 nameInDataExtractionName        OK TRUE
+2 nameInDataExtractionName        OK TRUE
 
 $header
 [1] "**<span style=\"color:#00FF00\">DataExtraction - OK</span>**"
@@ -568,10 +452,8 @@ $error
 [1] 0
 
 $details
-# A tibble: 1 x 5
   dataExtractionID method parameter value comment
-  <chr>            <chr>  <chr>     <chr> <chr>  
-1 TRUE             <NA>   <NA>      <NA>  TRUE   
+1             TRUE   <NA>      <NA>  <NA>    TRUE
 
 $header
 [1] "**<span style=\"color:#00FF00\">conversion of values into specified type lossless possible - OK</span>**"
@@ -586,32 +468,7 @@ $comment
 [1] ""
 
 attr(,"class")
-[1] "emeScheme_validation" "dmdScheme_validation" "list"                
-
-$suggestedValues
-$error
-[1] 0
-
-$details
-# A tibble: 1 x 1
-  method
-  <chr> 
-1 TRUE  
-
-$header
-[1] "**<span style=\"color:#00FF00\">values in suggestedValues - OK</span>**"
-
-$description
-[1] "Test if the metadata entered is ion the suggestedValues list. The value NA is allowed in all column types, empty cells should be avoided."
-
-$descriptionDetails
-[1] "The details are a table of the same dimension as the input (green) area of the meatadata sheet. The following values are possible:\n \n    FALSE: If the cell value is not contained in the suggestedValues list.\n    TRUE : If the cell value is contained in the suggestedValues list.\n    NA   : empty cell\n \n One or more FALSE values will result in a WARNING."
-
-$comment
-[1] ""
-
-attr(,"class")
-[1] "emeScheme_validation" "dmdScheme_validation" "list"                
+[1] "dmdScheme_validation" "list"                
 
 $nameInDataExtractionName
 $error
@@ -646,7 +503,7 @@ $error
 $details
                           Module errorCode  isOK
 1                          types        OK  TRUE
-2                  allowedValues        OK  TRUE
+2                  allowedValues     error FALSE
 3                 dataFilesExist     error FALSE
 4        datetimeFormatSpecified        OK  TRUE
 5 mappingColumnInNameOrParameter     error FALSE
@@ -670,29 +527,27 @@ $error
 [1] 0
 
 $details
-# A tibble: 20 x 7
-   dataFileName columnName columnData mappingColumn type  description comment
-   <chr>        <chr>      <chr>      <chr>         <chr> <chr>       <chr>  
- 1 TRUE         TRUE       TRUE       <NA>          TRUE  <NA>        <NA>   
- 2 TRUE         TRUE       TRUE       TRUE          TRUE  <NA>        <NA>   
- 3 TRUE         TRUE       TRUE       <NA>          TRUE  <NA>        <NA>   
- 4 TRUE         TRUE       TRUE       <NA>          TRUE  <NA>        <NA>   
- 5 TRUE         TRUE       TRUE       <NA>          TRUE  <NA>        <NA>   
- 6 TRUE         TRUE       TRUE       <NA>          TRUE  TRUE        <NA>   
- 7 TRUE         TRUE       TRUE       TRUE          TRUE  <NA>        <NA>   
- 8 TRUE         TRUE       TRUE       <NA>          TRUE  <NA>        <NA>   
- 9 TRUE         TRUE       TRUE       <NA>          TRUE  <NA>        <NA>   
-10 TRUE         <NA>       TRUE       TRUE          TRUE  <NA>        <NA>   
-11 TRUE         TRUE       TRUE       TRUE          TRUE  <NA>        <NA>   
-12 TRUE         TRUE       TRUE       <NA>          TRUE  TRUE        <NA>   
-13 TRUE         TRUE       TRUE       TRUE          TRUE  <NA>        <NA>   
-14 TRUE         TRUE       TRUE       <NA>          TRUE  <NA>        <NA>   
-15 TRUE         <NA>       TRUE       TRUE          TRUE  <NA>        <NA>   
-16 TRUE         TRUE       TRUE       <NA>          TRUE  <NA>        <NA>   
-17 TRUE         TRUE       TRUE       <NA>          TRUE  TRUE        <NA>   
-18 TRUE         TRUE       TRUE       TRUE          TRUE  <NA>        <NA>   
-19 TRUE         TRUE       TRUE       <NA>          TRUE  <NA>        <NA>   
-20 TRUE         TRUE       TRUE       TRUE          TRUE  <NA>        <NA>   
+   dataFileName columnName columnData mappingColumn type description comment
+1          TRUE       TRUE       TRUE          <NA> TRUE        <NA>    <NA>
+2          TRUE       TRUE       TRUE          TRUE TRUE        <NA>    <NA>
+3          TRUE       TRUE       TRUE          <NA> TRUE        <NA>    <NA>
+4          TRUE       TRUE       TRUE          <NA> TRUE        <NA>    <NA>
+5          TRUE       TRUE       TRUE          <NA> TRUE        <NA>    <NA>
+6          TRUE       TRUE       TRUE          <NA> TRUE        TRUE    <NA>
+7          TRUE       TRUE       TRUE          TRUE TRUE        <NA>    <NA>
+8          TRUE       TRUE       TRUE          <NA> TRUE        <NA>    <NA>
+9          TRUE       TRUE       TRUE          <NA> TRUE        <NA>    <NA>
+10         TRUE       <NA>       TRUE          TRUE TRUE        <NA>    <NA>
+11         TRUE       TRUE       TRUE          TRUE TRUE        <NA>    <NA>
+12         TRUE       TRUE       TRUE          <NA> TRUE        TRUE    <NA>
+13         TRUE       TRUE       TRUE          TRUE TRUE        <NA>    <NA>
+14         TRUE       TRUE       TRUE          <NA> TRUE        <NA>    <NA>
+15         TRUE       <NA>       TRUE          TRUE TRUE        <NA>    <NA>
+16         TRUE       TRUE       TRUE          <NA> TRUE        <NA>    <NA>
+17         TRUE       TRUE       TRUE          <NA> TRUE        TRUE    <NA>
+18         TRUE       TRUE       TRUE          TRUE TRUE        <NA>    <NA>
+19         TRUE       TRUE       TRUE          <NA> TRUE        <NA>    <NA>
+20         TRUE       TRUE       TRUE          TRUE TRUE        <NA>    <NA>
 
 $header
 [1] "**<span style=\"color:#00FF00\">conversion of values into specified type lossless possible - OK</span>**"
@@ -707,51 +562,49 @@ $comment
 [1] ""
 
 attr(,"class")
-[1] "emeScheme_validation" "dmdScheme_validation" "list"                
+[1] "dmdScheme_validation" "list"                
 
 $allowedValues
 $error
-[1] 0
+[1] 3
 
 $details
-# A tibble: 20 x 2
-   columnData type 
-   <chr>      <chr>
- 1 TRUE       TRUE 
- 2 TRUE       TRUE 
- 3 TRUE       TRUE 
- 4 TRUE       TRUE 
- 5 TRUE       TRUE 
- 6 TRUE       TRUE 
- 7 TRUE       TRUE 
- 8 TRUE       TRUE 
- 9 TRUE       TRUE 
-10 TRUE       TRUE 
-11 TRUE       TRUE 
-12 TRUE       TRUE 
-13 TRUE       TRUE 
-14 TRUE       TRUE 
-15 TRUE       TRUE 
-16 TRUE       TRUE 
-17 TRUE       TRUE 
-18 TRUE       TRUE 
-19 TRUE       TRUE 
-20 TRUE       TRUE 
+   dataFileName columnName columnData mappingColumn type description comment
+1         FALSE      FALSE       TRUE          TRUE TRUE        TRUE    TRUE
+2         FALSE      FALSE       TRUE         FALSE TRUE        TRUE    TRUE
+3         FALSE      FALSE       TRUE          TRUE TRUE        TRUE    TRUE
+4         FALSE      FALSE       TRUE          TRUE TRUE        TRUE    TRUE
+5         FALSE      FALSE       TRUE          TRUE TRUE        TRUE    TRUE
+6         FALSE      FALSE       TRUE          TRUE TRUE       FALSE    TRUE
+7         FALSE      FALSE       TRUE         FALSE TRUE        TRUE    TRUE
+8         FALSE      FALSE       TRUE          TRUE TRUE        TRUE    TRUE
+9         FALSE      FALSE       TRUE          TRUE TRUE        TRUE    TRUE
+10        FALSE       TRUE       TRUE         FALSE TRUE        TRUE    TRUE
+11        FALSE      FALSE       TRUE         FALSE TRUE        TRUE    TRUE
+12        FALSE      FALSE       TRUE          TRUE TRUE       FALSE    TRUE
+13        FALSE      FALSE       TRUE         FALSE TRUE        TRUE    TRUE
+14        FALSE      FALSE       TRUE          TRUE TRUE        TRUE    TRUE
+15        FALSE       TRUE       TRUE         FALSE TRUE        TRUE    TRUE
+16        FALSE      FALSE       TRUE          TRUE TRUE        TRUE    TRUE
+17        FALSE      FALSE       TRUE          TRUE TRUE       FALSE    TRUE
+18        FALSE      FALSE       TRUE         FALSE TRUE        TRUE    TRUE
+19        FALSE      FALSE       TRUE          TRUE TRUE        TRUE    TRUE
+20        FALSE      FALSE       TRUE         FALSE TRUE        TRUE    TRUE
 
 $header
-[1] "**<span style=\"color:#00FF00\">values in allowedValues - OK</span>**"
+[1] "**<span style=\"color:#FF0000\">values in allowedValues - error</span>**"
 
 $description
 [1] "Test if the metadata entered is ion the allowedValues list. The value NA is allowed in all column types, empty cells should be avoided."
 
 $descriptionDetails
-[1] "The details are a table of the same dimension as the input (green) area of the meatadata sheet. The following values are possible:\n \n    FALSE: If the cell value is not contained in the allowedValues list.\n    TRUE : If the cell value is contained in the allowedValues list.\n    NA   : empty cell\n \n One or more FALSE values will result in an ERROR."
+[1] "The details are a table of the same dimension as the input (green) area of the meatadata sheet. The following values are possible:\n \n    FALSE: If the cell value is not contained in the allowedValues list.\n    TRUE : If the cell value is contained in the allowedValues list.\n    NA   : empty cell or no allowed values specified\n \n One or more FALSE values will result in an ERROR."
 
 $comment
 [1] ""
 
 attr(,"class")
-[1] "emeScheme_validation" "dmdScheme_validation" "list"                
+[1] "dmdScheme_validation" "list"                
 
 $dataFilesExist
 $error
@@ -783,16 +636,10 @@ $error
 [1] 0
 
 $details
- DataFileMetaData - dmdSchemeData
-A   Names : dataFileName | columnName | type | description | IsOK
-A   Units : NA | NA | NA | NA | NA | NA | NA
-A   Type  : character | character | character | character | character | character | character
-
-                       dataFileName columnName     type description IsOK
-D   1 dissolved_oxygen_measures.csv  Date_time datetime      ymdhms TRUE
-D   2                     smell.csv       Date datetime      ymdhms TRUE
-D   3                abundances.csv  Date_time datetime      ymdhms TRUE
-
+                    dataFileName columnName     type description IsOK
+6  dissolved_oxygen_measures.csv  Date_time datetime      ymdhms TRUE
+12                     smell.csv       Date datetime      ymdhms TRUE
+17                abundances.csv  Date_time datetime      ymdhms TRUE
 
 $header
 [1] "**<span style=\"color:#00FF00\">Test if date time format has been specified if required - OK</span>**"
