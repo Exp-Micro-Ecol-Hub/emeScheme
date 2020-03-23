@@ -1,21 +1,26 @@
-#' Split \code{emeScheme} object into multiple by using \code{DataFileNameMetaData$dataFileName}
+#' Extract metadasta from one dataFile from an \code{emeScheme} object
 #'
-#' One \code{emeScheme} object can contain metadata for multiple datafiles. For
+#' One \code{emeScheme} object can contain metadata for multiple dataFiles. For
 #' archiving, these should be split into single \code{emeScheme} objects, one
-#' for each \code{DataFileNameMetaData$dataFileName}.
+#' for each \code{DataFileNameMetaData$dataFileName}. This function extracts the
+#' metadasta from one dataFile in an \code{emeScheme} object and returns an
+#' \code{emeScheme} object.
+#'
 #' The filtering is done as followed:
 #' \describe{
 #'   \item{DataFileMetaDFata}{\code{DataFileMetaData$dataFileName == dataFile}}
-#'   \item{Treatment}{\code{Treatment$parameter \%in\% DataFileMetaData$mappingColumn} and \code{DataFileMetaData$columnData == "Treatment"} }
-#'   \item{Measurement}{\code{Measurement$name \%in\% DataFileMetaData$mappingColumn} and \code{DataFileMetaData$columnData == "Measurement"} }
+#'   \item{Treatment}{\code{Treatment$parameter \%in\% DataFileMetaData$mappingColumn}
+#'     and \code{DataFileMetaData$columnData == "Treatment"} }
+#'   \item{Measurement}{\code{Measurement$name \%in\% DataFileMetaData$mappingColumn}
+#'     and \code{DataFileMetaData$columnData == "Measurement"} }
 #' }
-#' @param dataFile name of dataFileName whose metadata will be extracted from \code{x}. Has to be an exact match, no wildcards are expanded.
-#' @param x \code{emeScheme} object from which data to extract
+#' @param dataFile name of dataFile whose metadata will be extracted from
+#'   \code{x}. Has to be an exact match, no wildcards are expanded.
+#' @param x \code{emeScheme} object from which to extract the metadata
 #'
-#' @return \code{emeScheme} object containing metadata for the data file \code{dataFileName}
+#' @return An \code{emeScheme} object containing metadata for the data file \code{dataFileName}
 #'
 #' @importFrom magrittr %>% %<>%
-#' @importFrom dplyr select filter
 #' @importFrom methods is
 #' @export
 #'
@@ -48,52 +53,89 @@ emeScheme_extract <- function(
 
 # DataFileMetaData: keep only rows in which dataFileName == dataFile ------
 
-  x$DataFileMetaData %<>%
-    dplyr::filter(.data$dataFileName == dataFile)
+  attrs <- attributes(x$DataFileMetaData)
+  x$DataFileMetaData <- subset(x$DataFileMetaData, x$DataFileMetaData == dataFile)
+  rownames(x$DataFileMetaData) <- NULL
+  if (nrow(x$DataFileMetaData) > 0) {
+    attrs[["row.names"]] <- 1:nrow(x$DataFileMetaData)
+  } else {
+    attrs[["row.names"]] <- NULL
+  }
+
+  attributes(x$DataFileMetaData) <- attrs
 
 # Treatment: Only keep treatmentID which are still in DataFileMetaData ------
 
-  selTreatmentID <- x$DataFileMetaData %>%
-    dplyr::filter((.data$columnData == "Treatment") | (.data$columnData == "Species") ) %>%
-    dplyr::select(.data$mappingColumn) %>%
-    unlist()
-  x$Treatment %<>%
-    dplyr::filter(.data$treatmentID %in% selTreatmentID)
+  selTreatmentID <- subset(
+    x      = x$DataFileMetaData$mappingColumn,
+    subset = (x$DataFileMetaData$columnData == "Treatment") | (x$DataFileMetaData$columnData == "Species")
+  )
+  attrs <- attributes(x$Treatment)
+  x$Treatment <- subset(x$Treatment, x$Treatment$treatmentID %in% selTreatmentID)
+  rownames(x$Treatment) <- NULL
+  if (nrow(x$Treatment) > 0) {
+    attrs[["row.names"]] <- 1:nrow(x$Treatment)
+  } else {
+    attrs[["row.names"]] <- NULL
+  }
+
+  attributes(x$Treatment) <- attrs
 
 # Measurement: Only keep measurementID which are still in DataFileMetaData ---------
 
-  selMeasurementID <- x$DataFileMetaData %>%
-    dplyr::filter(.data$columnData == "Measurement") %>%
-    dplyr::select(.data$mappingColumn) %>%
-    as.character
-  x$Measurement %<>%
-    dplyr::filter(.data$measurementID %in% selMeasurementID)
+  selMeasurementID <- subset(
+    x      = x$DataFileMetaData$mappingColumn,
+    subset = (x$DataFileMetaData$columnData == "Measurement")
+  )
+
+  attrs <- attributes(x$Measurement)
+  x$Measurement <- subset(x$Measurement, x$Measurement$measurementID %in% selMeasurementID)
+  rownames(x$Measurement) <- NULL
+  if (nrow(x$Measurement) > 0) {
+    attrs[["row.names"]] <- 1:nrow(x$Measurement)
+  } else {
+    attrs[["row.names"]] <- NULL
+  }
+
+  attributes(x$Measurement) <- attrs
 
 # ExtractionMethod: Only keep extractionMethodID which are still in DataFileMetaData --------
 
-  selDataExtractionID <- x$Measurement %>%
-    dplyr::select(.data$dataExtractionID) %>%
-    as.character %>%
-    unique
-  x$DataExtraction %<>%
-    dplyr::filter(.data$dataExtractionID %in% selDataExtractionID)
+  selDataExtractionID <- unique(x$Measurement$dataExtractionID)
+
+  attrs <- attributes(x$DataExtraction)
+  x$DataExtraction <- subset(x$DataExtraction, x$DataExtraction$dataExtractionID %in% selDataExtractionID)
+  rownames(x$DataExtraction) <- NULL
+  if (nrow(x$DataExtraction) > 0) {
+    attrs[["row.names"]] <- 1:nrow(x$DataExtraction)
+  } else {
+    attrs[["row.names"]] <- NULL
+  }
+  attributes(x$DataExtraction) <- attrs
+
 
 # Species: Only keep speciesID which are still in treatmentID ----------------------------------
 
-  selTreatmentID <- x$DataFileMetaData %>%
-    dplyr::filter(.data$columnData == "Species") %>%
-    dplyr::select(.data$mappingColumn) %>%
-    as.character()
-  selSpeciesID <- x$Treatment %>%
-    dplyr::filter(.data$treatmentID %in% selTreatmentID) %>%
-    dplyr::select(.data$treatmentLevel) %>%
+  selTreatmentID <- subset(
+    x      = x$DataFileMetaData$mappingColumn,
+    subset = (x$DataFileMetaData$columnData == "Species")
+  )
+
+  selSpeciesID <- subset( x$Treatment, subset = x$Treatment$treatmentID %in% selTreatmentID, select = "treatmentLevel") %>%
     unlist() %>%
     strsplit(",") %>%
     unlist() %>%
     trimws()
-  x$Species %<>%
-    dplyr::filter(.data$speciesID %in% selSpeciesID)
 
+  attrs <- attributes(x$Species)
+  x$Species <- subset(x$Species, x$Species$speciesID %in% selSpeciesID)
+  rownames(x$Species) <- NULL
+  if (nrow(x$Species) > 0) {
+    attrs[["row.names"]] <- 1:nrow(x$Species)
+  } else {
+    attrs[["row.names"]] <- NULL
+  }
+  attributes(x$Species) <- attrs
 
 # Set property name -------------------------------------------------------
 

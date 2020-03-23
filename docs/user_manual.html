@@ -8,14 +8,27 @@
 <meta name="generator" content="pandoc" />
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <meta name="author" content="Owen and Rainer" />
 
-<meta name="date" content="2019-12-20" />
+<meta name="date" content="2020-03-23" />
 
 <title>User manual for experimental microbial ecology metadata tool</title>
 
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
 
 
 <style type="text/css">code{white-space: pre;}</style>
@@ -118,9 +131,6 @@ padding-right: 2em;
 font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 font-size: 14px;
 line-height: 1.35;
-}
-#header {
-text-align: center;
 }
 #TOC {
 clear: both;
@@ -289,7 +299,8 @@ code > span.st { color: #d14; }
 code > span.co { color: #888888; font-style: italic; } 
 code > span.ot { color: #007020; } 
 code > span.al { color: #ff0000; font-weight: bold; } 
-code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61717; background-color: #e3d2d2; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
 </style>
 
 
@@ -304,7 +315,7 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 
 <h1 class="title toc-ignore">User manual for experimental microbial ecology metadata tool</h1>
 <h4 class="author">Owen and Rainer</h4>
-<h4 class="date">2019-12-20</h4>
+<h4 class="date">2020-03-23</h4>
 
 
 
@@ -351,25 +362,6 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <span id="cb1-11"><a href="#cb1-11"></a></span>
 <span id="cb1-12"><a href="#cb1-12"></a><span class="co">## than load the package</span></span>
 <span id="cb1-13"><a href="#cb1-13"></a><span class="kw">library</span>(emeScheme)</span></code></pre></div>
-<pre><code>## Loading required package: dmdScheme</code></pre>
-<pre><code>## 
-## #############################################
-## The cache will be in a temporary location and be deleted when you quit R.
-## It is located at
-##    /var/folders/50/wcr5bjwn75q595n6x82gxj280000gq/T//RtmpfyRO9e/dmdScheme_76852cdaa69b
-## To make it permanent, call
-##    cache(createPermanent = TRUE)
-## and restart R
-## and a permanent cache will be created which will survive restarts.
-## #############################################</code></pre>
-<pre><code>## Scheme definition `/var/folders/50/wcr5bjwn75q595n6x82gxj280000gq/T//RtmpfyRO9e/file768546f0211e/dmdScheme_0.9.5.tar.gz, installed with
-## name:    dmdScheme
-## version: 0.9.5</code></pre>
-<pre><code>## Theme switched to dmdScheme_0.9.5</code></pre>
-<pre><code>## Scheme definition `/var/folders/50/wcr5bjwn75q595n6x82gxj280000gq/T//RtmpfyRO9e/file76853f0e5cf4/emeScheme_0.9.5.tar.gz, installed with
-## name:    emeScheme
-## version: 0.9.5</code></pre>
-<pre><code>## Theme switched to emeScheme_0.9.5</code></pre>
 <p>This will do several things:</p>
 <ol style="list-style-type: decimal">
 <li>Download and install the scheme definition for the <code>emeScheme</code> and install it in a temporary scheme library by running <code>scheme_install(&quot;emeScheme&quot;, &quot;0.9.5)</code></li>
@@ -377,12 +369,12 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 </ol>
 <p>This wil be done each time you load the package in a new session, as the session library is only temporary.</p>
 <p>To make this library permanent, run</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="kw">cache</span>(<span class="dt">createPermanent =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">cache</span>(<span class="dt">createPermanent =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <p>and restart your R session. This will create a permanent cache which is used for the scheme library in your user directory, so that schemes are installed permanently. For details on the managing of schemes, see <a href="https://exp-micro-ecol-hub.github.io/dmdScheme/r_package_introduction.html">vignette R r_package_introduction or on the web</a>.</p>
 <p>To enter the metadata run this R command to get an Excel version of the emeScheme without metadata in it:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="kw">open_new_spreadsheet</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">open_new_spreadsheet</span>()</span></code></pre></div>
 <p>The following command opens the sheet with the example data in:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="kw">open_new_spreadsheet</span>(<span class="dt">keepData =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">open_new_spreadsheet</span>(<span class="dt">keepData =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <p>Either way, make a copy of the spreadsheet and save it somewhere safe, like in the folder for your study/experiment .</p>
 <p>Its probably worth now looking at the spreadsheet (but don’t yet try to fill in anything), to see what metadata you will need to enter. There are several worksheets:</p>
 <ul>
@@ -417,12 +409,12 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <p>The examples (so far only one) are: - <code>basic</code>: a basic simple example</p>
 <p>More examples will follow later.</p>
 <p>You can always see a list of examples included in the active scheme by running the command</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="kw">make_example</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">make_example</span>()</span></code></pre></div>
 <pre><code>## Included examples are:</code></pre>
 <pre><code>## basic
 ## ex_2</code></pre>
 <p>You can get one of the examples, e.g. the basic example by running:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="kw">make_example</span>(<span class="st">&quot;basic&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="kw">make_example</span>(<span class="st">&quot;basic&quot;</span>)</span></code></pre></div>
 <p>This will copy the basic example into your current working directory in a folder named <code>basic</code>.</p>
 <p>The worked <strong>basic</strong> example shows appropriate preparation of data for archiving and ease of further use. Its an example of what you could do, not what you have to do, though probably you benefit from doing something similar.</p>
 <p>The <code>basic</code> folder contains:</p>
@@ -514,7 +506,7 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <p><strong><span style="color:red">This is work in progress. Please give it a go and have a look at the produced validation report, but note that we are leaving most of the development to the next stage of development.</span></strong></p>
 <p>After entering your data, you should do a validation test of your metadata and data. The validation will check many different aspects of your metadata and data, and returns a report (html, pdf, docx or all three). The validation and resulting report is a work in progress</p>
 <p>To produce a validation report, use the <code>report</code> function and give it your spreadsheet, the path to your data folder, and the type of report you want:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="kw">report</span>(<span class="st">&quot;thenameofyourmetadataspreadsheet.xlsx&quot;</span>, <span class="dt">path =</span> <span class="st">&quot;the/path/to/your/datafiles&quot;</span>, <span class="dt">report =</span> <span class="st">&quot;html&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="kw">report</span>(<span class="st">&quot;thenameofyourmetadataspreadsheet.xlsx&quot;</span>, <span class="dt">path =</span> <span class="st">&quot;the/path/to/your/datafiles&quot;</span>, <span class="dt">report =</span> <span class="st">&quot;html&quot;</span>)</span></code></pre></div>
 <p>As mentioned already, the validation and resulting report is a work in progress. Don’t feel the need to look at it so hard. Please let us know if you suggest particular validation checks.</p>
 </div>
 <div id="Fixing" class="section level1">
@@ -525,13 +517,13 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <h1>Making the final xml version</h1>
 <p>The Excel version of the metadata is most useful for us to enter the metadata easily. It is not so useful for standardised/automated metadata enquiry/search/submission… i.e. Excel versions of metadata are not really FAIR compliable. The metadata gurus decided that it should be stored as xml files, as it is plain text, it is in principle readable by humans (though is not meant to be read by humans really), it is machine readable (and then easily converted into any other format, e.g. ones easy for humans to read).</p>
 <p>Therefore, you should submit the final xml version of your metadata. Only do this after you have a satisfactory validation. As the metadata as it is entered in the spreadsheet contains metadata for <em>many</em> different data files (as enterd in the column <code>DataFileMetaData / dataFileName</code>), the metadata will be split and exported to multiple xml files.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="kw">write_xml</span>( <span class="kw">read_excel</span>(<span class="st">&quot;thenameofyourmetadataspreadsheet.xlsx&quot;</span>, <span class="dt">file =</span> <span class="st">&quot;thenameofyourmetadataspreadsheet.xlm&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="kw">write_xml</span>( <span class="kw">read_excel</span>(<span class="st">&quot;thenameofyourmetadataspreadsheet.xlsx&quot;</span>, <span class="dt">file =</span> <span class="st">&quot;thenameofyourmetadataspreadsheet.xlm&quot;</span>)</span></code></pre></div>
 <p>This will create one xml file per data file specified in the DataFileMetaData tab.</p>
 <p>If you want to save the metadata for later usage or analysis in R, you should use standard R functions like</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="kw">saveRDS</span>( <span class="dt">x =</span> <span class="kw">read_excel</span>(<span class="st">&quot;thenameofyourmetadataspreadsheet.xlsx&quot;</span>, <span class="dt">file =</span> <span class="st">&quot;thenameofyourmetadataspreadsheet.RDS&quot;</span> )</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="kw">saveRDS</span>( <span class="dt">x =</span> <span class="kw">read_excel</span>(<span class="st">&quot;thenameofyourmetadataspreadsheet.xlsx&quot;</span>, <span class="dt">file =</span> <span class="st">&quot;thenameofyourmetadataspreadsheet.RDS&quot;</span> )</span></code></pre></div>
 <p>which will also save the metadata in an <code>rds</code> file.</p>
 <p>You can read it in again by using</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="kw">readRDS</span>( <span class="dt">file =</span> <span class="st">&quot;thenameofyourmetadataspreadsheet.RDS&quot;</span> )</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="kw">readRDS</span>( <span class="dt">file =</span> <span class="st">&quot;thenameofyourmetadataspreadsheet.RDS&quot;</span> )</span></code></pre></div>
 </div>
 <div id="depositing" class="section level1">
 <h1>Depositing in a repository</h1>

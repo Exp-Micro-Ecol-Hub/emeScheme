@@ -2,27 +2,34 @@
 % Please edit documentation in R/emeScheme_extract.R
 \name{emeScheme_extract}
 \alias{emeScheme_extract}
-\title{Split \code{emeScheme} object into multiple by using \code{DataFileNameMetaData$dataFileName}}
+\title{Extract metadasta from one dataFile from an \code{emeScheme} object}
 \usage{
 emeScheme_extract(dataFile, x)
 }
 \arguments{
-\item{dataFile}{name of dataFileName whose metadata will be extracted from \code{x}. Has to be an exact match, no wildcards are expanded.}
+\item{dataFile}{name of dataFile whose metadata will be extracted from
+\code{x}. Has to be an exact match, no wildcards are expanded.}
 
-\item{x}{\code{emeScheme} object from which data to extract}
+\item{x}{\code{emeScheme} object from which to extract the metadata}
 }
 \value{
-\code{emeScheme} object containing metadata for the data file \code{dataFileName}
+An \code{emeScheme} object containing metadata for the data file \code{dataFileName}
 }
 \description{
-One \code{emeScheme} object can contain metadata for multiple datafiles. For
+One \code{emeScheme} object can contain metadata for multiple dataFiles. For
 archiving, these should be split into single \code{emeScheme} objects, one
-for each \code{DataFileNameMetaData$dataFileName}.
+for each \code{DataFileNameMetaData$dataFileName}. This function extracts the
+metadasta from one dataFile in an \code{emeScheme} object and returns an
+\code{emeScheme} object.
+}
+\details{
 The filtering is done as followed:
 \describe{
   \item{DataFileMetaDFata}{\code{DataFileMetaData$dataFileName == dataFile}}
-  \item{Treatment}{\code{Treatment$parameter \%in\% DataFileMetaData$mappingColumn} and \code{DataFileMetaData$columnData == "Treatment"} }
-  \item{Measurement}{\code{Measurement$name \%in\% DataFileMetaData$mappingColumn} and \code{DataFileMetaData$columnData == "Measurement"} }
+  \item{Treatment}{\code{Treatment$parameter \%in\% DataFileMetaData$mappingColumn}
+    and \code{DataFileMetaData$columnData == "Treatment"} }
+  \item{Measurement}{\code{Measurement$name \%in\% DataFileMetaData$mappingColumn}
+    and \code{DataFileMetaData$columnData == "Measurement"} }
 }
 }
 \examples{

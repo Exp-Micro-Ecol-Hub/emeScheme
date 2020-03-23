@@ -1,3 +1,7 @@
+# release 1.1.0
+- make compatible with dmdScheme 1.1.0 and remove dependency with dplyr and tibble
+
+
 
 # release 0.9.4
 Major change

@@ -27,7 +27,7 @@ This is work in progress, and al linkages will be documented here.
 # Approach and Mapping
 It is essential, that only one data file is described and only one method is used in the data file. An emeScheme object containing more than one data file, can be split into multiple metadata files with one data file per metadata file by using `dmdScheme:::as_xml.dmdSchemeSet()` to export and split the file - will be done automatically eventually.
 
-At the moment, only a `emeScheme` -> dmdScheme `EML` is done. It is done by using the [EML package](https://cran.r-project.org/web/packages/EML/index.html) in R.
+At the moment, only a `emeScheme` -> dmdScheme `EML` is done. It is done by using the [EML package](https://CRAN.R-project.org/package=EML) in R.
 
 The following section gives the mapping between `emeScheme` and `EML`.
 
