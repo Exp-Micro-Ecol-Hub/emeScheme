@@ -354,7 +354,7 @@ The details are a table with one row per unique validation.
 |Module                         |errorCode |isOK  |
 |:------------------------------|:---------|:-----|
 |types                          |OK        |TRUE  |
-|allowedValues                  |error     |FALSE |
+|allowedValues                  |OK        |TRUE  |
 |dataFilesExist                 |error     |FALSE |
 |datetimeFormatSpecified        |OK        |TRUE  |
 |mappingColumnInNameOrParameter |error     |FALSE |
@@ -394,7 +394,7 @@ The details are a table of the same dimension as the input (green) area of the m
 |TRUE         |TRUE       |TRUE       |NA            |TRUE |NA          |NA      |
 |TRUE         |TRUE       |TRUE       |TRUE          |TRUE |NA          |NA      |
 
--  **<span style="color:#FF0000">values in allowedValues - error</span>**   
+-  **<span style="color:#00FF00">values in allowedValues - OK</span>**   
 The details are a table of the same dimension as the input (green) area of the meatadata sheet. The following values are possible:
  
     FALSE: If the cell value is not contained in the allowedValues list.
@@ -406,26 +406,26 @@ The details are a table of the same dimension as the input (green) area of the m
 
 |dataFileName |columnName |columnData |mappingColumn |type |description |comment |
 |:------------|:----------|:----------|:-------------|:----|:-----------|:-------|
-|FALSE        |FALSE      |TRUE       |TRUE          |TRUE |TRUE        |TRUE    |
-|FALSE        |FALSE      |TRUE       |FALSE         |TRUE |TRUE        |TRUE    |
-|FALSE        |FALSE      |TRUE       |TRUE          |TRUE |TRUE        |TRUE    |
-|FALSE        |FALSE      |TRUE       |TRUE          |TRUE |TRUE        |TRUE    |
-|FALSE        |FALSE      |TRUE       |TRUE          |TRUE |TRUE        |TRUE    |
-|FALSE        |FALSE      |TRUE       |TRUE          |TRUE |FALSE       |TRUE    |
-|FALSE        |FALSE      |TRUE       |FALSE         |TRUE |TRUE        |TRUE    |
-|FALSE        |FALSE      |TRUE       |TRUE          |TRUE |TRUE        |TRUE    |
-|FALSE        |FALSE      |TRUE       |TRUE          |TRUE |TRUE        |TRUE    |
-|FALSE        |TRUE       |TRUE       |FALSE         |TRUE |TRUE        |TRUE    |
-|FALSE        |FALSE      |TRUE       |FALSE         |TRUE |TRUE        |TRUE    |
-|FALSE        |FALSE      |TRUE       |TRUE          |TRUE |FALSE       |TRUE    |
-|FALSE        |FALSE      |TRUE       |FALSE         |TRUE |TRUE        |TRUE    |
-|FALSE        |FALSE      |TRUE       |TRUE          |TRUE |TRUE        |TRUE    |
-|FALSE        |TRUE       |TRUE       |FALSE         |TRUE |TRUE        |TRUE    |
-|FALSE        |FALSE      |TRUE       |TRUE          |TRUE |TRUE        |TRUE    |
-|FALSE        |FALSE      |TRUE       |TRUE          |TRUE |FALSE       |TRUE    |
-|FALSE        |FALSE      |TRUE       |FALSE         |TRUE |TRUE        |TRUE    |
-|FALSE        |FALSE      |TRUE       |TRUE          |TRUE |TRUE        |TRUE    |
-|FALSE        |FALSE      |TRUE       |FALSE         |TRUE |TRUE        |TRUE    |
+|NA           |NA         |TRUE       |NA            |TRUE |NA          |NA      |
+|NA           |NA         |TRUE       |NA            |TRUE |NA          |NA      |
+|NA           |NA         |TRUE       |NA            |TRUE |NA          |NA      |
+|NA           |NA         |TRUE       |NA            |TRUE |NA          |NA      |
+|NA           |NA         |TRUE       |NA            |TRUE |NA          |NA      |
+|NA           |NA         |TRUE       |NA            |TRUE |NA          |NA      |
+|NA           |NA         |TRUE       |NA            |TRUE |NA          |NA      |
+|NA           |NA         |TRUE       |NA            |TRUE |NA          |NA      |
+|NA           |NA         |TRUE       |NA            |TRUE |NA          |NA      |
+|NA           |NA         |TRUE       |NA            |TRUE |NA          |NA      |
+|NA           |NA         |TRUE       |NA            |TRUE |NA          |NA      |
+|NA           |NA         |TRUE       |NA            |TRUE |NA          |NA      |
+|NA           |NA         |TRUE       |NA            |TRUE |NA          |NA      |
+|NA           |NA         |TRUE       |NA            |TRUE |NA          |NA      |
+|NA           |NA         |TRUE       |NA            |TRUE |NA          |NA      |
+|NA           |NA         |TRUE       |NA            |TRUE |NA          |NA      |
+|NA           |NA         |TRUE       |NA            |TRUE |NA          |NA      |
+|NA           |NA         |TRUE       |NA            |TRUE |NA          |NA      |
+|NA           |NA         |TRUE       |NA            |TRUE |NA          |NA      |
+|NA           |NA         |TRUE       |NA            |TRUE |NA          |NA      |
 
 -  **<span style="color:#FF0000">`dataFile` exists in path - error</span>**   
 The details are a table with one row per unique `variable` The following values are possible for the column `isTRUE`:
