@@ -2,7 +2,7 @@ Package: emeScheme
 Title: Microcosm Experiment Metadata Scheme
 Description: The Authoratative definition of the emeScheme (Experimental Microcosm Ecology Metadata) and tools to enter, validate
               and export the metadata.
-Version: 1.1.0
+Version: 1.1.1
 Date: 2020-03-23
 Authors@R: c( person( "Rainer M.", "Krug", role = c("aut", "cre"), email = "Rainer.Krug@uzh.ch" ), person( "Owen
              L.", "Petchey", role = c("ctb"), email = "Owen.Petchey@uzh.ch" ), person("Vanessa W.", "de Melo", role

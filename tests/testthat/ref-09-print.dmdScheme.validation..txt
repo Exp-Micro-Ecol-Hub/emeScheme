@@ -503,7 +503,7 @@ $error
 $details
                           Module errorCode  isOK
 1                          types        OK  TRUE
-2                  allowedValues     error FALSE
+2                  allowedValues        OK  TRUE
 3                 dataFilesExist     error FALSE
 4        datetimeFormatSpecified        OK  TRUE
 5 mappingColumnInNameOrParameter     error FALSE
@@ -566,33 +566,33 @@ attr(,"class")
 
 $allowedValues
 $error
-[1] 3
+[1] 0
 
 $details
    dataFileName columnName columnData mappingColumn type description comment
-1         FALSE      FALSE       TRUE          TRUE TRUE        TRUE    TRUE
-2         FALSE      FALSE       TRUE         FALSE TRUE        TRUE    TRUE
-3         FALSE      FALSE       TRUE          TRUE TRUE        TRUE    TRUE
-4         FALSE      FALSE       TRUE          TRUE TRUE        TRUE    TRUE
-5         FALSE      FALSE       TRUE          TRUE TRUE        TRUE    TRUE
-6         FALSE      FALSE       TRUE          TRUE TRUE       FALSE    TRUE
-7         FALSE      FALSE       TRUE         FALSE TRUE        TRUE    TRUE
-8         FALSE      FALSE       TRUE          TRUE TRUE        TRUE    TRUE
-9         FALSE      FALSE       TRUE          TRUE TRUE        TRUE    TRUE
-10        FALSE       TRUE       TRUE         FALSE TRUE        TRUE    TRUE
-11        FALSE      FALSE       TRUE         FALSE TRUE        TRUE    TRUE
-12        FALSE      FALSE       TRUE          TRUE TRUE       FALSE    TRUE
-13        FALSE      FALSE       TRUE         FALSE TRUE        TRUE    TRUE
-14        FALSE      FALSE       TRUE          TRUE TRUE        TRUE    TRUE
-15        FALSE       TRUE       TRUE         FALSE TRUE        TRUE    TRUE
-16        FALSE      FALSE       TRUE          TRUE TRUE        TRUE    TRUE
-17        FALSE      FALSE       TRUE          TRUE TRUE       FALSE    TRUE
-18        FALSE      FALSE       TRUE         FALSE TRUE        TRUE    TRUE
-19        FALSE      FALSE       TRUE          TRUE TRUE        TRUE    TRUE
-20        FALSE      FALSE       TRUE         FALSE TRUE        TRUE    TRUE
+1          <NA>       <NA>       TRUE          <NA> TRUE        <NA>    <NA>
+2          <NA>       <NA>       TRUE          <NA> TRUE        <NA>    <NA>
+3          <NA>       <NA>       TRUE          <NA> TRUE        <NA>    <NA>
+4          <NA>       <NA>       TRUE          <NA> TRUE        <NA>    <NA>
+5          <NA>       <NA>       TRUE          <NA> TRUE        <NA>    <NA>
+6          <NA>       <NA>       TRUE          <NA> TRUE        <NA>    <NA>
+7          <NA>       <NA>       TRUE          <NA> TRUE        <NA>    <NA>
+8          <NA>       <NA>       TRUE          <NA> TRUE        <NA>    <NA>
+9          <NA>       <NA>       TRUE          <NA> TRUE        <NA>    <NA>
+10         <NA>       <NA>       TRUE          <NA> TRUE        <NA>    <NA>
+11         <NA>       <NA>       TRUE          <NA> TRUE        <NA>    <NA>
+12         <NA>       <NA>       TRUE          <NA> TRUE        <NA>    <NA>
+13         <NA>       <NA>       TRUE          <NA> TRUE        <NA>    <NA>
+14         <NA>       <NA>       TRUE          <NA> TRUE        <NA>    <NA>
+15         <NA>       <NA>       TRUE          <NA> TRUE        <NA>    <NA>
+16         <NA>       <NA>       TRUE          <NA> TRUE        <NA>    <NA>
+17         <NA>       <NA>       TRUE          <NA> TRUE        <NA>    <NA>
+18         <NA>       <NA>       TRUE          <NA> TRUE        <NA>    <NA>
+19         <NA>       <NA>       TRUE          <NA> TRUE        <NA>    <NA>
+20         <NA>       <NA>       TRUE          <NA> TRUE        <NA>    <NA>
 
 $header
-[1] "**<span style=\"color:#FF0000\">values in allowedValues - error</span>**"
+[1] "**<span style=\"color:#00FF00\">values in allowedValues - OK</span>**"
 
 $description
 [1] "Test if the metadata entered is ion the allowedValues list. The value NA is allowed in all column types, empty cells should be avoided."
