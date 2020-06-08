@@ -28,7 +28,7 @@ validate.emeSchemeSet_raw <- function(
 
   # Validate structure ------------------------------------------------------
 
-  result$structure <- dmdScheme:::validateStructure( x )
+  result$structure <- dmdScheme::validateStructure( x )
   if (result$structure$error != 0 & errorIfStructFalse) {
     message(result$structure$details)
     stop("Structure of the object to be evaluated is wrong. See the info above for details.")
