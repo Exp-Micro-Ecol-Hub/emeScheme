@@ -1,6 +1,6 @@
 ---
 title: "User manual for experimental microbial ecology metadata tool"
-author: "Owen and Rainer"
+author: "Owen L. Petchey and Rainer M. Krug"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
@@ -8,7 +8,6 @@ vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
-# **<span style="color:red">TODO</span>**
 
 # Introduction
 
@@ -46,30 +45,41 @@ You can choose to work via a web based application or by writing and running cod
 
 ## Working programatically via R
 
-So the first thing to do is get and load the **emeScheme** R package:
+So the first thing to do is get and load the **emeScheme** R package. This includes to linstall and load the **dmdScheme** package from CRAN and than install the **emeScheme**  scheme package
 
-```{r}
-## install the devtools package if not installed yet
+To install the **dmdScheme** package, you do
+
+```{r, eval = FALSE}
+## install the devtools package if not installed yet. 
+## It is needed for installing the `emeScheme` package
+
 ## install.packages("devtools")
 
-## as the packages are not yet on CRAN, you have to install the package dmdScheme from github first
+## install the `dmdScheme` package fron CRAN
+
+install.packages("dmdScheme")
+
+## you can also install it from github
 
 # devtools::install_github("Exp-Micro-Ecol-Hub/dmdScheme", ref = "master", build_opts = c("--no-resave-data"))
+```
 
-## to install the newest version emeScheme from github including the vignettes, run:
+Now you have to load the **emeScheme** package. This package is a scheme package which can be downloaded from the [scheme repository](https://github.com/Exp-Micro-Ecol-Hub/dmdSchemeRepository). It contains the scheme definition, examples, and an R package which enhances the functionality. Everything is installed into a temporary library which is deleted when you quit R.
+ 
+```{r eval = TRUE, echo = TRUE}
+library("dmdScheme")
 
-# devtools::install_github("Exp-Micro-Ecol-Hub/emeScheme", build_opts = NULL)
-
-## than load the package
+scheme_install(	name = "emeScheme", version = "0.9.5", install_package = TRUE)
 library(emeScheme)
 ```
 
-This will do several things:
+This will do:
 
-1. Download and install the scheme definition for the `emeScheme` and install it in a temporary scheme library by running `scheme_install("emeScheme", "0.9.5")`
-2. activate the new scheme definition by calling `scheme_use("emeScheme", "0.9.5")`
+1. load the package **dmdScheme**
+2. Download and install the scheme definition for the `emeScheme` and install it in a temporary scheme library by running `scheme_install()`
+3. load the accompanying package **emeScheme** and activate the scheme emeScheme by calling `library("emeScheme")`
 
-This wil be done each time you load the package in a new session, as the session library is only temporary.
+This has to be dona each time you load the package in a new R session, as the session library is only temporary.
 
 To make this library permanent, run
 
@@ -78,7 +88,9 @@ cache(createPermanent = TRUE)
 ```
 
 and restart your R session. This will create a permanent cache which is used for the scheme library in your user directory, so that schemes are installed permanently.
-For details on the managing of schemes, see [vignette R r_package_introduction or on the web](https://exp-micro-ecol-hub.github.io/dmdScheme/r_package_introduction.html).
+For details on the managing of schemes, see the vignette "Develop and Use the dmdScheme" in the **dmdScheme** package.
+
+Now you can start entering metadata.
 
 To enter the metadata run this R command to get an Excel version of the emeScheme without metadata in it: 
 
@@ -92,7 +104,7 @@ The following command opens the sheet with the example data in:
 
 ```{r eval=FALSE}
 open_new_spreadsheet(keepData = TRUE) 
-#open_new_spreadsheet(keepData = TRUE, format = FALSE)
+# open_new_spreadsheet(keepData = TRUE, format = FALSE)
 ```
 
 Either way, make a copy of the spreadsheet and save it somewhere safe, like in the folder for your study/experiment .
@@ -154,7 +166,7 @@ The worked **basic** example shows appropriate preparation of data for archiving
 The `basic` folder contains:
 
 * An R-project file `expt1.Rproj`
-* A spreadsheet file `expt1_emeScheme.xlsx`
+* A spreadsheet file `emeScheme.xlsx`
 * A folder named `data` with two subfolders:
   * A `raw_data` folder containing files and folders of files that contain the data as it was entered by the researcher, or produced by the measurement machine.
   * A `archiving_data` folder containing data files that have been prepared for archiving.
@@ -174,13 +186,13 @@ Now we have nicely prepared data. We are ready to fill in the metadata.
 
 There's no more putting it off... lets try filling in the metadata. First, find and open your copy of the metadata spreadsheet you made.
 
-If you're working through the worked example (`basic`), open the `expt1_emeScheme.xlsx` file.
+If you're working through the worked example (`basic`), open the `emeScheme.xlsx` file.
 
 * Green cells are where you enter information.
 * Pink cells are places where you should not try to type anything (they should be locked anyway).
 
 Two important points to remember: 
-1. **Please don't not use any formulas! Only enter values directly! Formulas can (and likely will) cause strange messages later on!**
+1. **Please don't not use any formulas! Only enter values directly! Formulas can (and likely will) cause strange error messages later on!**
 2. **Put an entry in all cells: enter "NA" in cells which do not have a value for your data set. This avoids misunderstandings. The `comment` column can be left empty if you don't have any additional remarks.**
 
 ## Experiment worksheet
@@ -248,7 +260,7 @@ Note that the example contains a datafile in this worksheet that does not exist 
 
 # Validation {#Validation}
 
-**<span style="color:red">This is work in progress. Please give it a go and have a look at the produced validation report, but note that we are leaving most of the development to the next stage of development.</span>**
+**<span style="color:red">This is work in progress. Please give it a go and have a look at the produced validation report, but note that we are leaving most of the development and refinement to the next stage of development.</span>**
 
 After entering your data, you should do a validation test of your metadata and data. The validation will check many different aspects of your metadata and data, and returns a report (html, pdf, docx or all three). The validation and resulting report is a work in progress.
 
