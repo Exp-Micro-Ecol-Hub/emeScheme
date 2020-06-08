@@ -656,8 +656,8 @@ validateExperiment <- function(x, xraw, xconv) {
     "One or more FALSE or missing values values will result in an ERROR."
   )
   ##
-  result$types <- dmdScheme:::validateTypes(xraw$Experiment, xconv$Experiment)
-  result$suggestedValues <- dmdScheme:::validateSuggestedValues(xraw$Experiment)
+  result$types <- dmdScheme::validateTypes(xraw$Experiment, xconv$Experiment)
+  result$suggestedValues <- dmdScheme::validateSuggestedValues(xraw$Experiment)
   ##
   result$details <- valErr_isOK(result)
   result$error <- max(valErr_extract(result), na.rm = FALSE)
@@ -691,8 +691,8 @@ validateSpecies <- function(x, xraw, xconv) {
     "One or more FALSE or missing values values will result in an ERROR."
   )
   ##
-  result$types <- dmdScheme:::validateTypes(xraw$Species, xconv$Species)
-  result$suggestedValues <- dmdScheme:::validateSuggestedValues(xraw$Species)
+  result$types <- dmdScheme::validateTypes(xraw$Species, xconv$Species)
+  result$suggestedValues <- dmdScheme::validateSuggestedValues(xraw$Species)
   result$speciesIDUnique <- valitdateSpeciesIDUnique(xraw)
   result$speciesNames <- validateSpeciesNames(xraw)
   ##
@@ -728,8 +728,8 @@ validateTreatment <- function(x, xraw, xconv) {
     "One or more FALSE or missing values values will result in an ERROR."
   )
   ##
-  result$types <- dmdScheme:::validateTypes(xraw$Treatment, xconv$Treatment)
-  result$suggestedValues <- dmdScheme:::validateSuggestedValues(xraw$Treatment)
+  result$types <- dmdScheme::validateTypes(xraw$Treatment, xconv$Treatment)
+  result$suggestedValues <- dmdScheme::validateSuggestedValues(xraw$Treatment)
   result$parameterInMappinColumn <- validateTreatmentMapping(xraw)
   ##
   result$details <- valErr_isOK(result)
@@ -764,8 +764,8 @@ validateMeasurement <- function(x, xraw, xconv) {
     "One or more FALSE or missing values values will result in an ERROR."
   )
   ##
-  result$types <- dmdScheme:::validateTypes(xraw$Measurement, xconv$Measurement)
-  result$suggestedValues <- dmdScheme:::validateSuggestedValues(xraw$Measurement)
+  result$types <- dmdScheme::validateTypes(xraw$Measurement, xconv$Measurement)
+  result$suggestedValues <- dmdScheme::validateSuggestedValues(xraw$Measurement)
   result$measurementIDUnique <- validateMeasurementIDsUnique(xraw)
   result$measuredFrom <- validateMeasurementMeasuredFrom(xraw)
   result$variableInMappinColumn <- validateMeasurementMapping(xraw)
@@ -803,8 +803,8 @@ validateDataExtraction <- function(x, xraw, xconv) {
     "One or more FALSE or missing values values will result in an ERROR."
   )
   ##
-  result$types <- dmdScheme:::validateTypes(xraw$DataExtraction, xconv$DataExtraction)
-  result$suggestedValues <- dmdScheme:::validateSuggestedValues(xraw$DataExtraction)
+  result$types <- dmdScheme::validateTypes(xraw$DataExtraction, xconv$DataExtraction)
+  result$suggestedValues <- dmdScheme::validateSuggestedValues(xraw$DataExtraction)
   result$nameInDataExtractionName <- validateDataExtractionIDLinked(xraw)
   ##
   result$details <- valErr_isOK(result)
@@ -839,8 +839,8 @@ validateDataFileMetaData <- function(x, xraw, xconv, path) {
     "One or more FALSE or missing values values will result in an ERROR."
   )
   ##
-  result$types <- dmdScheme:::validateTypes(xraw$DataFileMetaData, xconv$DataFileMetaData)
-  result$allowedValues <- dmdScheme:::validateAllowedValues(xraw$DataFileMetaData)
+  result$types <- dmdScheme::validateTypes(xraw$DataFileMetaData, xconv$DataFileMetaData)
+  result$allowedValues <- dmdScheme::validateAllowedValues(xraw$DataFileMetaData)
   result$dataFilesExist <- validateDataFileMetaDataDataFileExists(xraw, path)
   result$datetimeFormatSpecified <- validateDataFileMetaDataDateTimeSpecified(xraw)
   result$mappingColumnInNameOrParameter <- validateDataFileMetaDataMapping(xraw)
