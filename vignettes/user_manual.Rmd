@@ -1,5 +1,5 @@
 ---
-title: "User manual for experimental microbial ecology metadata tool"
+title: "User Manual for Experimental Microbial Ecology Metadata tool"
 author: "Owen L. Petchey and Rainer M. Krug"
 date: "`r Sys.Date()`"
 output: 
@@ -7,7 +7,7 @@ output:
     toc: true
     toc_depth: 4
 vignette: >
-  %\VignetteIndexEntry{Develop and Use the dmdScheme}
+  %\VignetteIndexEntry{User Manual for Experimental Microbial Ecology Metadata tool}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -69,10 +69,13 @@ install.packages("dmdScheme")
 
 Now you have to load the **emeScheme** package. This package is a scheme package which can be downloaded from the [scheme repository](https://github.com/Exp-Micro-Ecol-Hub/dmdSchemeRepository). It contains the scheme definition, examples, and an R package which enhances the functionality. Everything is installed into a temporary library which is deleted when you quit R.
  
-```{r eval = TRUE, echo = TRUE}
+```{r eval = FALSE, echo = TRUE}
 library("dmdScheme")
 
 scheme_install(	name = "emeScheme", version = "0.9.5", install_package = TRUE)
+```
+
+```{r eval = TRUE, echo = TRUE}
 library(emeScheme)
 ```
 
