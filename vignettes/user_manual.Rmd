@@ -2,9 +2,12 @@
 title: "User manual for experimental microbial ecology metadata tool"
 author: "Owen L. Petchey and Rainer M. Krug"
 date: "`r Sys.Date()`"
-output: rmarkdown::html_vignette
+output: 
+  rmarkdown::html_vignette: 
+    toc: true
+    toc_depth: 4
 vignette: >
-  %\VignetteIndexEntry{User manual}
+  %\VignetteIndexEntry{Develop and Use the dmdScheme}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -41,7 +44,7 @@ You can choose to work via a web based application or by writing and running cod
 
 ## Working via the web based application
 
-****** Add this section.
+There are three different ways of using the **emeScheme**. You can either use ist as a web-app at [https://rmkrug.shinyapps.io/dmd_app/](https://rmkrug.shinyapps.io/dmd_app/), as a web-app locally, or from the R prompt programatically. A comparison of these three methods can be found in the "Develop and Use the dmdScheme" vignette in the **dmdScheme** package. Here, we will only describe how use the scheme from the R prompt, as the steps in the web-app (on the internet or locally) are easily understandable from this description.
 
 ## Working programatically via R
 
