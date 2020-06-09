@@ -27,3 +27,4 @@
 ^deploy\.sh$
 ^SCHEME_PACKAGE$
 ^emeScheme\.bbprojectd$
+^codemeta\.json$
