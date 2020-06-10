@@ -16,7 +16,9 @@
 #'
 #' @docType package
 #' @name pkg.emeScheme
-#' @import dmdScheme
+#' @import nlme
+#' @import lattice
+#' @import Matrix
 #' @importFrom rlang .data
 NULL
 
