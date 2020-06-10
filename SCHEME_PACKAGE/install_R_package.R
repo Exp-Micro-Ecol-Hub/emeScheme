@@ -1,10 +1,8 @@
-if (!require(devtools)) {
-  install.packages("devtools")
-}
+rold <- options("repos")
+r <- rold
+r["dmdScheme"] <- "https://exp-micro-ecol-hub.github.io/dmdSchemeRMaster/"
+options(repos = r)
 
-devtools::install_github(
-  repo = "Exp-Micro-Ecol-Hub/emeScheme",
-  ref = "master",
-  force = TRUE,
-  upgrade = "never"
-)
+install.packages("emeScheme")
+
+options(repos = rold)
