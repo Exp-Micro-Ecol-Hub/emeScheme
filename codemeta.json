@@ -11,7 +11,7 @@
   "relatedLink": "https://exp-micro-ecol-hub.github.io/emeScheme/",
   "issueTracker": "https://github.com/Exp-Micro-Ecol-Hub/emeScheme/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "1.1.2",
+  "version": "1.1.5",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
