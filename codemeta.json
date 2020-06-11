@@ -5,7 +5,7 @@
   ],
   "@type": "SoftwareSourceCode",
   "identifier": "emeScheme",
-  "description": "The Authoratative definition of the emeScheme (Experimental Microcosm Ecology Metadata) and tools to enter, validate\n              and export the metadata.",
+  "description": "The acompanying R package for the emeScheme \n              (Experimental Microcosm Ecology Metadata)\n              which includes additional functionality.",
   "name": "emeScheme: Microcosm Experiment Metadata Scheme",
   "codeRepository": "https://github.com/Exp-Micro-Ecol-Hub/emeScheme",
   "relatedLink": "https://exp-micro-ecol-hub.github.io/emeScheme/",

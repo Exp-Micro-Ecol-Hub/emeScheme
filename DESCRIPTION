@@ -1,7 +1,8 @@
 Package: emeScheme
 Title: Microcosm Experiment Metadata Scheme
-Description: The Authoratative definition of the emeScheme (Experimental Microcosm Ecology Metadata) and tools to enter, validate
-              and export the metadata.
+Description: The acompanying R package for the emeScheme 
+              (Experimental Microcosm Ecology Metadata)
+              which includes additional functionality.
 Version: 1.1.2
 Date: 2020-06-08
 Authors@R: c( person( "Rainer M.", "Krug", role = c("aut", "cre"), email = "Rainer.Krug@uzh.ch" ), person( "Owen
