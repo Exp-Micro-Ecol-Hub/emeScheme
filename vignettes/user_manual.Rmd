@@ -39,35 +39,30 @@ You will benefit from starting metadata entry when you design your study. You'll
 
 # Getting started
 
-You can choose to work via a web based application or by writing and running code in R. In either case you will enter the metadata in a supplied spreadsheet (Googlesheets or Excel).
-
-
-## Working via the web based application
-
-There are three different ways of using the **emeScheme**. You can either use ist as a web-app at [https://rmkrug.shinyapps.io/dmd_app/](https://rmkrug.shinyapps.io/dmd_app/), as a web-app locally, or from the R prompt programatically. A comparison of these three methods can be found in the "Develop and Use the dmdScheme" vignette in the **dmdScheme** package. Here, we will only describe how use the scheme from the R prompt, as the steps in the web-app (on the internet or locally) are easily understandable from this description.
+There are three different ways of using the **emeScheme**. You can either use ist as a web-app at [https://rmkrug.shinyapps.io/dmd_app/](https://rmkrug.shinyapps.io/dmd_app/), as a web-app locally, or from the R prompt programatically. A comparison of these three methods can be found in the "Develop and use the `dmdScheme`" vignette in the **dmdScheme** package. Here, we will only describe how use the scheme from the R prompt, as the steps in the web-app (on the internet or locally) are easily understandable after going through this description.
 
 ## Working programatically via R
 
-So the first thing to do is get and load the **emeScheme** R package. This includes to linstall and load the **dmdScheme** package from CRAN and than install the **emeScheme**  scheme package
+So the first thing to do is get and load the **emeScheme** R package. This includes to linstall and load the **dmdScheme** package from CRAN and than install the **emeScheme**  scheme package and the accompanying R package.
 
-To install the **dmdScheme** package, you do
+You can install the base package **dmdScheme** from [CRAN](https://cran.r-project.org) or from [github](https://github.com/Exp-Micro-Ecol-Hub/dmdScheme). We recommend instaling from CRAN, as this is the officially supported version. The master branch on [masterbranch on github](https://github.com/Exp-Micro-Ecol-Hub/dmdScheme) is usually also stable, but the [dev branch](https://github.com/Exp-Micro-Ecol-Hub/dmdScheme/tree/dev) contains the development version and should be avoided for normal usage. To install the package, you do
 
 ```{r, eval = FALSE}
-## install the devtools package if not installed yet. 
-## It is needed for installing the `emeScheme` package
-
-## install.packages("devtools")
-
 ## install the `dmdScheme` package fron CRAN
 
 install.packages("dmdScheme")
 
-## you can also install it from github
+## you can also install it from github, for which you need the `devtools` package
 
+# install.packages("devtools")
 # devtools::install_github("Exp-Micro-Ecol-Hub/dmdScheme", ref = "master", build_opts = c("--no-resave-data"))
 ```
 
-Now you have to load the **emeScheme** package. This package is a scheme package which can be downloaded from the [scheme repository](https://github.com/Exp-Micro-Ecol-Hub/dmdSchemeRepository). It contains the scheme definition, examples, and an R package which enhances the functionality. Everything is installed into a temporary library which is deleted when you quit R.
+Now you have to install the **emeScheme** scheme package. This scheme package, which can be installed from the [scheme repository](https://github.com/Exp-Micro-Ecol-Hub/dmdSchemeRepository), contains the scheme definition, examples, and a script to install an R package which enhances the functionality. The scheme is instyalled into a temporary library which is deleted when you quit R, while the R package is installed in the normal R library.
+
+Ypu have to
+1. load the package **dmdScheme**,
+2. download and install the scheme definition for the `emeScheme` in a temporary scheme library by running `scheme_install()`, and the acompanying R package (which has the same name as the scheme package, i.e. `emeScheme`)
  
 ```{r eval = FALSE, echo = TRUE}
 library("dmdScheme")
@@ -75,19 +70,15 @@ library("dmdScheme")
 scheme_install(	name = "emeScheme", version = "0.9.5", install_package = TRUE)
 ```
 
+3. load the accompanying package **emeScheme** and load the acompanying package
+
 ```{r eval = TRUE, echo = TRUE}
 library(emeScheme)
 ```
 
-This will do:
+Tne scheme needs to be installed each time you load the package in a new R session, as the session library is only temporary, but the R package is installed permanently.
 
-1. load the package **dmdScheme**
-2. Download and install the scheme definition for the `emeScheme` and install it in a temporary scheme library by running `scheme_install()`
-3. load the accompanying package **emeScheme** and activate the scheme emeScheme by calling `library("emeScheme")`
-
-This has to be dona each time you load the package in a new R session, as the session library is only temporary.
-
-To make this library permanent, run
+To make thithe scheme library permanent, run
 
 ```{r eval = FALSE, echo = TRUE}
 cache(createPermanent = TRUE)
@@ -95,6 +86,14 @@ cache(createPermanent = TRUE)
 
 and restart your R session. This will create a permanent cache which is used for the scheme library in your user directory, so that schemes are installed permanently.
 For details on the managing of schemes, see the vignette "Develop and Use the dmdScheme" in the **dmdScheme** package.
+
+even without a permanent scheme library, you can the next time simply use
+
+```{r, eval = FALSE}
+library("emeScheme")
+```
+
+to load the R package and install (when needed) the scheme package.
 
 Now you can start entering metadata.
 
@@ -104,7 +103,7 @@ To enter the metadata run this R command to get an Excel version of the emeSchem
 open_new_spreadsheet()
 ```
 
-If you are told there are problems with opening the spreadsheet then try `open_new_spreadsheet(format = FALSE)`
+If you are told there are problems with opening the spreadsheet then try to repair it automatically. If this does not work, use `open_new_spreadsheet(format = FALSE)`
 
 The following command opens the sheet with the example data in:
 
@@ -117,6 +116,8 @@ Either way, make a copy of the spreadsheet and save it somewhere safe, like in t
 
 Its probably worth now looking at the spreadsheet (but don't yet try to fill in anything), to see what metadata you will need to enter. There are several worksheets:
 
+* **MdBibliometric** <span style="color:red">TODO</span>
+* **MdAuthor** <span style="color:red">TODO</span>
 * **Experiment** Here you enter details of your experiment, e.g. what temperature was the experiment conducted at. If temperature was a treatment, then you state that here and supply the levels in the **Treatments** worksheet.
 * **Species** Give details of the species involved in the experiment. If the species are unknow, enter `unknown`,
 * **Treatments** Here we give the manipulations involved in the experiment.
@@ -133,16 +134,12 @@ There are no hard and fast rules, but there are some guidelines that will make t
 * Always include a variable that allows data file to be related to others (e.g. Microcosm_ID).
 * Do not put different measurement types in a single data file. E.g. do not put measures of dissolved oxygen measures and adundance data in the same data file.
 
-If your data does not fit these guidelines, e.g. is a collection of videos files or a collection of files containing DNA sequence data, put it in a container of some kind (e.g. compressed folder (tar.gz preferably) or zip file) and describe this in the metadata.
+If your data does not fit these guidelines, e.g. is a collection of videos files or a collection of files containing DNA sequence data, create a summary table which lists the files and gives a description on the treatment from which the files resulted. In this way, your datafile is the  summary table, ad your individual file (video, image, DNA sequence file, ...) is one datapoint. You can either add all these in an additional directory or put them into one container of some kind (e.g. compressed folder (tar.gz preferably) or zip file).
 
 ## About dates and times
 
 It will be very useful if during data preparation you standardise (parse) any dates and times in the data. A good method for this is to use functions in the **lubridate** R package, such as `dmy`, `hms`, and `dmy_hms` to create the standardise dates, and then write these to the ready for research/archiving data version.
 
-<!-- TODO Should be adapted to the Excel sheet! -->
-<!-- ## A note on allowed entries in the **google** version of the spreadsheet -->
-
-<!-- For some cells there are suggested entries listed in the row **suggestedValues** or available in a dropdown list. **Please use these suggestions if you can**. You can enter an item not in the provided list: just type what you like in the cell. If you do this, you will get the message "Invalid: Input must be an item on specified list". You can ignore this message.  -->
 
 ## A worked example of preparation of data for archiving
 
@@ -201,13 +198,21 @@ Two important points to remember:
 1. **Please don't not use any formulas! Only enter values directly! Formulas can (and likely will) cause strange error messages later on!**
 2. **Put an entry in all cells: enter "NA" in cells which do not have a value for your data set. This avoids misunderstandings. The `comment` column can be left empty if you don't have any additional remarks.**
 
+## MdBibliometric worksheet
+
+This worksheet (together with MdAuthor) contains the bibliometric metadata, i.e. the metadata related to authorship, licenses, keywords, etc. Most of the fields are self explantory.   
+
+## MdAuthors worksheet
+
+This sheet contains everybody involved to such a degree in the measurement, curation and  other aspects involving the data gathering itself as well as the creation of this data package (datasets + metadata + other accompanying documents). Every scientist who publishes, should be encouraged to get a unique ID. One of the most widely used one is the [ORCID ID](https://orcid.org). This ID has to be entered in the column `orcid`. The last column contains the rol person has played in this process. The role is defined by [CRediT system, the Contributor Roles Taxonomy](https://casrai.org/credit/) at. One author can have more than one role.
+
 ## Experiment worksheet
 
 This one should not need too much explanation. One important point is, however, what to enter in a field (e.g. temperature) if your experiment involved different temperatures (i.e. temperature was a treatment). The answer is you should enter the word "treatment".
 
 When you fill in this information, think about standardisation. If you enter a temperature, you should therefore enter only a numeric value in degrees Celcius. Writing "twelve degrees" is going to be quite unhelpful! (We could constrain the possible entries here, but then we lose flexibility; recall the discussion above about balancing standardisation and flexibility.)
 
-Something else of note: Look at the field `mediaAdditions` and you will see the entry is "Wheat seeds added on specific dates, see file wheat_seed_additions.csv". Here we see the possibility for great flexibility... we refer to information in a separate data file. Note though that this data file is just a list of dates and number of wheat seeds added--it is not information about an experimental treatment, because all experimental treatments experience the same additions (i.e. these additions are feature of the experiment). In addition, the information in these additional files is **not indexed** when submitting the data to a repository for archiving. In other words: researcher will be able to search for all entries in this metadata sheet, but not be able to directly search the data in the data files (data files, additional files as wheat_seet_additions.csv)! So such information as is in the wheat_seed_additions.csv file are effectively hidden from such searches. This is an example of flexibility dominating over standardisation, with some findability thereby being lost.
+Something else of note: Look at the field `mediaAdditions` and you will see the entry is "Wheat seeds added on specific dates, see file wheat_seed_additions.csv". Here we see the possibility for great flexibility... we refer to information in a separate data file. Note though that this data file is just a list of dates and number of wheat seeds added -- it is not information about an experimental treatment, because all experimental treatments experience the same additions (i.e. these additions are feature of the experiment). In addition, the information in these additional files is **not indexed** when submitting the data to a repository for archiving. In other words: researcher will be able to search for all entries in this metadata sheet, but not be able to directly search the data in the data files (data files, additional files as wheat_seet_additions.csv)! So such information as is in the wheat_seed_additions.csv file are effectively hidden from such searches. This is an example of flexibility dominating over standardisation, with some findability thereby being lost.
 
 If you believe that other features of your experiment are important to include, please do so by adding these in the `comment` row. 
 
@@ -284,9 +289,10 @@ The validation report will suggest improvement you can make to your metadata. It
 
 # Making the final xml version
 
-The Excel version of the metadata is most useful for us to enter the metadata easily. It is not so useful for standardised/automated metadata enquiry/search/submission... i.e. Excel versions of metadata are not really FAIR compliable. The metadata gurus decided that it should be stored as xml files, as it is plain text, it is in principle readable by humans (though is not meant to be read by humans really), it is machine readable (and then easily converted into any other format, e.g. ones easy for humans to read).
+The Excel version of the metadata is most useful for us to enter the metadata easily. It is not so useful for standardised/automated metadata enquiry/search/submission... i.e. Excel versions of metadata are not really [FAIR](https://www.force11.org/group/fairgroup/fairprinciples) compliable. The metadata gurus decided that it should be stored as xml files, as it is plain text, it is in principle readable by humans (though is not meant to be read by humans really), it is machine readable (and then easily converted into any other format, e.g. ones easy for humans to read).
 
 Therefore, you should submit the final xml version of your metadata. Only do this after you have a satisfactory validation. 
+
 As the metadata as it is entered in the spreadsheet contains metadata for *many* different data files (as enterd in the column `DataFileMetaData / dataFileName`), the metadata will be split and exported to multiple xml files.
 
 ```{r eval=FALSE}
@@ -311,4 +317,4 @@ readRDS( file = "thenameofyourmetadataspreadsheet.RDS" )
 
 # Depositing in a repository {#depositing}
 
-We suggest that your metadata (the produced xml file), data, and validation report are deposited as one submission, e.g. to a repository such as dryad or zenodo. 
+We suggest that your metadata (the produced xml file and the excel file), data files, and validation report are deposited as one submission, e.g. to a repository such as dryad or zenodo. 
