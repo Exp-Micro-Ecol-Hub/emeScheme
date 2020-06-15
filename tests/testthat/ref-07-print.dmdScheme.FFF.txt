@@ -1,4 +1,6 @@
  emeScheme - dmdSchemeSet
+     MdBibliometric - dmdSchemeData
+     MdAuthors - dmdSchemeData
      Experiment - dmdSchemeData
      Species - dmdSchemeData
      Treatment - dmdSchemeData

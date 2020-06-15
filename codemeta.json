@@ -1,21 +1,24 @@
 {
-  "@context": ["https://doi.org/10.5063/schema/codemeta-2.0", "http://schema.org"],
+  "@context": [
+    "https://doi.org/10.5063/schema/codemeta-2.0",
+    "http://schema.org"
+  ],
   "@type": "SoftwareSourceCode",
   "identifier": "emeScheme",
-  "description": "The Authoratative definition of the emeScheme (Experimental Microcosm Ecology Metadata) and tools to enter, validate\n              and export the metadata.",
+  "description": "The acompanying R package for the emeScheme \n              (Experimental Microcosm Ecology Metadata)\n              which includes additional functionality.",
   "name": "emeScheme: Microcosm Experiment Metadata Scheme",
   "codeRepository": "https://github.com/Exp-Micro-Ecol-Hub/emeScheme",
   "relatedLink": "https://exp-micro-ecol-hub.github.io/emeScheme/",
   "issueTracker": "https://github.com/Exp-Micro-Ecol-Hub/emeScheme/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "1.1.1",
+  "version": "1.1.6",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
-    "version": "4.0.0",
+    "version": "4.0.1",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.0.0 (2020-04-24)",
+  "runtimePlatform": "R version 4.0.1 (2020-06-06)",
   "author": [
     {
       "@type": "Person",
@@ -233,11 +236,29 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=lattice"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "Matrix",
+      "name": "Matrix",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=Matrix"
     }
   ],
   "releaseNotes": "https://github.com/Exp-Micro-Ecol-Hub/emeScheme/blob/master/NEWS.md",
   "readme": "https://github.com/Exp-Micro-Ecol-Hub/emeScheme/blob/master/README.md",
-  "contIntegration": ["https://travis-ci.com/Exp-Micro-Ecol-Hub/emeScheme", "https://codecov.io/github/Exp-Micro-Ecol-Hub/emeScheme?branch=master"],
-  "developmentStatus": ["https://www.tidyverse.org/lifecycle/#mturing", "https://www.repostatus.org/#wip"],
+  "contIntegration": [
+    "https://travis-ci.com/Exp-Micro-Ecol-Hub/emeScheme",
+    "https://codecov.io/github/Exp-Micro-Ecol-Hub/emeScheme?branch=master"
+  ],
+  "developmentStatus": [
+    "https://www.tidyverse.org/lifecycle/#mturing",
+    "https://www.repostatus.org/#wip"
+  ],
   "keywords": "metadata-scheme"
 }

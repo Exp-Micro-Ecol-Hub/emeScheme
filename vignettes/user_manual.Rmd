@@ -1,25 +1,27 @@
 ---
-title: "User manual for experimental microbial ecology metadata tool"
-author: "Owen and Rainer"
+title: "User Manual for Experimental Microbial Ecology Metadata tool"
+author: "Owen L. Petchey and Rainer M. Krug"
 date: "`r Sys.Date()`"
-output: rmarkdown::html_vignette
+output: 
+  rmarkdown::html_vignette: 
+    toc: true
+    toc_depth: 4
 vignette: >
-  %\VignetteIndexEntry{User manual}
+  %\VignetteIndexEntry{User Manual for Experimental Microbial Ecology Metadata tool}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
-# **<span style="color:red">TODO</span>**
 
 # Introduction
 
-Researchers are increasingly required to make the data they produce **F**indable, **A**ccessible, **I**nteroperable, and **R**eusable ([wikipedia FAIR entry](https://en.wikipedia.org/wiki/FAIR_data)). Providing metadata that describes our studies, experiments, treatments, measurements, data, and so on is a key part of this endeavour.
+Researchers are increasingly required to make the data they produce **F**indable, **A**ccessible, **I**nteroperable, and **R**eusable ([wikipedia FAIR entry](https://en.wikipedia.org/wiki/FAIR_data)). Providing metadata that describes studies, experiments, treatments, measurements, data, and so on is a key part of this endeavour.
 
 The aim of the experimental microbial ecology metadata tool (`emeScheme` R package on [https://github.com/Exp-Micro-Ecol-Hub/emeScheme](https://github.com/Exp-Micro-Ecol-Hub/emeScheme)) and the associated experimental microbial ecologal experiments metadata scheme (`emeScheme` scheme package on [https://github.com/Exp-Micro-Ecol-Hub/dmdSchemeRepository](https://github.com/Exp-Micro-Ecol-Hub/dmdSchemeRepository)) is to help you describe your study and its data, i.e. to produce useful metadata. You will do this by 
 
 1. Preparing your datasets for archiving (see [Prepare Data for Archiving](#PrepareDataForArchiving)), 
-2. Filling in your metadata the spreadsheet supplied (see [Fill in Metadata](#FillInMetadata)), 
+2. Entering your metadata into the spreadsheet supplied (see [Fill in Metadata](#FillInMetadata)), 
 2. Validating the combination of the metadata and data (this will be largely automatic) (see [Validation](#Validation)), 
-4. Fixing any issues revealed by the validation step, and once satisfactorily validated (see [Fixing issues](#Fixing)), 
+4. Fixing any issues revealed by the validation step, until satisfactorily validated (see [Fixing issues](#Fixing)).
 5. Deposit the metadata and data in a repository of your choice (see [Depositing in a repository](#depositing)).
 
 # What is *useful* metadata?
@@ -28,48 +30,72 @@ Imagine we would like to use the metadata to find experiments (and potentially r
 
 # What metadata is covered in the emeScheme, and what is not
 
-The emeScheme metadata only covers that necessary/helpful to describe an "experimental microbial ecology" study (though as an aside we think/wonder if it might be useful for many other settings of ecological experiments). Other important/essential metadata is not included, and will not be included, **in the emeScheme** because it is in other schemes such as the *DataCite* scheme and/or the *Ecological Metadata Language/Scheme*. We may, however, add tools that help researchers enter this important/essential metadata also.  
+The emeScheme metadata only covers that necessary/helpful to describe an "experimental microbial ecology" study (though as an aside we think/wonder if it might be useful for many other settings of ecological experiments). Some important/essential metadata that is also required by other schemes, such as the *DataCite* scheme and/or the *Ecological Metadata Language/Scheme*, are included (e.g. some bibliographic information) but much is not. We may add tools that help researchers enter other metadata and to export to other schemes.
 
 
 # At what point of my study should I enter metadata
 
-You will benefit from starting metadata entry when you design your study. You'll likely find out that doing to will help with the planning of the study. You may then choose to work in a slightly different way, since this will make things more efficient later (this might especially be so for data handling issues). No problem, however, if you decide to do it at the end (or you are reading this after a study is complete).
+You will benefit from starting metadata entry when you design your study. You'll likely find out that doing so will help with the planning of the study. You may then choose to work in a slightly different way, since this will make things more efficient later (this might especially be so for data handling issues). No problem, however, if you decide to do it at the end (or you are reading this after a study is complete).
 
 # Getting started
 
-You will enter the metadata in a supplied spreadsheet (Googlesheets or Excel), but then use R to do some tasks, like validation and transormation of metadata into more machine readable form. So the first thing to do is get and load the **emeScheme** R package:
+There are three different ways of using the **emeScheme**. You can either use ist as a web-app at [https://rmkrug.shinyapps.io/dmd_app/](https://rmkrug.shinyapps.io/dmd_app/), as a web-app locally, or from the R prompt programatically. A comparison of these three methods can be found in the "Develop and use the `dmdScheme`" vignette in the **dmdScheme** package. Here, we will only describe how use the scheme from the R prompt, as the steps in the web-app (on the internet or locally) are easily understandable after going through this description.
 
-```{r}
-## install the devtools package if not installed yet
-## install.packages("devtools")
+## Working programatically via R
 
-## as the packages are not yet on CRAN, you have to install the package dmdScheme from github first
+So the first thing to do is get and load the **emeScheme** R package. This includes to linstall and load the **dmdScheme** package from CRAN and than install the **emeScheme**  scheme package and the accompanying R package.
 
+You can install the base package **dmdScheme** from [CRAN](https://cran.r-project.org) or from [github](https://github.com/Exp-Micro-Ecol-Hub/dmdScheme). We recommend instaling from CRAN, as this is the officially supported version. The master branch on [masterbranch on github](https://github.com/Exp-Micro-Ecol-Hub/dmdScheme) is usually also stable, but the [dev branch](https://github.com/Exp-Micro-Ecol-Hub/dmdScheme/tree/dev) contains the development version and should be avoided for normal usage. To install the package, you do
+
+```{r, eval = FALSE}
+## install the `dmdScheme` package fron CRAN
+
+install.packages("dmdScheme")
+
+## you can also install it from github, for which you need the `devtools` package
+
+# install.packages("devtools")
 # devtools::install_github("Exp-Micro-Ecol-Hub/dmdScheme", ref = "master", build_opts = c("--no-resave-data"))
+```
 
-## to install the newest version emeScheme from github including the vignettes, run:
+Now you have to install the **emeScheme** scheme package. This scheme package, which can be installed from the [scheme repository](https://github.com/Exp-Micro-Ecol-Hub/dmdSchemeRepository), contains the scheme definition, examples, and a script to install an R package which enhances the functionality. The scheme is instyalled into a temporary library which is deleted when you quit R, while the R package is installed in the normal R library.
 
-# devtools::install_github("Exp-Micro-Ecol-Hub/emeScheme", build_opts = NULL)
+Ypu have to
+1. load the package **dmdScheme**,
+2. download and install the scheme definition for the `emeScheme` in a temporary scheme library by running `scheme_install()`, and the acompanying R package (which has the same name as the scheme package, i.e. `emeScheme`)
+ 
+```{r eval = FALSE, echo = TRUE}
+library("dmdScheme")
 
-## than load the package
+scheme_install(	name = "emeScheme", version = "0.9.5", install_package = TRUE)
+```
+
+3. load the accompanying package **emeScheme** and load the acompanying package
+
+```{r eval = TRUE, echo = TRUE}
 library(emeScheme)
 ```
 
-This will do several things:
+Tne scheme needs to be installed each time you load the package in a new R session, as the session library is only temporary, but the R package is installed permanently.
 
-1. Download and install the scheme definition for the `emeScheme` and install it in a temporary scheme library by running `scheme_install("emeScheme", "0.9.5)`
-2. activate the new scheme definition by calling `scheme_use("emeScheme", "0.9.5"`
-
-This wil be done each time you load the package in a new session, as the session library is only temporary.
-
-To make this library permanent, run
+To make thithe scheme library permanent, run
 
 ```{r eval = FALSE, echo = TRUE}
 cache(createPermanent = TRUE)
 ```
 
 and restart your R session. This will create a permanent cache which is used for the scheme library in your user directory, so that schemes are installed permanently.
-For details on the managing of schemes, see [vignette R r_package_introduction or on the web](https://exp-micro-ecol-hub.github.io/dmdScheme/r_package_introduction.html).
+For details on the managing of schemes, see the vignette "Develop and Use the dmdScheme" in the **dmdScheme** package.
+
+even without a permanent scheme library, you can the next time simply use
+
+```{r, eval = FALSE}
+library("emeScheme")
+```
+
+to load the R package and install (when needed) the scheme package.
+
+Now you can start entering metadata.
 
 To enter the metadata run this R command to get an Excel version of the emeScheme without metadata in it: 
 
@@ -77,16 +103,21 @@ To enter the metadata run this R command to get an Excel version of the emeSchem
 open_new_spreadsheet()
 ```
 
+If you are told there are problems with opening the spreadsheet then try to repair it automatically. If this does not work, use `open_new_spreadsheet(format = FALSE)`
+
 The following command opens the sheet with the example data in:
 
 ```{r eval=FALSE}
-open_new_spreadsheet(keepData = TRUE)
+open_new_spreadsheet(keepData = TRUE) 
+# open_new_spreadsheet(keepData = TRUE, format = FALSE)
 ```
 
 Either way, make a copy of the spreadsheet and save it somewhere safe, like in the folder for your study/experiment .
 
 Its probably worth now looking at the spreadsheet (but don't yet try to fill in anything), to see what metadata you will need to enter. There are several worksheets:
 
+* **MdBibliometric** <span style="color:red">TODO</span>
+* **MdAuthor** <span style="color:red">TODO</span>
 * **Experiment** Here you enter details of your experiment, e.g. what temperature was the experiment conducted at. If temperature was a treatment, then you state that here and supply the levels in the **Treatments** worksheet.
 * **Species** Give details of the species involved in the experiment. If the species are unknow, enter `unknown`,
 * **Treatments** Here we give the manipulations involved in the experiment.
@@ -99,20 +130,16 @@ Its probably worth now looking at the spreadsheet (but don't yet try to fill in 
 There are no hard and fast rules, but there are some guidelines that will make things easier, or are otherwise recommended for datasets (e.g. data that we can have in a spreadsheet):
 
 * Use long / tidy arrangement of data.
-* Always include a variable for each treatment.
-* Always include a variable that allows one data file to be related to others (e.g. Microcosm_ID).
-* Put all measurement of one type in a single data file. E.g. one datafile of dissolved oxygen measures, one datafile of adundance data, one data file of sequence data, containing all measurements from all treatments.
+* Use a separate variable for each treatment.
+* Always include a variable that allows data file to be related to others (e.g. Microcosm_ID).
+* Do not put different measurement types in a single data file. E.g. do not put measures of dissolved oxygen measures and adundance data in the same data file.
 
-If your data does not fit these guidelines, e.g. is a collection of videos files or a collection of files containing DNA sequence data, put it in a container of some kind (e.g. compressed folder (tar.gz preferably) or zip file) and describe this in the metadata.
+If your data does not fit these guidelines, e.g. is a collection of videos files or a collection of files containing DNA sequence data, create a summary table which lists the files and gives a description on the treatment from which the files resulted. In this way, your datafile is the  summary table, ad your individual file (video, image, DNA sequence file, ...) is one datapoint. You can either add all these in an additional directory or put them into one container of some kind (e.g. compressed folder (tar.gz preferably) or zip file).
 
 ## About dates and times
 
 It will be very useful if during data preparation you standardise (parse) any dates and times in the data. A good method for this is to use functions in the **lubridate** R package, such as `dmy`, `hms`, and `dmy_hms` to create the standardise dates, and then write these to the ready for research/archiving data version.
 
-<!-- TODO Should be adapted to the Excel sheet! -->
-<!-- ## A note on allowed entries in the **google** version of the spreadsheet -->
-
-<!-- For some cells there are suggested entries listed in the row **suggestedValues** or available in a dropdown list. **Please use these suggestions if you can**. You can enter an item not in the provided list: just type what you like in the cell. If you do this, you will get the message "Invalid: Input must be an item on specified list". You can ignore this message.  -->
 
 ## A worked example of preparation of data for archiving
 
@@ -142,7 +169,7 @@ The worked **basic** example shows appropriate preparation of data for archiving
 The `basic` folder contains:
 
 * An R-project file `expt1.Rproj`
-* A spreadsheet file `expt1_emeScheme.xlsx`
+* A spreadsheet file `emeScheme.xlsx`
 * A folder named `data` with two subfolders:
   * A `raw_data` folder containing files and folders of files that contain the data as it was entered by the researcher, or produced by the measurement machine.
   * A `archiving_data` folder containing data files that have been prepared for archiving.
@@ -152,24 +179,32 @@ The `basic` folder contains:
 
 **You will not be able to use the code in `data_preparation.Rmd` outside thias example as it is highly specific to this example.**
 
-**Note** that it is **very important** thet the preparation of the data for easy use by researchers and for archiving (done in `data_preparation.Rmd`) in no way changes, subsets, or otherwise manipulates the data. It is just a rearrangement of the raw data and addition of treatment and other useful information.
+**Note** that it is **very important** that the preparation of the data for easy use by researchers and for archiving (done in `data_preparation.Rmd`) is completely transparent.
 
-If you want to try it, delete all the files in the `data/archiving_data` foilder and knit the `data_preparation.Rmd` or execute / source the `data_preparation.R` file which will re-create the files in the `archiving_data` folder.
+If you want to try it, delete all the files in the `data/archiving_data` folder and knit the `data_preparation.Rmd` or execute / source the `data_preparation.R` file which will re-create the files in the `archiving_data` folder.
 
-Super. Now we have nicely prepared data. We are ready to fill in the metadata.
+Now we have nicely prepared data. We are ready to fill in the metadata.
 
 # Fill in the Metadata {#FillInMetadata}
 
 There's no more putting it off... lets try filling in the metadata. First, find and open your copy of the metadata spreadsheet you made.
 
-If you're working through the worked example (`basic`), open the `expt1_emeScheme.xlsx` file.
+If you're working through the worked example (`basic`), open the `emeScheme.xlsx` file.
 
 * Green cells are where you enter information.
 * Pink cells are places where you should not try to type anything (they should be locked anyway).
 
 Two important points to remember: 
-1. **Please don't not use any formulas! Only enter values directly! Formulas can (and likely will) cause strange messages later!**
-2. **Enter in cells, which do not have a value for your data set, "NA". This avoids misunderstandings. The `comment` column can be left empty if you don't have any additional remarks.**
+1. **Please don't not use any formulas! Only enter values directly! Formulas can (and likely will) cause strange error messages later on!**
+2. **Put an entry in all cells: enter "NA" in cells which do not have a value for your data set. This avoids misunderstandings. The `comment` column can be left empty if you don't have any additional remarks.**
+
+## MdBibliometric worksheet
+
+This worksheet (together with MdAuthor) contains the bibliometric metadata, i.e. the metadata related to authorship, licenses, keywords, etc. Most of the fields are self explantory.   
+
+## MdAuthors worksheet
+
+This sheet contains everybody involved to such a degree in the measurement, curation and  other aspects involving the data gathering itself as well as the creation of this data package (datasets + metadata + other accompanying documents). Every scientist who publishes, should be encouraged to get a unique ID. One of the most widely used one is the [ORCID ID](https://orcid.org). This ID has to be entered in the column `orcid`. The last column contains the rol person has played in this process. The role is defined by [CRediT system, the Contributor Roles Taxonomy](https://casrai.org/credit/) at. One author can have more than one role.
 
 ## Experiment worksheet
 
@@ -177,7 +212,7 @@ This one should not need too much explanation. One important point is, however, 
 
 When you fill in this information, think about standardisation. If you enter a temperature, you should therefore enter only a numeric value in degrees Celcius. Writing "twelve degrees" is going to be quite unhelpful! (We could constrain the possible entries here, but then we lose flexibility; recall the discussion above about balancing standardisation and flexibility.)
 
-Something else of note: Look at the field `mediaAdditions` and you will see the entry is "Wheat seeds added on specific dates, see file wheat_seed_additions.csv". Here we see the possibility for great flexibility... we refer to information in a separate data file. Note though that this data file is just a list of dates and number of wheat seeds added--it is not information about an experimental treatment, because all experimental treatments experience the same additions (i.e. these additions are feature of the experiment). In addition, the information in these additional files is **not indexed** when submitting the data to a repository for archiving. In other words: researcher will be able to search for all entries in this metadata sheet, but not be able to directly search the data in the data files (data files, additional files as wheat_seet_additions.csv)! So such information as is in the wheat_seed_additions.csv file are effectively hidden from such searches. This is an example of flexibility dominating over standardisation, with some findability thereby being lost.
+Something else of note: Look at the field `mediaAdditions` and you will see the entry is "Wheat seeds added on specific dates, see file wheat_seed_additions.csv". Here we see the possibility for great flexibility... we refer to information in a separate data file. Note though that this data file is just a list of dates and number of wheat seeds added -- it is not information about an experimental treatment, because all experimental treatments experience the same additions (i.e. these additions are feature of the experiment). In addition, the information in these additional files is **not indexed** when submitting the data to a repository for archiving. In other words: researcher will be able to search for all entries in this metadata sheet, but not be able to directly search the data in the data files (data files, additional files as wheat_seet_additions.csv)! So such information as is in the wheat_seed_additions.csv file are effectively hidden from such searches. This is an example of flexibility dominating over standardisation, with some findability thereby being lost.
 
 If you believe that other features of your experiment are important to include, please do so by adding these in the `comment` row. 
 
@@ -230,15 +265,15 @@ Here you give a row for each of the variables in each of the data files.
 * **type** Enter the variable type (e.g. numeric, character, date).
 * **description** Anything you think relevant. Please enter the date/time format for variables that contain date/times.
 
-You will get a report on things such as matches and lack of matches with entered variable names and those in the actual datasets, matches of treatment names and measurement names, absences of data about things that were measured, absence about treatment information for things that were measured, and so on.
+At the validation stage below you will get a report on things such as matches and lack of matches with entered variable names and those in the actual datasets, matches of treatment names and measurement names, absences of data about things that were measured, absence about treatment information for things that were measured, and so on.
 
 Note that the example contains a datafile in this worksheet that does not exist in the data folder. This is intended to simulate an error (i.e. forgetting to include a datafile) and to then result notification of this error in the validation report.
 
 # Validation {#Validation}
 
-**<span style="color:red">This is work in progress. Please give it a go and have a look at the produced validation report, but note that we are leaving most of the development to the next stage of development.</span>**
+**<span style="color:red">This is work in progress. Please give it a go and have a look at the produced validation report, but note that we are leaving most of the development and refinement to the next stage of development.</span>**
 
-After entering your data, you should do a validation test of your metadata and data. The validation will check many different aspects of your metadata and data, and returns a report (html, pdf, docx or all three). The validation and resulting report is a work in progress
+After entering your data, you should do a validation test of your metadata and data. The validation will check many different aspects of your metadata and data, and returns a report (html, pdf, docx or all three). The validation and resulting report is a work in progress.
 
 To produce a validation report, use the `report` function and give it your spreadsheet, the path to your data folder, and the type of report you want:
 
@@ -254,9 +289,10 @@ The validation report will suggest improvement you can make to your metadata. It
 
 # Making the final xml version
 
-The Excel version of the metadata is most useful for us to enter the metadata easily. It is not so useful for standardised/automated metadata enquiry/search/submission... i.e. Excel versions of metadata are not really FAIR compliable. The metadata gurus decided that it should be stored as xml files, as it is plain text, it is in principle readable by humans (though is not meant to be read by humans really), it is machine readable (and then easily converted into any other format, e.g. ones easy for humans to read).
+The Excel version of the metadata is most useful for us to enter the metadata easily. It is not so useful for standardised/automated metadata enquiry/search/submission... i.e. Excel versions of metadata are not really [FAIR](https://www.force11.org/group/fairgroup/fairprinciples) compliable. The metadata gurus decided that it should be stored as xml files, as it is plain text, it is in principle readable by humans (though is not meant to be read by humans really), it is machine readable (and then easily converted into any other format, e.g. ones easy for humans to read).
 
 Therefore, you should submit the final xml version of your metadata. Only do this after you have a satisfactory validation. 
+
 As the metadata as it is entered in the spreadsheet contains metadata for *many* different data files (as enterd in the column `DataFileMetaData / dataFileName`), the metadata will be split and exported to multiple xml files.
 
 ```{r eval=FALSE}
@@ -281,4 +317,4 @@ readRDS( file = "thenameofyourmetadataspreadsheet.RDS" )
 
 # Depositing in a repository {#depositing}
 
-We suggest that your metadata (the produced xml file), data, and validation report are deposited as one submission, e.g. to a repository such as dryad or zenodo. 
+We suggest that your metadata (the produced xml file and the excel file), data files, and validation report are deposited as one submission, e.g. to a repository such as dryad or zenodo. 
