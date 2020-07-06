@@ -39,11 +39,11 @@ You will benefit from starting metadata entry when you design your study. You'll
 
 # Getting started
 
-There are three different ways of using the **emeScheme**. You can either use ist as a web-app at [https://rmkrug.shinyapps.io/dmd_app/](https://rmkrug.shinyapps.io/dmd_app/), as a web-app locally, or from the R prompt programatically. A comparison of these three methods can be found in the "Develop and use the `dmdScheme`" vignette in the **dmdScheme** package. Here, we will only describe how use the scheme from the R prompt, as the steps in the web-app (on the internet or locally) are easily understandable after going through this description.
+There are three different ways of using the **emeScheme**. You can either use it as a web-app at [https://rmkrug.shinyapps.io/dmd_app/](https://rmkrug.shinyapps.io/dmd_app/), as a web-app locally, or from the R prompt programatically. A comparison of these three methods can be found in the "Develop and use the `dmdScheme`" vignette in the **dmdScheme** package. Here, we will only describe how use the scheme from the R prompt, as the steps in the web-app (on the internet or locally) are easily understandable after going through this description.
 
 ## Working programatically via R
 
-So the first thing to do is get and load the **emeScheme** R package. This includes to linstall and load the **dmdScheme** package from CRAN and than install the **emeScheme**  scheme package and the accompanying R package.
+The first thing to do is get and load the **emeScheme** R package. This includes to linstall and load the **dmdScheme** package from CRAN and than install the **emeScheme**  scheme package and the accompanying R package.
 
 You can install the base package **dmdScheme** from [CRAN](https://cran.r-project.org) or from [github](https://github.com/Exp-Micro-Ecol-Hub/dmdScheme). We recommend instaling from CRAN, as this is the officially supported version. The master branch on [masterbranch on github](https://github.com/Exp-Micro-Ecol-Hub/dmdScheme) is usually also stable, but the [dev branch](https://github.com/Exp-Micro-Ecol-Hub/dmdScheme/tree/dev) contains the development version and should be avoided for normal usage. To install the package, you do
 
@@ -116,8 +116,8 @@ Either way, make a copy of the spreadsheet and save it somewhere safe, like in t
 
 Its probably worth now looking at the spreadsheet (but don't yet try to fill in anything), to see what metadata you will need to enter. There are several worksheets:
 
-* **MdBibliometric** <span style="color:red">TODO</span>
-* **MdAuthor** <span style="color:red">TODO</span>
+* **MdBibliometric** <span style="color:red">TODO</span> Bibliometric data about the data package (and not about any associated research papers).
+* **MdAuthor** <span style="color:red">TODO</span> Information, such as ORCID and role for each of the authors/creators of the data package.
 * **Experiment** Here you enter details of your experiment, e.g. what temperature was the experiment conducted at. If temperature was a treatment, then you state that here and supply the levels in the **Treatments** worksheet.
 * **Species** Give details of the species involved in the experiment. If the species are unknow, enter `unknown`,
 * **Treatments** Here we give the manipulations involved in the experiment.
@@ -138,7 +138,7 @@ If your data does not fit these guidelines, e.g. is a collection of videos files
 
 ## About dates and times
 
-It will be very useful if during data preparation you standardise (parse) any dates and times in the data. A good method for this is to use functions in the **lubridate** R package, such as `dmy`, `hms`, and `dmy_hms` to create the standardise dates, and then write these to the ready for research/archiving data version.
+It will be very useful if during data preparation you standardise any dates and times in the data. A good method for this is to use functions in the **lubridate** R package, such as `dmy`, `hms`, and `dmy_hms` to create the standardise dates, and then write these to the ready for research/archiving data version.
 
 
 ## A worked example of preparation of data for archiving
@@ -177,7 +177,7 @@ The `basic` folder contains:
   * `data_preparation.Rmd` containing code that takes the information in the files in the `raw_data` folder, prepares this information for easy use by researchers (which also makes them suitable for archiving), and then writes this nicely prepared information/data into files in the `archiving_data` folder.
   * `analyses.Rmd` starts by reading the nicely prepared data files from the `archiving_data` folder, and would then proceed with analyses.
 
-**You will not be able to use the code in `data_preparation.Rmd` outside thias example as it is highly specific to this example.**
+**You will not be able to use the code in `data_preparation.Rmd` outside this example as it is highly specific to this example.**
 
 **Note** that it is **very important** that the preparation of the data for easy use by researchers and for archiving (done in `data_preparation.Rmd`) is completely transparent.
 
@@ -200,11 +200,11 @@ Two important points to remember:
 
 ## MdBibliometric worksheet
 
-This worksheet (together with MdAuthor) contains the bibliometric metadata, i.e. the metadata related to authorship, licenses, keywords, etc. Most of the fields are self explantory.   
+This worksheet (together with MdAuthor) contains the bibliometric metadata, i.e. the metadata related to authorship, licenses, keywords, etc. The fields are self explantory.   
 
 ## MdAuthors worksheet
 
-This sheet contains everybody involved to such a degree in the measurement, curation and  other aspects involving the data gathering itself as well as the creation of this data package (datasets + metadata + other accompanying documents). Every scientist who publishes, should be encouraged to get a unique ID. One of the most widely used one is the [ORCID ID](https://orcid.org). This ID has to be entered in the column `orcid`. The last column contains the rol person has played in this process. The role is defined by [CRediT system, the Contributor Roles Taxonomy](https://casrai.org/credit/) at. One author can have more than one role.
+This sheet contains everybody involved to such a degree in the measurement, curation and  other aspects involving the data gathering itself as well as the creation of this data package (datasets + metadata + other accompanying documents). Every scientist who publishes, should be encouraged to get a unique ID. One of the currently most widely used is the [ORCID ID](https://orcid.org). This ID should be entered in the column `orcid`. The last column contains the role or roles each person has played in this process. The role is defined by [CRediT system, the Contributor Roles Taxonomy](https://casrai.org/credit/) at. One author can have more than one role.
 
 ## Experiment worksheet
 
