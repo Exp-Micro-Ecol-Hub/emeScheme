@@ -39,7 +39,22 @@ You will benefit from starting metadata entry when you design your study. You'll
 
 # Getting started
 
-There are three different ways of using the **emeScheme**. You can either use it as a web-app at [https://rmkrug.shinyapps.io/dmd_app/](https://rmkrug.shinyapps.io/dmd_app/), as a web-app locally, or from the R prompt programatically. A comparison of these three methods can be found in the "Develop and use the `dmdScheme`" vignette in the **dmdScheme** package. Here, we will only describe how use the scheme from the R prompt, as the steps in the web-app (on the internet or locally) are easily understandable after going through this description.
+There are three different ways of using the **emeScheme**. You can either use it as a web-app at [https://rmkrug.shinyapps.io/dmd_app/](https://rmkrug.shinyapps.io/dmd_app/), as a web-app locally, or from the R prompt programatically. A comparison of these three methods can be found in the "Develop and use the `dmdScheme`" vignette in the **dmdScheme** package. 
+
+## Working with the universal web app
+
+The web app can be started as a [shiny app](https://rmkrug.shinyapps.io/dmd_app/). Most of the app is self explanatory, and the workflow consists of 
+
+1. activating the scheme from the list of available schemes. This list id auto-generated from the [scheme repository](https://github.com/Exp-Micro-Ecol-Hub/dmdSchemeRepository). Concequently, it will always contain the newest schemes. Activating a scheme will also install and load the accompanying R package.
+2. Download an Excel sheet which is used to enter the metadata (see details below). It is also possible to download an excel sheet with example data.
+3. The Excel sheet with the entered metadata is uploaded to the server for further processing.
+4. Additional daa files, when needed for the validation, can also uploaded
+5. The validation can be done and the validation report can be downloaded as a html (the best option), pdf or docx file.
+6. Finally, the metadata can be exported to one (or more) xml files. How these do exactly look, depends ot the scheme and the therein implemented export functions.
+
+The web app can also be run locally, by running the command `run_app()` after loading the package `dmdScheme`.
+
+Further details can be found in the next section.
 
 ## Working programatically via R
 
