@@ -6,17 +6,18 @@ output:
   rmarkdown::html_vignette: 
     toc: true
     toc_depth: 4
+  pdf_document: default
 vignette: >
   %\VignetteIndexEntry{User Manual for Experimental Microbial Ecology Metadata tool}
-  %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
 ---
 
 # Introduction
 
 Researchers are increasingly required to make the data they produce **F**indable, **A**ccessible, **I**nteroperable, and **R**eusable ([wikipedia FAIR entry](https://en.wikipedia.org/wiki/FAIR_data)). Providing metadata that describes studies, experiments, treatments, measurements, data, and so on is a key part of this endeavour.
 
-The aim of the experimental microbial ecology metadata tool (`emeScheme` R package on [https://github.com/Exp-Micro-Ecol-Hub/emeScheme](https://github.com/Exp-Micro-Ecol-Hub/emeScheme)) and the associated experimental microbial ecologal experiments metadata scheme (`emeScheme` scheme package on [https://github.com/Exp-Micro-Ecol-Hub/dmdSchemeRepository](https://github.com/Exp-Micro-Ecol-Hub/dmdSchemeRepository)) is to help you describe your study and its data, i.e. to produce useful metadata. You will do this by 
+The aim of the experimental microbial ecology metadata tool (`emeScheme` R package on [https://github.com/Exp-Micro-Ecol-Hub/emeScheme](https://github.com/Exp-Micro-Ecol-Hub/emeScheme)) and the associated experimental microbial ecology experiments metadata scheme (`emeScheme` scheme package on [https://github.com/Exp-Micro-Ecol-Hub/dmdSchemeRepository](https://github.com/Exp-Micro-Ecol-Hub/dmdSchemeRepository)) is to help you describe your study and its data, i.e. to produce useful metadata. You will do this by 
 
 1. Preparing your datasets for archiving (see [Prepare Data for Archiving](#PrepareDataForArchiving)), 
 2. Entering your metadata into the spreadsheet supplied (see [Fill in Metadata](#FillInMetadata)), 
@@ -26,11 +27,11 @@ The aim of the experimental microbial ecology metadata tool (`emeScheme` R packa
 
 # What is *useful* metadata?
 
-Imagine we would like to use the metadata to find experiments (and potentially return the relevant data from them) that involve *Colpidium striatum* grown at **20ºC** in **0.55g per litre protist pellet medium**. To do this we need to ensure that the **species name**, the **temperature**, and the **growth media information** are contained in the metadata. We also need to make sure that when temperature is described it is described in a **standard fashion**, and that the growth media description is standardised. So there must be some standardisation. But its clear that most experiments have some unique features, such that we can't standardise everything in advance. The metadata scheme we use here is intended to be a good balance of standardised and flexible.
+Imagine we would like to use the metadata to find experiments (and potentially return the relevant data from them) that involve *Colpidium striatum* grown at **20ºC** in **0.55g per litre protist pellet medium**. To do this we need to ensure that the **species name**, the **temperature**, and the **growth media information** are contained in the metadata. We also need to make sure that when temperature is described in a **standard fashion**, and that the growth media description is also standardised. So there must be some standardisation. But its clear that most experiments have some unique features, such that we can't standardise everything in advance. The metadata scheme we use here is intended to be a good balance of standardised and flexible.
 
 # What metadata is covered in the emeScheme, and what is not
 
-The emeScheme metadata only covers that necessary/helpful to describe an "experimental microbial ecology" study (though as an aside we think/wonder if it might be useful for many other settings of ecological experiments). Some important/essential metadata that is also required by other schemes, such as the *DataCite* scheme and/or the *Ecological Metadata Language/Scheme*, are included (e.g. some bibliographic information) but much is not. We may add tools that help researchers enter other metadata and to export to other schemes.
+The emeScheme metadata only covers what is necessary/helpful to describe an "experimental microbial ecology" study (though as an aside we think/wonder if it might be useful for many other settings of ecological experiments). Some important/essential metadata that is also required by other schemes, such as the *DataCite* scheme and/or the *Ecological Metadata Language/Scheme*, are included (e.g. some bibliographic information) but much is not. We may add tools that help researchers enter other metadata and to export to other schemes.
 
 
 # At what point of my study should I enter metadata
@@ -45,12 +46,12 @@ There are three different ways of using the **emeScheme**. You can either use it
 
 The web app can be started as a [shiny app](https://rmkrug.shinyapps.io/dmd_app/). Most of the app is self explanatory, and the workflow consists of 
 
-1. activating the scheme from the list of available schemes. This list id auto-generated from the [scheme repository](https://github.com/Exp-Micro-Ecol-Hub/dmdSchemeRepository). Concequently, it will always contain the newest schemes. Activating a scheme will also install and load the accompanying R package.
+1. activating the scheme from the list of available schemes. This list is auto-populated from the [scheme repository](https://github.com/Exp-Micro-Ecol-Hub/dmdSchemeRepository). Consequently, it will always contain the newest schemes. Activating a scheme will also install and load the accompanying R package.
 2. Download an Excel sheet which is used to enter the metadata (see details below). It is also possible to download an excel sheet with example data.
 3. The Excel sheet with the entered metadata is uploaded to the server for further processing.
 4. Additional daa files, when needed for the validation, can also uploaded
 5. The validation can be done and the validation report can be downloaded as a html (the best option), pdf or docx file.
-6. Finally, the metadata can be exported to one (or more) xml files. How these do exactly look, depends ot the scheme and the therein implemented export functions.
+6. Finally, the metadata can be exported to one (or more) xml files. How these do exactly look, depends on the scheme and the in the accompanying R package implemented export functions.
 
 The web app can also be run locally, by running the command `run_app()` after loading the package `dmdScheme`.
 
@@ -73,42 +74,43 @@ install.packages("dmdScheme")
 # devtools::install_github("Exp-Micro-Ecol-Hub/dmdScheme", ref = "master", build_opts = c("--no-resave-data"))
 ```
 
-Now you have to install the **emeScheme** scheme package. This scheme package, which can be installed from the [scheme repository](https://github.com/Exp-Micro-Ecol-Hub/dmdSchemeRepository), contains the scheme definition, examples, and a script to install an R package which enhances the functionality. The scheme is instyalled into a temporary library which is deleted when you quit R, while the R package is installed in the normal R library.
+Now you have to install the **emeScheme** scheme package. This scheme package, which can be installed from the [scheme repository](https://github.com/Exp-Micro-Ecol-Hub/dmdSchemeRepository), contains the scheme definition, examples, and a script to install an R package which enhances the functionality. The scheme is installed into a temporary library which is deleted when you quit R, while the R package is installed in the normal R library.
 
-Ypu have to
+You have to
 1. load the package **dmdScheme**,
 2. download and install the scheme definition for the `emeScheme` in a temporary scheme library by running `scheme_install()`, and the acompanying R package (which has the same name as the scheme package, i.e. `emeScheme`)
  
 ```{r eval = FALSE, echo = TRUE}
 library("dmdScheme")
 
-scheme_install(	name = "emeScheme", version = "0.9.5", install_package = TRUE)
+scheme_install(	name = "emeScheme", version = "0.9.9", install_package = TRUE)
 ```
 
-3. load the accompanying package **emeScheme** and load the acompanying package
+3. load the accompanying package **emeScheme** 
 
 ```{r eval = TRUE, echo = TRUE}
 library(emeScheme)
 ```
 
-Tne scheme needs to be installed each time you load the package in a new R session, as the session library is only temporary, but the R package is installed permanently.
+The scheme needs to be installed each time you load the package in a new R session, as the session library is only temporary, but the accompanying R package is installed permanently.
 
-To make thithe scheme library permanent, run
+To make the scheme library permanent, run
 
 ```{r eval = FALSE, echo = TRUE}
 cache(createPermanent = TRUE)
 ```
 
 and restart your R session. This will create a permanent cache which is used for the scheme library in your user directory, so that schemes are installed permanently.
+
 For details on the managing of schemes, see the vignette "Develop and Use the dmdScheme" in the **dmdScheme** package.
 
-even without a permanent scheme library, you can the next time simply use
+Even without a permanent scheme library, you can the next time simply use
 
 ```{r, eval = FALSE}
 library("emeScheme")
 ```
 
-to load the R package and install (when needed) the scheme package.
+to load the R package and, when needed, install the scheme package.
 
 Now you can start entering metadata.
 
@@ -127,12 +129,12 @@ open_new_spreadsheet(keepData = TRUE)
 # open_new_spreadsheet(keepData = TRUE, format = FALSE)
 ```
 
-Either way, make a copy of the spreadsheet and save it somewhere safe, like in the folder for your study/experiment .
+Either way, make a copy of the spreadsheet and save it somewhere safe, like in the folder for your study/experiment.
 
 Its probably worth now looking at the spreadsheet (but don't yet try to fill in anything), to see what metadata you will need to enter. There are several worksheets:
 
-* **MdBibliometric** <span style="color:red">TODO</span> Bibliometric data about the data package (and not about any associated research papers).
-* **MdAuthor** <span style="color:red">TODO</span> Information, such as ORCID and role for each of the authors/creators of the data package.
+* **MdBibliometric** Bibliometric data about the data package (and not about any associated research papers!).
+* **MdAuthor** Information  uch as ORCID and role for each person involved in the creation and preparation of the data package.
 * **Experiment** Here you enter details of your experiment, e.g. what temperature was the experiment conducted at. If temperature was a treatment, then you state that here and supply the levels in the **Treatments** worksheet.
 * **Species** Give details of the species involved in the experiment. If the species are unknow, enter `unknown`,
 * **Treatments** Here we give the manipulations involved in the experiment.
@@ -149,7 +151,7 @@ There are no hard and fast rules, but there are some guidelines that will make t
 * Always include a variable that allows data file to be related to others (e.g. Microcosm_ID).
 * Do not put different measurement types in a single data file. E.g. do not put measures of dissolved oxygen measures and adundance data in the same data file.
 
-If your data does not fit these guidelines, e.g. is a collection of videos files or a collection of files containing DNA sequence data, create a summary table which lists the files and gives a description on the treatment from which the files resulted. In this way, your datafile is the  summary table, ad your individual file (video, image, DNA sequence file, ...) is one datapoint. You can either add all these in an additional directory or put them into one container of some kind (e.g. compressed folder (tar.gz preferably) or zip file).
+If your data does not fit these guidelines, e.g. is a collection of videos files or a collection of files containing DNA sequence data, create a summary table which lists the files and gives a description on the treatment from which the files resulted. In this way, your datafile is the  summary table, and your individual file (video, image, DNA sequence file, ...) is one datapoint. You can either add all these in an additional directory or put them into one container of some kind (e.g. compressed folder (tar.gz preferably) or zip file).
 
 ## About dates and times
 
@@ -160,8 +162,9 @@ It will be very useful if during data preparation you standardise any dates and 
 
 The package `emeScheme` includes examples of raw data, processing scripts, processed data for archiving and the associated metadata.
 
-The examples (so far only one) are:
+The examples (so far only two) are:
 - `basic`: a basic simple example
+- `ex_2`: an example of more complex metadata
 
 More examples will follow later.
 
@@ -219,7 +222,7 @@ This worksheet (together with MdAuthor) contains the bibliometric metadata, i.e.
 
 ## MdAuthors worksheet
 
-This sheet contains everybody involved to such a degree in the measurement, curation and  other aspects involving the data gathering itself as well as the creation of this data package (datasets + metadata + other accompanying documents). Every scientist who publishes, should be encouraged to get a unique ID. One of the currently most widely used is the [ORCID ID](https://orcid.org). This ID should be entered in the column `orcid`. The last column contains the role or roles each person has played in this process. The role is defined by [CRediT system, the Contributor Roles Taxonomy](https://casrai.org/credit/) at. One author can have more than one role.
+This sheet contains everybody involved to such a degree in the measurement, curation and other aspects involving the data gathering itself as well as the creation of this data package (datasets + metadata + other accompanying documents), which warants the inclusion in the list of "authors" of the data package. Every scientist who publishes, should be encouraged to get a unique ID. One of the currently most widely used is the [ORCID ID](https://orcid.org). This ID should be entered in the column `orcid`. The last column contains the role or roles each person has played in this process. The role is defined by [CRediT system, the Contributor Roles Taxonomy](https://casrai.org/credit/) at. One author can have more than one role.
 
 ## Experiment worksheet
 
@@ -235,9 +238,9 @@ If you believe that other features of your experiment are important to include, 
 
 This worksheet should also not need much explanation. Note that this is just a list of the species in the experiment. Its not a description of any treatments involving species composition. These have to be specified in the `Treatment` worksheet.
 
-During validation of your metadata the species names will be automatically checked against an online database of species names, and you will get a report on matches or lack of matches. (This helps increase interoperability of the data.)
+During validation of your metadata the species names will be automatically checked against online databases of species names, and you will get a report on matches or lack of matches. (This helps increase interoperability of the data.)
 
-In the worked example the experiment was set up by adding a pool of unknown species composition (Tetrahymena thermophila only added for illustrative purposes). So no entries in this worksheet. The composition could be "measured" using e.g. molecular methods, and would then be an entry in the **Measurements** worksheet (see below for more details on that worksheet).
+In the worked example the experiment was set up by adding a pool of unknown species composition (*Tetrahymena thermophila* only added for illustrative purposes). So no entries in this worksheet. The composition could be "measured" using e.g. molecular methods, and would then be an entry in the **Measurements** worksheet (see below for more details on that worksheet).
 
 If any of your data sets contain species names, it will be very helpful to make them match the names in this sheet. You will be told about the presence or absence of such matches in the validation report.
 
@@ -249,7 +252,7 @@ You do not need to, and should not, attempt to include information about treatme
 
 It would be very nice here (i.e. it will make your life easier) to make the names of your treatment and the descriptions of the levels exactly the same as those used in the related columns in your data files. You will be told about the presence or absence of such matches in the validation report.
 
-As species composition can be seen as a form of treatment, they have to be entered here. I this case, the `unit` should be **speciesID** and the `treatmentLevel` should contain a comma separated list of `speciesID`s. 
+As species composition can be seen as a form of treatment, they have to be entered here. In this case, the `unit` should be **speciesID** and the `treatmentLevel` should contain a comma separated list of `speciesID`s. 
 
 ## Measurements worksheet
 
@@ -296,7 +299,7 @@ To produce a validation report, use the `report` function and give it your sprea
 report("thenameofyourmetadataspreadsheet.xlsx", path = "the/path/to/your/datafiles", report = "html")
 ```
 
-As mentioned already, the validation and resulting report is a work in progress. Don't feel the need to look at it so hard. Please let us know if you suggest particular validation checks.
+As mentioned already, the validation and resulting report is a work in progress. Please let us know if you suggest particular validation checks.
 
 # Fixing issues {#Fixing}
 
