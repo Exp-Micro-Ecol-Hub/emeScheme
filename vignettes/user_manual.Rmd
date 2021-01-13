@@ -59,7 +59,7 @@ Further details can be found in the next section.
 
 ## Working programatically via R
 
-The first thing to do is get and load the **emeScheme** R package. This includes to linstall and load the **dmdScheme** package from CRAN and than install the **emeScheme**  scheme package and the accompanying R package.
+The first thing to do is get and load the **emeScheme** R package. This includes to install and load the **dmdScheme** package from CRAN and than install the **emeScheme**  scheme package and the accompanying R package.
 
 You can install the base package **dmdScheme** from [CRAN](https://cran.r-project.org) or from [github](https://github.com/Exp-Micro-Ecol-Hub/dmdScheme). We recommend instaling from CRAN, as this is the officially supported version. The master branch on [masterbranch on github](https://github.com/Exp-Micro-Ecol-Hub/dmdScheme) is usually also stable, but the [dev branch](https://github.com/Exp-Micro-Ecol-Hub/dmdScheme/tree/dev) contains the development version and should be avoided for normal usage. To install the package, you do
 
@@ -235,7 +235,7 @@ When you fill in this information, think about standardisation. If you enter a t
 
 Something else of note: Look at the field `mediaAdditions` and you will see the entry is "Wheat seeds added on specific dates, see file wheat_seed_additions.csv". Here we see the possibility for great flexibility... we refer to information in a separate data file. Note though that this data file is just a list of dates and number of wheat seeds added -- it is not information about an experimental treatment, because all experimental treatments experience the same additions (i.e. these additions are feature of the experiment). In addition, the information in these additional files is **not indexed** when submitting the data to a repository for archiving. In other words: researcher will be able to search for all entries in this metadata sheet, but not be able to directly search the data in the data files (data files, additional files as wheat_seet_additions.csv)! So such information as is in the wheat_seed_additions.csv file are effectively hidden from such searches. This is an example of flexibility dominating over standardisation, with some findability thereby being lost.
 
-If you believe that other features of your experiment are important to include, please do so by adding these in the `comment` row. If they seem to be not appropriate to add there, you may need to think about extending the emeScheme. We suggest that you contact us if this seems o
+If you believe that other features of your experiment are important to include, please do so by adding these in the `comment` row. If they seem to be not appropriate to add there, you may need to think about extending the emeScheme. 
 
 ## Species worksheet
 
