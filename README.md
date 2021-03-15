@@ -3,14 +3,12 @@ Metadata scheme for Mirocosm Experiments
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-[![DOI](https://zenodo.org/badge/156543918.svg)](https://zenodo.org/badge/latestdoi/156543918)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2244998.svg)](https://doi.org/10.5281/zenodo.2244998)
 [![License:
 MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 [![Build
 Status](https://travis-ci.com/Exp-Micro-Ecol-Hub/emeScheme.svg?branch=dev)](https://travis-ci.com/Exp-Micro-Ecol-Hub/emeScheme)
-<!-- [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/Exp-Micro-Ecol-Hub/emeScheme?branch=master&svg=true)](https://ci.appveyor.com/project/Exp-Micro-Ecol-Hub/emeScheme) -->
-
 [![Coverage
 status](https://codecov.io/gh/Exp-Micro-Ecol-Hub/emeScheme/branch/master/graph/badge.svg)](https://codecov.io/github/Exp-Micro-Ecol-Hub/emeScheme?branch=master)
 
@@ -19,13 +17,59 @@ status](https://codecov.io/gh/Exp-Micro-Ecol-Hub/emeScheme/branch/master/graph/b
 has not yet been a stable, usable release suitable for the
 public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
 
------
+------------------------------------------------------------------------
 
 Please see [Experimental Microbial Ecology Metadata
 Scheme](https://exp-micro-ecol-hub.github.io/emeScheme/) for details.
 
 # Other Links:
 
-  - The [Experimental Microbial Ecology Hub](http://emeh.info)
-  - The [Experimental Microbial Ecology
+-   The [Experimental Microbial Ecology Hub](http://emeh.info)
+-   The [Experimental Microbial Ecology
     Protocols](http://emeh-protocols.readthedocs.org/en/latest/)
+
+Github site <https://github.com/Exp-Micro-Ecol-Hub/emeScheme>
+
+# User Manual of the emeScheme
+
+See the vignette “User Manual” at
+<a href="user_manual.html" target="_blank">vignette ‘User manual’</a>.
+
+# The R Package
+
+The R package `emeScheme` contains additional functionality for
+entering, editing, validating and exporting.
+
+## Installation
+
+The package is not on CRAN. Therefore it needs to be installed from
+github.
+
+``` r
+## install the devtools package if not installed yet
+# install.packages("devtools")
+
+## install the last version of emeScheme from github incl vignettes
+devtools::install_github("Exp-Micro-Ecol-Hub/emeScheme", ref = "master", build_opts = NULL)
+```
+
+## Introduction
+
+-   <a href="user_manual.html" target="_blank">‘User manual for
+    experimental microbial ecology metadata tool’</a> for a walk-through
+    of using te emeScheme
+
+# Other Resources
+
+## Documentation of the base package `dmdScheme`
+
+The documentation of the base package `dmdScheme` can be found at
+[Experimental Microbial Ecology Metadata
+Scheme](https://exp-micro-ecol-hub.github.io/dmdScheme/)
+
+## Outdated Presentations
+
+-   [The emeScheme - an
+    Introduction](https://rkrug.github.io/emeScheme_Introduction/The_emeScheme.html)
+    by Rainer M Krug.
+    [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2247069.svg)](https://doi.org/10.5281/zenodo.2247069)

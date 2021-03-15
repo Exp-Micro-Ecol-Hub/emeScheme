@@ -87,24 +87,17 @@ clean_example:
 
 #####
 
-html:	$(HTML)
-# %.html: %.Rmd
-$(OUTDIR)/%.html: $(SRCDIR)/%.Rmd
-	@Rscript -e "rmarkdown::render('$<', output_format = 'prettydoc::html_pretty', output_dir = './$(OUTDIR)/')"
+pkgdown:
+	@Rscript -e "pkgdown::build_site()"
 
-clean_html:
-	rm -f $(HTML)
+clean_pkgdown:
+	@Rscript -e "pkgdown::clean_site()"
 
 ####
 
-web: html vignettes readme
-	cp -f $(VIGHTML) $(OUTDIR)/
-#	mkdir -p $(DATADIR)
-#	cp -f $(EXAMPLEXML) $(DATADIR)/
+web: readme pkgdown
 
-clean_web: clean_html clean_vignettes clean_readme
-	rm -f VIGHTMLOUT
-	rm -rf $(DATADIR)
+clean_web: clean_readme clean_pkgdown
 
 ####
 

@@ -83,7 +83,7 @@ You have to
 ```{r eval = FALSE, echo = TRUE}
 library("dmdScheme")
 
-scheme_install(	name = "emeScheme", version = "0.9.9", install_package = TRUE)
+scheme_install(	name = "emeScheme", version = "1.0.0", install_package = TRUE)
 ```
 
 3. load the accompanying package **emeScheme**
