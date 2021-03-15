@@ -11,7 +11,7 @@
   "relatedLink": "https://exp-micro-ecol-hub.github.io/emeScheme/",
   "issueTracker": "https://github.com/Exp-Micro-Ecol-Hub/emeScheme/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "1.1.8",
+  "version": "1.1.9",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -253,5 +253,5 @@
   "readme": "https://github.com/Exp-Micro-Ecol-Hub/emeScheme/blob/master/README.md",
   "developmentStatus": "https://www.tidyverse.org/lifecycle/#stable",
   "keywords": "metadata-scheme",
-  "fileSize": "2863725.911KB"
+  "fileSize": "2863721.562KB"
 }
