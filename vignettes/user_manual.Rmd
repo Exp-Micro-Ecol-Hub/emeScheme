@@ -12,6 +12,7 @@ vignette: >
   %\VignetteEncoding{UTF-8}
   %\VignetteEngine{knitr::rmarkdown}
 ---
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1544945.svg)](https://doi.org/10.5281/zenodo.1544945)
 
 # Introduction
 

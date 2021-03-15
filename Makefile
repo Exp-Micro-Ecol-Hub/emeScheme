@@ -102,6 +102,11 @@ clean_web: clean_readme clean_pkgdown
 ####
 
 ########### Package  ###########
+####
+
+docs:
+	Rscript -e "devtools::document(roclets = c('rd', 'collate', 'namespace', 'vignette'))"
+	Rscript -e "codemetar::write_codemeta()"
 
 ####
 
@@ -113,12 +118,10 @@ update:
 updateForce:
 	@Rscript -e "devtools::load_all(here::here()); emeScheme:::updateFromNewSheet(force = TRUE)"
 
-####
+###
 
-docs:
-	Rscript -e "devtools::document(roclets = c('rd', 'collate', 'namespace', 'vignette'))"
 
-build:
+build: docs
 	cd ..;\
 	R CMD build --no-manual $(PKGSRC)
 

@@ -3,19 +3,14 @@ Metadata scheme for Mirocosm Experiments
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2244998.svg)](https://doi.org/10.5281/zenodo.2244998)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1544945.svg)](https://doi.org/10.5281/zenodo.1544945)
 [![License:
 MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-[![Build
-Status](https://travis-ci.com/Exp-Micro-Ecol-Hub/emeScheme.svg?branch=dev)](https://travis-ci.com/Exp-Micro-Ecol-Hub/emeScheme)
-[![Coverage
-status](https://codecov.io/gh/Exp-Micro-Ecol-Hub/emeScheme/branch/master/graph/badge.svg)](https://codecov.io/github/Exp-Micro-Ecol-Hub/emeScheme?branch=master)
+<!-- [![Build Status](https://travis-ci.com/Exp-Micro-Ecol-Hub/emeScheme.svg?branch=dev)](https://travis-ci.com/Exp-Micro-Ecol-Hub/emeScheme) -->
+<!-- [![Coverage status](https://codecov.io/gh/Exp-Micro-Ecol-Hub/emeScheme/branch/master/graph/badge.svg)](https://codecov.io/github/Exp-Micro-Ecol-Hub/emeScheme?branch=master) -->
 
-[![lifecycle](https://img.shields.io/badge/lifecycle-maturing-orange.png)](https://www.tidyverse.org/lifecycle/#mturing)
-[![Project Status: WIP – Initial development is in progress, but there
-has not yet been a stable, usable release suitable for the
-public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
+[![lifecycle](https://raster.shields.io/badge/lifecycle-stable-greene.png)](https://www.tidyverse.org/lifecycle/#stable)
 
 ------------------------------------------------------------------------
 
