@@ -28,3 +28,5 @@
 ^SCHEME_PACKAGE$
 ^emeScheme\.bbprojectd$
 ^codemeta\.json$
+^_pkgdown\.yml$
+^pkgdown$

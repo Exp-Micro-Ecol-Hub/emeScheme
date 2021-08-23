@@ -3,7 +3,7 @@ Title: Microcosm Experiment Metadata Scheme
 Description: The acompanying R package for the emeScheme 
               (Experimental Microcosm Ecology Metadata)
               which includes additional functionality.
-Version: 1.1.7.1
+Version: 1.1.10
 Date: 2020-06-08
 Authors@R: c( person( "Rainer M.", "Krug", role = c("aut", "cre"), email = "Rainer.Krug@uzh.ch" ), person( "Owen
              L.", "Petchey", role = c("ctb"), email = "Owen.Petchey@uzh.ch" ), person("Vanessa W.", "de Melo", role
@@ -16,7 +16,6 @@ Imports: digest, magrittr, methods, rlang, rmarkdown, taxize, utils, nlme, latti
 Suggests: knitr, covr (>= 3.2.1), testthat (>= 2.0.1), here (>= 0.1), kableExtra (>= 0.9.0)
 License: MIT + file LICENSE
 Encoding: UTF-8
-LazyData: true
 StagedInstall: true
 RoxygenNote: 7.1.1
 VignetteBuilder: knitr

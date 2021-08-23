@@ -87,28 +87,26 @@ clean_example:
 
 #####
 
-html:	$(HTML)
-# %.html: %.Rmd
-$(OUTDIR)/%.html: $(SRCDIR)/%.Rmd
-	@Rscript -e "rmarkdown::render('$<', output_format = 'prettydoc::html_pretty', output_dir = './$(OUTDIR)/')"
+pkgdown:
+	@Rscript -e "pkgdown::build_site()"
 
-clean_html:
-	rm -f $(HTML)
+clean_pkgdown:
+	@Rscript -e "pkgdown::clean_site()"
 
 ####
 
-web: html vignettes readme
-	cp -f $(VIGHTML) $(OUTDIR)/
-#	mkdir -p $(DATADIR)
-#	cp -f $(EXAMPLEXML) $(DATADIR)/
+web: readme pkgdown
 
-clean_web: clean_html clean_vignettes clean_readme
-	rm -f VIGHTMLOUT
-	rm -rf $(DATADIR)
+clean_web: clean_readme clean_pkgdown
 
 ####
 
 ########### Package  ###########
+####
+
+docs:
+	Rscript -e "devtools::document(roclets = c('rd', 'collate', 'namespace', 'vignette'))"
+	Rscript -e "codemetar::write_codemeta()"
 
 ####
 
@@ -120,12 +118,10 @@ update:
 updateForce:
 	@Rscript -e "devtools::load_all(here::here()); emeScheme:::updateFromNewSheet(force = TRUE)"
 
-####
+###
 
-docs:
-	Rscript -e "devtools::document(roclets = c('rd', 'collate', 'namespace', 'vignette'))"
 
-build:
+build: docs
 	cd ..;\
 	R CMD build --no-manual $(PKGSRC)
 
